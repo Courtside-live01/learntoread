@@ -110,5 +110,24 @@ PHRASES = {
   "dg_oo": "Two O's hold hands. Together they make the sound in the middle of moon.",
   "dg_ng": "N and G hold hands. Together they make the sound at the end of king.",
 }
+PAIR_LEVELS = [  # Picture Pairs: card count, and which islands' words it draws from (easiest first)
+  {"cards": 6, "from": ["a"]},
+  {"cards": 8, "from": ["a", "ei"]},
+  {"cards": 10, "from": ["ei", "ou"]},
+  {"cards": 12, "from": ["a", "ei", "ou"]},
+  {"cards": 16, "from": ["a", "ei", "ou", "blend"]},
+  {"cards": 18, "from": ["ou", "blend"]},
+  {"cards": 20, "from": ["blend", "team"]},
+  {"cards": 22, "from": ["team", "five"]},
+  {"cards": 24, "from": ["blend", "team", "five"]},
+]
+PHRASES.update({
+  "pairs_pick": "Welcome to Picture Pairs! Every picture has a word friend. Pick a level to play.",
+  "pairs_look": "Look carefully at all the cards. Read each word!",
+  "pairs_go": "Now turn them over. Find each picture and its word!",
+  "pairs_done": "Hooray! You found all the pairs!",
+  "pairs_locked": "Finish the level before this one first!",
+  "pairs_peek": "Here is a little peek to help you.",
+})
 for v in VOWELS: PHRASES[f"vsays_{v}"] = f"The letter {v.upper()} says"
 WORD_TEXT = {"i": "I.", "a": "a.", "yoyo": "yo-yo."}  # how the voice should say these words

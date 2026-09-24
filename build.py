@@ -89,7 +89,7 @@ os.makedirs("voices", exist_ok=True)
 default = VOICES[0][0]
 for key, *_ in VOICES[1:]:
     open(f"voices/{key}.js", "w").write(f"(window.__VP=window.__VP||{{}})[{json.dumps(key)}]={json.dumps(pack(key))};")
-data = {"vowels": VOWELS, "firstVowel": FIRST_VOWEL, "alphabet": ALPHABET, "sentences": SENTENCES, "stages": STAGES,
+data = {"pairLevels": PAIR_LEVELS, "vowels": VOWELS, "firstVowel": FIRST_VOWEL, "alphabet": ALPHABET, "sentences": SENTENCES, "stages": STAGES,
         "phrases": PHRASES, "voices": [{"key": k, "name": n, "accent": a} for k, _, n, a in VOICES]}
 html = open("template.html", encoding="utf-8").read()
 html = html.replace("/*__AUDIO__*/{}", json.dumps({default: pack(default)})).replace("/*__DATA__*/{}", json.dumps(data, ensure_ascii=False))

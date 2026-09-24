@@ -313,6 +313,49 @@ body{touch-action:manipulation;-webkit-user-select:none;user-select:none;-webkit
 .bubble{font-size:min(3.8vw,16px,calc(var(--vh)*2.2));line-height:1.22;padding:7px 12px;border-radius:18px;
   display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
 .coach .speaker{width:50px;height:50px;font-size:24px}
+
+/* ---------- v4: Picture Pairs ---------- */
+#map{flex-direction:column;gap:8px;padding-block:2px 4px}
+.mapbox{flex:1;min-height:0;width:100%;display:flex;justify-content:center}
+.mapbox svg.world{height:100%;width:auto;max-width:100%;max-height:none}
+.pairs-btn{flex:none;display:inline-flex;align-items:center;gap:10px;font-size:min(22px,calc(var(--vh)*2.9));font-weight:800;line-height:1.1;
+  padding:min(10px,calc(var(--vh)*1.3)) 24px;border-radius:99px;background:var(--grape);color:#fff;box-shadow:0 6px 0 var(--grape-deep);transition:transform .08s}
+.pairs-btn:active{transform:translateY(4px);box-shadow:0 2px 0 var(--grape-deep)}
+.pairs-btn small{font-size:.64em;font-weight:700;opacity:.85}
+#pairs{display:flex;flex-direction:column;overflow:hidden}
+.pp-pick{flex:1;min-height:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:min(12px,calc(var(--vh)*1.6));padding-block:4px 8px}
+.pp-demo{display:flex;align-items:center;gap:12px}
+.pp-mini{width:min(70px,calc(var(--vh)*9));aspect-ratio:1/1.12;border-radius:14px;background:#fff;display:grid;place-items:center;
+  font-size:min(40px,calc(var(--vh)*5));box-shadow:0 5px 0 #9CCDE6,inset 0 0 0 3px #D6EEF9}
+.pp-mini.w{font-family:var(--read);font-weight:700;font-size:min(28px,calc(var(--vh)*3.6))}
+.pp-link{font-size:min(30px,calc(var(--vh)*4));font-weight:800;color:var(--grass-deep)}
+.pp-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:min(12px,calc(var(--vh)*1.5));width:100%;max-width:min(420px,calc(var(--vh)*50))}
+.pp-lv{position:relative;aspect-ratio:1;border-radius:22px;background:var(--c);color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:2px;line-height:1;box-shadow:0 6px 0 rgba(29,41,69,.25);transition:transform .08s;text-shadow:0 2px 0 rgba(29,41,69,.25)}
+.pp-lv:active{transform:translateY(4px)}
+.pp-lv b{font-size:min(46px,calc(var(--vh)*6.2));font-weight:800}
+.pp-lv small{font-size:min(14px,calc(var(--vh)*1.9));font-weight:800}
+.pp-lv.locked{background:#B9C3D6;text-shadow:none}
+.pp-lv .pp-star{position:absolute;top:-9px;right:-7px;width:32px;height:32px;color:var(--sun);filter:drop-shadow(0 2px 0 var(--sun-deep))}
+.pp-lv .pp-lock{position:absolute;top:9px;left:9px;width:18px;height:18px;color:#fff}
+.pp-lv .pp-star svg,.pp-lv .pp-lock svg{width:100%;height:100%}
+.pp-play{flex:1;min-height:0;display:flex;flex-direction:column;gap:8px;padding-block:2px 8px}
+.pp-top{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.btn.small-btn{font-size:17px;padding:7px 16px 7px 12px;box-shadow:0 4px 0 var(--cons-deep)}
+.pp-count{font-weight:800;font-size:18px;background:var(--paper);border-radius:99px;padding:6px 14px;box-shadow:0 4px 0 #9CCDE6;font-variant-numeric:tabular-nums}
+.board-wrap{flex:1;min-height:0;display:flex;align-items:center;justify-content:center}
+.board{display:flex;flex-wrap:wrap;justify-content:center;align-content:center}
+.board .mcard{width:var(--cw);height:calc(var(--cw)*1.12);aspect-ratio:auto;border-radius:14px;perspective:500px}
+.board .mcard .f,.board .mcard .b{border-radius:14px}
+.board .mcard .b{box-shadow:0 4px 0 var(--grape-deep)}
+.board .mcard .f{font-size:calc(var(--cw)*.56);box-shadow:0 4px 0 #9CCDE6,inset 0 0 0 3px #D6EEF9}
+.board .mcard.done .f{box-shadow:0 4px 0 var(--grass-deep),inset 0 0 0 4px var(--grass)}
+.board .mcard .b svg{width:40%}
+.mcard .f.w span.v,.pp-mini.w span.v{color:var(--coral)}
+.mcard .f.w span.c,.pp-mini.w span.c{color:var(--cons)}
+.mcard.glow .f{box-shadow:0 0 0 5px var(--sun),0 0 22px 6px rgba(255,200,58,.9)!important}
+.mcard.done{animation:yay .6s ease}
+.wd{display:inline-block;white-space:nowrap;line-height:1}
 </style>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -340,6 +383,7 @@ body{touch-action:manipulation;-webkit-user-select:none;user-select:none;-webkit
     <symbol id="gear" viewBox="0 0 24 24"><path d="M12 8.5a3.5 3.5 0 100 7 3.5 3.5 0 000-7zm8.4 5l1.6 1.3-2 3.4-2-.7a7.5 7.5 0 01-2 1.2L15.5 21h-4l-.4-2.3a7.5 7.5 0 01-2-1.2l-2.1.7-2-3.4 1.7-1.3a7.6 7.6 0 010-2.4L5 9.8l2-3.4 2.1.7a7.5 7.5 0 012-1.2L11.5 3h4l.4 2.3a7.5 7.5 0 012 1.2l2-.7 2 3.4-1.6 1.3a7.6 7.6 0 010 2.4z" transform="translate(-1.5 0)"/></symbol>
     <symbol id="lock" viewBox="0 0 24 24"><rect x="4.5" y="10.5" width="15" height="11" rx="2.5"/><path d="M8 10.5V8a4 4 0 018 0v2.5" fill="none" stroke="currentColor" stroke-width="2.6"/></symbol>
     <symbol id="abc" viewBox="0 0 24 24"><text x="12" y="17" text-anchor="middle" font-size="13" font-weight="700" font-family="Andika, sans-serif">abc</text></symbol>
+    <symbol id="cards" viewBox="0 0 24 24"><rect x="2.5" y="5" width="10" height="14" rx="2.2" transform="rotate(-10 7.5 12)"/><rect x="11" y="4" width="10" height="14" rx="2.2" transform="rotate(8 16 11)" opacity=".75"/></symbol>
     <symbol id="stk" viewBox="0 0 24 24"><path d="M4 3h11l6 6v12H4z"/><path d="M15 3v6h6" fill="#fff" opacity=".55"/><circle cx="9.5" cy="12" r="1.3" fill="#fff"/><circle cx="14.5" cy="12" r="1.3" fill="#fff"/><path d="M8.5 15.5q3.5 3 7 0" stroke="#fff" stroke-width="1.6" fill="none" stroke-linecap="round"/></symbol>
   </defs>
 </svg>
@@ -364,6 +408,7 @@ body{touch-action:manipulation;-webkit-user-select:none;user-select:none;-webkit
     </section>
     <section class="screen" id="map" hidden></section>
     <section class="screen" id="level" hidden><div class="stage" id="stage"></div></section>
+    <section class="screen" id="pairs" hidden></section>
   </main>
   <footer class="coach" id="coach">
     <svg class="owl" viewBox="0 0 100 100" aria-hidden="true"><use href="#owl"/></svg>
@@ -381,6 +426,7 @@ body{touch-action:manipulation;-webkit-user-select:none;user-select:none;-webkit
     <h3 id="winTitle">Gold star!</h3>
     <p id="winText">You finished Vowel Valley.</p>
     <button class="btn play ready" id="winBtn"><svg class="icon"><use href="#home"/></svg>Back to the map</button>
+    <button class="btn say" id="winAlt" hidden><svg class="icon"><use href="#left"/></svg>All levels</button>
   </div>
 </div>
 
@@ -439,6 +485,7 @@ let prog = { unlocked: 1, stars: [], vol: 1.6, voice: DEF };
 try { const old = JSON.parse(localStorage.getItem('hoot-reading-v1') || '{}'); if (old.vol) prog.vol = old.vol; if (old.voice) prog.voice = old.voice; } catch (e) {}
 try { Object.assign(prog, JSON.parse(localStorage.getItem(KEY) || '{}')); } catch (e) {}
 if (!D.voices.some(v => v.key === prog.voice)) prog.voice = DEF;
+if (typeof prog.pairs !== 'number') prog.pairs = 0;
 const voiceMeta = () => D.voices.find(v => v.key === prog.voice);
 const save = () => { try { localStorage.setItem(KEY, JSON.stringify(prog)); } catch (e) {} };
 
@@ -539,10 +586,10 @@ const sfx = new Proxy({
 let screen = 'start', gen = 0, L = null, R = { miss: 0 }, busy = false, prompt = ['p_welcome'];
 function show(id) {
   screen = id;
-  for (const s of ['start', 'map', 'level']) $('#' + s).hidden = s !== id;
+  for (const s of ['start', 'map', 'level', 'pairs']) $('#' + s).hidden = s !== id;
   $('#bar').hidden = id === 'start';
   $('#dots').hidden = id !== 'level';
-  $('#homeBtn').hidden = id !== 'level';
+  $('#homeBtn').hidden = id !== 'level' && id !== 'pairs';
   $('#gearBtn').hidden = $('#stickerBtn').hidden = id !== 'map';
   $('#starCount').textContent = prog.stars.length;
 }
@@ -611,7 +658,8 @@ function renderMap() {
   });
   const [ox, oy] = POS[curI];
   s += `<g class="map-owl" pointer-events="none"><use href="#owl" x="${ox + (ox > 250 ? -84 : 34)}" y="${oy - 58}" width="46" height="46"/></g></svg>`;
-  $('#map').innerHTML = s;
+  $('#map').innerHTML = `<div class="mapbox">${s}</div>`;
+  $('#map').append(h('button', { class: 'pairs-btn', onclick: () => { sfx.whoosh(); openPairs(); } }, icon('cards'), h('span', {}, 'Picture Pairs ', h('small', {}, `· ${prog.pairs} of ${PL.length} levels`))));
   $('#map').querySelectorAll('.stop').forEach(g => {
     const go = () => tapStop(+g.dataset.n);
     g.addEventListener('click', go);
@@ -920,7 +968,7 @@ const G = {
     const st = $('#stage'); st.innerHTML = '';
     const grid = h('div', { class: 'mem' }, cards.map(c => {
       const label = c.it.w === 'i' ? 'I' : c.it.w;
-      const b = h('button', { class: 'mcard', 'aria-label': 'Hidden card', html: `<div class="in"><div class="b"><svg class="icon"><use href="#star"/></svg></div><div class="f${c.pic ? '' : ' w'}">${c.pic ? c.it.p : label}</div></div>` });
+      const b = h('button', { class: 'mcard', 'aria-label': 'Hidden card', html: `<div class="in"><div class="b"><svg class="icon"><use href="#star"/></svg></div><div class="f${c.pic ? '' : ' w'}">${c.pic ? c.it.p : wordHTML(label)}</div></div>` });
       b.onclick = () => {
         if (busy || lock || b.classList.contains('up') || b.classList.contains('done')) return;
         b.classList.add('up'); b.setAttribute('aria-label', label); sfx.flip(); say('w_' + c.it.w);
@@ -1011,12 +1059,16 @@ function finishLevel() {
   $('#winSticker').textContent = st.sticker;
   $('#winTitle').textContent = last ? 'Reading champion!' : 'Gold star!';
   $('#winText').textContent = last ? 'You read all the way to the top of Sentence Summit!' : `You finished ${st.name}. ${STG[idx + 1].name} is open!`;
+  winNext = goMap; $('#winAlt').hidden = true;
+  $('#winBtn').innerHTML = '<svg class="icon"><use href="#home"/></svg>Back to the map';
   $('#winBox').hidden = false; $('#winBtn').focus();
   sfx.fanfare(); confetti();
   prompt = last ? ['p_star', 'p_sticker', 'p_alldone'] : ['p_star', 'p_sticker'];
   setTimeout(() => say(prompt), 700);
 }
-$('#winBtn').onclick = () => { $('#winBox').hidden = true; sfx.whoosh(); goMap(); };
+let winNext = goMap;
+$('#winBtn').onclick = () => { $('#winBox').hidden = true; sfx.whoosh(); winNext(); };
+$('#winAlt').onclick = () => { $('#winBox').hidden = true; sfx.tap(); openPairs(false); };
 
 function openStickers() {
   const g = $('#stickerGrid'); g.innerHTML = '';
@@ -1026,6 +1078,131 @@ function openStickers() {
   });
   $('#stkCount').textContent = `${prog.stars.length} of ${N} stickers`;
   $('#stickerBox').hidden = false; sfx.whoosh(); say('p_stickerbook');
+}
+
+/* ---------- Picture Pairs: match each picture to its written word ---------- */
+const PL = D.pairLevels;
+let P = null;
+const wordHTML = w => `<span class="wd">${[...w].map(c => `<span class="${isV(c) ? 'v' : 'c'}">${c}</span>`).join('')}</span>`;
+function pairsPool(cfg) {
+  const seen = new Set(), out = [];
+  for (const k of cfg.from) for (const it of STG.find(s => s.key === k).words.map(W))
+    if (!seen.has(it.p) && !seen.has(it.w)) { seen.add(it.p); seen.add(it.w); out.push(it); }
+  return out;
+}
+function openPairs(speak = true) {
+  gen++; stopVoice(); busy = false; P = null;
+  show('pairs'); setTitle('Picture Pairs', 'Match each picture to its word');
+  const box = $('#pairs'); box.innerHTML = '';
+  const grid = h('div', { class: 'pp-grid' }, PL.map((cfg, i) => {
+    const locked = i > prog.pairs, done = i < prog.pairs;
+    const b = h('button', { class: 'pp-lv' + (locked ? ' locked' : ''), style: `--c:${BCOL[i % 6]}`,
+      'aria-label': `Level ${i + 1}, ${cfg.cards} cards${locked ? ', locked' : ''}${done ? ', done' : ''}` },
+      h('small', {}, `Level ${i + 1}`), h('b', {}, String(cfg.cards)), h('small', {}, 'cards'),
+      done ? h('span', { class: 'pp-star', html: '<svg class="icon"><use href="#star"/></svg>' }) : null,
+      locked ? h('span', { class: 'pp-lock', html: '<svg class="icon"><use href="#lock"/></svg>' }) : null);
+    b.onclick = () => { if (locked) { sfx.boop(); say('p_pairs_locked'); } else { sfx.whoosh(); startPairs(i); } };
+    return b;
+  }));
+  box.append(h('div', { class: 'pp-pick' },
+    h('div', { class: 'pp-demo', 'aria-hidden': 'true' }, h('div', { class: 'pp-mini' }, '🐱'), h('span', { class: 'pp-link' }, '='), h('div', { class: 'pp-mini w', html: wordHTML('cat') })),
+    h('p', { class: 'hint-text' }, 'Find each picture and its word'), grid));
+  prompt = ['p_pairs_pick'];
+  if (speak) say(prompt); else bubble.textContent = D.phrases.pairs_pick;
+}
+function startPairs(lv) {
+  gen++; stopVoice(); busy = false;
+  const g = gen, cfg = PL[lv], n = cfg.cards / 2;
+  const items = shuffle(pairsPool(cfg)).slice(0, n);
+  P = { lv, n, found: 0, miss: 0, first: null, lock: true };
+  show('pairs'); setTitle('Picture Pairs', `Level ${lv + 1} · ${cfg.cards} cards`);
+  const box = $('#pairs'); box.innerHTML = '';
+  P.count = h('span', { class: 'pp-count' }, `0 of ${n} pairs`);
+  const board = h('div', { class: 'board' });
+  P.cards = shuffle(items.flatMap(it => [{ it, pic: true }, { it, pic: false }])).map(c => {
+    const b = h('button', { class: 'mcard up', 'aria-label': c.pic ? `Picture of ${c.it.w}` : `Word ${c.it.w}`,
+      html: `<div class="in"><div class="b"><svg class="icon"><use href="#star"/></svg></div><div class="f${c.pic ? '' : ' w'}">${c.pic ? c.it.p : wordHTML(c.it.w)}</div></div>` });
+    b.c = c; b.onclick = () => flipCard(b);
+    board.append(b);
+    return b;
+  });
+  box.append(h('div', { class: 'pp-play' },
+    h('div', { class: 'pp-top' }, h('button', { class: 'btn small-btn', onclick: () => { sfx.tap(); openPairs(false); } }, icon('left'), 'Levels'), P.count),
+    h('div', { class: 'board-wrap' }, board)));
+  layoutBoard();
+  prompt = ['p_pairs_go'];
+  say(['p_pairs_look']);
+  // a "look carefully" peek: every card starts face up, longer for bigger boards
+  setTimeout(() => {
+    if (g !== gen) return;
+    P.cards.forEach(b => b.classList.remove('up')); sfx.flip(); P.lock = false; say(prompt);
+  }, 2600 + n * 450);
+}
+function layoutBoard() {
+  if (!P || screen !== 'pairs') return;
+  const wrap = $('#pairs .board-wrap'), board = $('#pairs .board');
+  if (!wrap) return;
+  const W = wrap.clientWidth, H = wrap.clientHeight, gap = W < 420 ? 7 : 10, n = P.cards.length;
+  let best = { size: 0, cols: 3 };
+  for (let cols = 2; cols <= 8; cols++) {
+    const rows = Math.ceil(n / cols), size = Math.min((W - gap * (cols - 1)) / cols, (H - gap * (rows - 1)) / rows / 1.12);
+    if (size > best.size + .5) best = { size, cols };
+  }
+  const s = Math.floor(Math.min(best.size, 150));
+  board.style.setProperty('--cw', s + 'px'); board.style.gap = gap + 'px';
+  board.style.width = (best.cols * s + (best.cols - 1) * gap) + 'px';
+  P.cards.forEach(b => {
+    if (b.c.pic) return;
+    const f = b.querySelector('.f'), wd = f.firstElementChild;
+    f.style.fontSize = Math.min(s * .44, s * .9 / (b.c.it.w.length * .58)) + 'px';
+    const room = s * .86, need = wd.scrollWidth;   // shrink any word that is still too wide for its card
+    if (need > room) f.style.fontSize = parseFloat(f.style.fontSize) * room / need + 'px';
+  });
+}
+addEventListener('resize', layoutBoard);
+function flipCard(b) {
+  if (!P) return;
+  if (b.classList.contains('done')) return say('w_' + b.c.it.w);
+  if (P.lock || b.classList.contains('up')) return;
+  b.classList.add('up'); sfx.flip();
+  if (b.c.pic) say('w_' + b.c.it.w);   // pictures say their name; word cards stay quiet so the child reads them
+  if (!P.first) { P.first = b; return; }
+  const a = P.first; P.first = null;
+  if (a.c.it === b.c.it) {
+    a.classList.add('done'); b.classList.add('done'); sfx.ding(); sparkle(b); P.found++; P.miss = 0;
+    P.count.textContent = `${P.found} of ${P.n} pairs`;
+    if (P.found === P.n) return finishPairs(b.c.it.w);
+    say(['w_' + b.c.it.w, { pause: 150 }, 'p_match']);
+  } else {
+    P.lock = true; P.miss++;
+    setTimeout(() => {
+      a.classList.remove('up'); b.classList.remove('up');
+      if (P.miss >= 4) peekHint(); else P.lock = false;
+    }, 1200);
+  }
+}
+function peekHint() {
+  // after 4 misses in a row, briefly show one matching pair
+  P.miss = 0;
+  const left = P.cards.filter(b => !b.classList.contains('done'));
+  const it = pick(left).c.it, pair = left.filter(b => b.c.it === it);
+  pair.forEach(b => b.classList.add('up', 'glow'));
+  say('p_pairs_peek');
+  setTimeout(() => { pair.forEach(b => b.classList.remove('up', 'glow')); if (P) P.lock = false; }, 1800);
+}
+function finishPairs(lastWord) {
+  const lv = P.lv, last = lv === PL.length - 1;
+  prog.pairs = Math.max(prog.pairs, lv + 1); save();
+  winNext = last ? () => openPairs(false) : () => startPairs(lv + 1);
+  $('#winSticker').textContent = '🃏';
+  $('#winTitle').textContent = last ? 'Pairs champion!' : 'All pairs found!';
+  $('#winText').textContent = last ? 'You matched all 24 cards. Amazing reading!' : `Next: level ${lv + 2} with ${PL[lv + 1].cards} cards.`;
+  $('#winBtn').innerHTML = last ? '<svg class="icon"><use href="#home"/></svg>All levels' : '<svg class="icon"><use href="#play"/></svg>Next level';
+  $('#winAlt').hidden = last;
+  $('#winBox').hidden = false; $('#winBtn').focus();
+  sfx.fanfare(); confetti();
+  prompt = ['p_pairs_done'];
+  setTimeout(() => say(['w_' + lastWord, { pause: 250 }, 'p_pairs_done', { pause: 150 }, 'p_praise' + (1 + rnd(8))]), 600);
 }
 
 /* ---------- celebration graphics ---------- */
@@ -1082,10 +1259,10 @@ vol.oninput = () => { prog.vol = +vol.value; if (voiceBus) voiceBus.gain.value =
 vol.onchange = () => say('p_praise1');
 $('#gearBtn').onclick = () => { $('#grownBox').hidden = false; $('#resetBtn').textContent = 'Start over from Vowel Valley'; };
 $('#grownClose').onclick = () => { $('#grownBox').hidden = true; };
-$('#unlockAll').onclick = () => { prog.unlocked = N; save(); renderMap(); $('#unlockAll').textContent = 'All islands unlocked'; };
+$('#unlockAll').onclick = () => { prog.unlocked = N; prog.pairs = PL.length - 1; save(); renderMap(); $('#unlockAll').textContent = 'All islands unlocked'; };
 $('#resetBtn').onclick = e => {
   const b = e.currentTarget;
-  if (b.dataset.armed) { prog = { unlocked: 1, stars: [], vol: prog.vol, voice: prog.voice }; save(); delete b.dataset.armed; $('#grownBox').hidden = true; goMap(); return; }
+  if (b.dataset.armed) { prog = { unlocked: 1, stars: [], pairs: 0, vol: prog.vol, voice: prog.voice }; save(); delete b.dataset.armed; $('#grownBox').hidden = true; goMap(); return; }
   b.dataset.armed = '1'; b.textContent = 'Tap again to wipe the stars';
   setTimeout(() => { delete b.dataset.armed; b.textContent = 'Start over from Vowel Valley'; }, 4000);
 };
