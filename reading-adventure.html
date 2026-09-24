@@ -1,4 +1,6 @@
 <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#BFE9FF">
 <title>Hoot's Reading Island</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -242,6 +244,75 @@ canvas#confetti{position:fixed;inset:0;width:100%;height:100%;pointer-events:non
 .win-row{display:flex;align-items:center;gap:6px}
 .win-row .big-star{width:120px;height:120px}
 .panel.scroll{max-height:88vh;overflow:auto}
+
+/* ---------- v3: fit every screen on a phone, no scrollbars ---------- */
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body{touch-action:manipulation;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
+.screen,.panel.scroll{scrollbar-width:none}
+.screen::-webkit-scrollbar,.panel.scroll::-webkit-scrollbar{display:none}
+:root{
+  --vh:1vh;
+  --pic:min(44vw,200px,calc(var(--vh)*23));
+  --tile:min(15.5vw,76px,calc(var(--vh)*9.2));
+}
+@supports (height:1dvh){:root{--vh:1dvh}}
+.bar{padding-block:max(8px,env(safe-area-inset-top,0px)) 4px}
+.dots{padding-block:2px 6px}
+.dots i{width:12px;height:12px}
+
+/* start */
+#start{gap:min(10px,calc(var(--vh)*1.4));padding-block:8px}
+#start .hero-owl{width:min(170px,38vw,calc(var(--vh)*19))}
+#start h2{font-size:min(11vw,60px,calc(var(--vh)*7.4))}
+#start p{font-size:min(18px,calc(var(--vh)*2.4))}
+.big-go{font-size:min(30px,calc(var(--vh)*4));padding:min(14px,calc(var(--vh)*1.8)) 36px}
+.voice{padding:min(8px,calc(var(--vh)*1)) 4px}
+@media (max-height:760px){#start p{display:none}}
+@media (max-height:600px){.path-preview{display:none}}
+
+/* map: the whole island chain fits on one screen */
+#map{display:flex;align-items:center;justify-content:center;overflow:hidden}
+#map svg.world{width:auto;height:auto;max-width:100%;max-height:100%;margin:0 auto}
+.stop .num text,.stop .lbl{font-family:var(--display);font-weight:800}
+
+/* level: stage fills the space between header and coach */
+.stage{gap:min(14px,calc(var(--vh)*1.7));padding-block:2px 8px}
+.card{padding:min(16px,calc(var(--vh)*2)) 12px min(18px,calc(var(--vh)*2.2));gap:min(12px,calc(var(--vh)*1.5));border-radius:24px}
+.pic{width:var(--pic);font-size:calc(var(--pic)*.58)}
+.tile{width:var(--tile);font-size:calc(var(--tile)*.66);border-radius:16px}
+.tile.dg{min-width:calc(var(--tile)*1.35)}
+.tiles{gap:min(8px,1.8vw)}
+.bigletter{padding:4px 22px 8px}
+.bigletter span:first-child{font-size:min(24vw,110px,calc(var(--vh)*12.5))}
+.bigletter span:last-child{font-size:min(17vw,80px,calc(var(--vh)*9))}
+.btn{font-size:min(21px,calc(var(--vh)*2.8));padding:min(10px,calc(var(--vh)*1.3)) 20px}
+.speaker{width:min(88px,calc(var(--vh)*10.5));height:min(88px,calc(var(--vh)*10.5));font-size:min(44px,calc(var(--vh)*5.2))}
+.opt-pic{max-width:min(150px,calc(var(--vh)*17));font-size:min(15vw,72px,calc(var(--vh)*8.5));border-radius:22px}
+.wordopt{font-size:min(9vw,42px,calc(var(--vh)*5.2));padding:min(12px,calc(var(--vh)*1.4)) 18px min(15px,calc(var(--vh)*1.8))}
+.monster{width:min(200px,54vw,calc(var(--vh)*24))}
+.mem{max-width:min(440px,calc(var(--vh)*52))}
+.balloon{width:min(18vw,88px,calc(var(--vh)*10.5))}
+.balloon.wb{width:min(28vw,128px,calc(var(--vh)*14))}
+.wtile{font-size:min(8.5vw,38px,calc(var(--vh)*4.8))}
+.wordcard{font-size:min(18vw,92px,calc(var(--vh)*11));padding:min(16px,calc(var(--vh)*2)) 30px min(22px,calc(var(--vh)*2.6))}
+.reveal{font-size:min(30px,calc(var(--vh)*3.8));min-height:0}
+.hint-text{font-size:min(19px,calc(var(--vh)*2.5))}
+.split{font-size:min(22px,calc(var(--vh)*2.8))}
+@media (max-height:700px){.legend{display:none}}
+
+/* learn: arrows, counter and Play sit on one row under the card */
+.pic.small{width:calc(var(--pic)*.62);font-size:calc(var(--pic)*.36)}
+.wtile.slot{min-width:46px;padding-inline:6px;min-height:calc(min(8.5vw,38px,calc(var(--vh)*4.8)) + 24px)}
+.learn-foot{display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;width:100%;max-width:520px}
+.learn-foot .nav{gap:8px}
+.learn-foot .btn.play{font-size:min(22px,calc(var(--vh)*2.9));padding:min(11px,calc(var(--vh)*1.4)) 22px}
+
+/* coach strip */
+.coach{gap:8px;padding-block:6px calc(8px + env(safe-area-inset-bottom,0px))}
+.coach svg.owl{width:min(56px,calc(var(--vh)*7));height:min(56px,calc(var(--vh)*7))}
+.bubble{font-size:min(3.8vw,16px,calc(var(--vh)*2.2));line-height:1.22;padding:7px 12px;border-radius:18px;
+  display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
+.coach .speaker{width:50px;height:50px;font-size:24px}
 </style>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -478,8 +549,9 @@ function show(id) {
 function setTitle(t, s) { $('#barTitle').firstChild.textContent = t; $('#barSub').textContent = s; }
 
 /* ---------- map ---------- */
-const MAP_H = 110 + (N - 1) * 150 + 120;
-const POS = STG.map((_, i) => [i === N - 1 ? 200 : i % 2 ? 284 : 118, MAP_H - 110 - i * 150]);
+const MAP_W = 360, MAP_H = 600, COLS = [62, 180, 298], ROWS = [520, 378, 236, 94];
+const POS = STG.map((_, i) => { const r = Math.floor(i / 3), c = i % 3; return [COLS[r % 2 ? 2 - c : c], ROWS[r]]; });
+const twoLines = n => { const k = n.lastIndexOf(' '); return k < 0 ? [n] : [n.slice(0, k), n.slice(k + 1)]; };
 const LAND = {
   valley: `<path d="M-62 4 Q-34 -44 -4 4 Z" fill="#46B866"/><path d="M-20 4 Q16 -58 56 4 Z" fill="#5CCB78"/>
       <path d="M-52 -6 A44 44 0 0 1 36 -6" fill="none" stroke="#FF6450" stroke-width="6"/><path d="M-45 -6 A37 37 0 0 1 29 -6" fill="none" stroke="#FFC83A" stroke-width="6"/><path d="M-38 -6 A30 30 0 0 1 22 -6" fill="none" stroke="#7657F2" stroke-width="6"/>
@@ -509,38 +581,42 @@ const LAND = {
 };
 function renderMap() {
   const curI = Math.min(prog.unlocked, N) - 1;
-  const d = POS.map(([x, y], i) => i ? `C ${POS[i - 1][0]} ${POS[i - 1][1] - 80}, ${x} ${y + 80}, ${x} ${y}` : `M ${x} ${y}`).join(' ');
-  let s = `<svg class="world" viewBox="0 0 400 ${MAP_H}" role="img" aria-label="Reading Island map">
+  const d = POS.map(([x, y], i) => {
+    if (!i) return `M ${x} ${y}`;
+    const [px, py] = POS[i - 1];
+    return py === y ? `C ${px + (x - px) / 3} ${y + 26}, ${px + 2 * (x - px) / 3} ${y + 26}, ${x} ${y}` : `C ${px + (px < 180 ? -46 : 46)} ${py - 60}, ${x + (x < 180 ? -46 : 46)} ${y + 70}, ${x} ${y}`;
+  }).join(' ');
+  let s = `<svg class="world" viewBox="0 0 ${MAP_W} ${MAP_H}" role="img" aria-label="Reading Island map">
   <defs><linearGradient id="sea" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#6FCBF0"/><stop offset="1" stop-color="#2EA6DD"/></linearGradient></defs>
-  <rect x="0" y="0" width="400" height="${MAP_H}" rx="30" fill="url(#sea)"/>
-  <circle cx="352" cy="56" r="30" fill="#FFC83A"/><circle cx="352" cy="56" r="40" fill="#FFC83A" opacity=".25"/>
-  <g fill="#fff" opacity=".95"><ellipse cx="70" cy="56" rx="34" ry="13"/><ellipse cx="88" cy="46" rx="20" ry="13"/><ellipse cx="330" cy="620" rx="26" ry="10"/><ellipse cx="344" cy="612" rx="15" ry="10"/><ellipse cx="60" cy="1100" rx="26" ry="10"/><ellipse cx="74" cy="1092" rx="15" ry="10"/></g>
-  ${Array.from({ length: 16 }, (_, i) => [i % 2 ? 330 : 30, 160 + i * 100 + (i % 3) * 20]).map(([x, y]) => `<path class="wave" d="M${x} ${y} q8 -7 16 0 q8 7 16 0"/>`).join('')}
-  <path d="${d}" fill="none" stroke="#F6D98E" stroke-width="12" stroke-linecap="round" stroke-dasharray="1 22" opacity=".95"/>`;
+  <rect x="0" y="0" width="${MAP_W}" height="${MAP_H}" rx="26" fill="url(#sea)"/>
+  <circle cx="330" cy="30" r="16" fill="#FFC83A"/><circle cx="330" cy="30" r="23" fill="#FFC83A" opacity=".25"/>
+  <g fill="#fff" opacity=".9"><ellipse cx="44" cy="28" rx="24" ry="9"/><ellipse cx="57" cy="21" rx="14" ry="9"/></g>
+  ${[[20, 170], [330, 300], [24, 450], [320, 585], [180, 305]].map(([x, y]) => `<path class="wave" d="M${x} ${y} q6 -5 12 0 q6 5 12 0"/>`).join('')}
+  <path d="${d}" fill="none" stroke="#F6D98E" stroke-width="9" stroke-linecap="round" stroke-dasharray="1 16" opacity=".95"/>`;
   STG.forEach((st, i) => {
-    const n = i + 1, [x, y] = POS[i], locked = n > prog.unlocked, star = prog.stars.includes(st.key);
+    const n = i + 1, [x, y] = POS[i], locked = n > prog.unlocked, star = prog.stars.includes(st.key), [l1, l2] = twoLines(st.name);
     s += `<g class="stop${locked ? ' locked' : ''}" data-n="${n}" role="button" tabindex="0" aria-label="Island ${n}, ${st.name}${locked ? ', locked' : ''}${star ? ', star earned' : ''}" transform="translate(${x} ${y})">
-      ${i === curI && !star ? `<ellipse class="ring" cx="0" cy="14" rx="80" ry="32"/>` : ''}
-      <g class="isle"><g class="land">
+      <rect x="-58" y="-70" width="116" height="128" fill="transparent"/>
+      ${i === curI && !star ? `<ellipse class="ring" cx="0" cy="8" rx="54" ry="22"/>` : ''}
+      <g class="isle"><g class="land" transform="scale(.62)">
         <ellipse cx="0" cy="18" rx="82" ry="32" fill="#F6D98E"/><ellipse cx="0" cy="10" rx="70" ry="24" fill="#5CCB78"/>
         ${LAND[st.land]}
-      </g>
-      <g class="plaque" transform="translate(0 50)"><rect x="-80" y="-16" width="160" height="34" rx="17" fill="#FFFCF2"/>
-        <text y="7" text-anchor="middle" font-size="17" fill="#1D2945">${st.name}</text></g>
-      <g transform="translate(-94 22)"><circle r="17" fill="${locked ? '#9AA7BF' : '#7657F2'}"/><text y="7" text-anchor="middle" font-size="19" font-weight="800" fill="#fff" font-family="Baloo 2,sans-serif">${n}</text></g>
-      ${star ? `<use href="#star" x="54" y="-66" width="40" height="40" fill="#FFC83A" stroke="#E0A100" stroke-width="1"/>` : ''}
-      ${locked ? `<g transform="translate(0 -24)"><circle r="20" fill="#1D2945" opacity=".8"/><use href="#lock" x="-12" y="-12" width="24" height="24" fill="#fff" color="#fff"/></g>` : ''}
-      </g></g>`;
+      </g></g>
+      <g transform="translate(0 38)"><rect x="-52" y="-12" width="104" height="${l2 ? 34 : 22}" rx="11" fill="#FFFCF2" opacity="${locked ? .8 : 1}"/>
+        <text class="lbl" text-anchor="middle" font-size="12.5" fill="#1D2945"><tspan x="0" y="3">${l1}</tspan>${l2 ? `<tspan x="0" y="17">${l2}</tspan>` : ''}</text></g>
+      <g class="num" transform="translate(-44 -2)"><circle r="12" fill="${locked ? '#9AA7BF' : '#7657F2'}" stroke="#fff" stroke-width="2"/><text y="5" text-anchor="middle" font-size="14" fill="#fff">${n}</text></g>
+      ${star ? `<use href="#star" x="24" y="-58" width="28" height="28" fill="#FFC83A" stroke="#E0A100" stroke-width="1"/>` : ''}
+      ${locked ? `<g transform="translate(0 -16)"><circle r="14" fill="#1D2945" opacity=".8"/><use href="#lock" x="-9" y="-9" width="18" height="18" fill="#fff" color="#fff"/></g>` : ''}
+      </g>`;
   });
   const [ox, oy] = POS[curI];
-  s += `<g class="map-owl"><use href="#owl" x="${ox + (ox < 200 ? 66 : -120)}" y="${oy - 56}" width="54" height="54"/></g></svg>`;
+  s += `<g class="map-owl" pointer-events="none"><use href="#owl" x="${ox + (ox > 250 ? -84 : 34)}" y="${oy - 58}" width="46" height="46"/></g></svg>`;
   $('#map').innerHTML = s;
   $('#map').querySelectorAll('.stop').forEach(g => {
     const go = () => tapStop(+g.dataset.n);
     g.addEventListener('click', go);
     g.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); go(); } });
   });
-  return $('#map').querySelector(`.stop[data-n="${curI + 1}"]`);
 }
 function tapStop(n) {
   if (n > prog.unlocked) { sfx.boop(); say('p_locked'); return; }
@@ -548,8 +624,7 @@ function tapStop(n) {
 }
 function goMap(speak) {
   gen++; stopVoice(); busy = false; L = null;
-  const here = renderMap(); show('map'); setTitle('Reading Island', `${prog.stars.length} of ${N} islands done`);
-  requestAnimationFrame(() => here && here.scrollIntoView({ block: 'center' }));
+  renderMap(); show('map'); setTitle('Reading Island', `${prog.stars.length} of ${N} islands done`);
   prompt = ['p_welcome'];
   if (speak) say(speak); else bubble.textContent = 'Tap an island to play! Each one gives you a gold star and a sticker.';
 }
@@ -654,7 +729,7 @@ function renderLearn(speak = true) {
     h('button', { class: 'round', 'aria-label': 'Next card', onclick: () => { if (L.card < last) { L.card++; sfx.tap(); renderLearn(); } else startGames(); } }, icon('right')));
   if (L.card === 0) nav.children[0].setAttribute('disabled', '');
   const allSeen = L.seen.size === L.deck.length;
-  st.append(card, nav, h('button', { class: 'btn play' + (allSeen ? ' ready' : ''), onclick: startGames }, icon('play'), 'Play the games'));
+  st.append(card, h('div', { class: 'learn-foot' }, nav, h('button', { class: 'btn play' + (allSeen ? ' ready' : ''), onclick: startGames }, icon('play'), 'Play')));
   if (speak) say(cardSpeech());
 }
 function startGames() { sfx.whoosh(); nextRound(['p_ready', { pause: 200 }]); }
@@ -922,8 +997,8 @@ const G = {
     });
     const markNext = () => { tiles.forEach(b => delete b.dataset.ok); const nx = tiles.find(b => !b.classList.contains('used') && b.k === t.keys[at]); if (nx) { nx.dataset.ok = '1'; if (R.miss >= 2) hintNow(); } };
     markNext();
-    st.append(h('div', { class: 'card' }, h('button', { class: 'pic', 'aria-label': 'Hear the sentence', onclick: () => say('t_' + t.i) }, t.p), slots, h('p', { class: 'hint-text' }, 'Tap the words in order'),
-      h('div', { class: 'sent' }, tiles), h('div', { class: 'row' }, speakerBtn(['t_' + t.i]))));
+    st.append(h('div', { class: 'card' }, h('button', { class: 'pic small', 'aria-label': 'Hear the sentence', onclick: () => say('t_' + t.i) }, t.p), slots,
+      h('p', { class: 'hint-text' }, 'Tap the words in order'), h('div', { class: 'sent' }, tiles)));
     ask(['p_sentbuild', { pause: 200 }, 't_' + t.i], lead);
   },
 };
