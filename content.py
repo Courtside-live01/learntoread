@@ -196,3 +196,53 @@ PHRASES.update({
   "talk_thisisme": "And this is me.",
   "talk_done": "You finished the lesson! Your talking is getting clearer and clearer!",
 })
+
+# ---------- Sound Garden: real letter sounds, blending, sounding out ----------
+# letter: (source word the sound is cut from, how to cut it, key word, picture). Vowels use the cut short vowels.
+LETTER_SOUNDS = {
+  "s": ("sun", "fric", "sun", "☀️"), "a": (None, "vowel", "apple", "🍎"), "t": ("tub", "clip", "tiger", "🐯"), "p": ("pup", "clip", "pig", "🐷"),
+  "i": (None, "vowel", "insect", "🐞"), "n": ("nut", "nasal", "nest", "🪺"), "m": ("mud", "nasal", "moon", "🌙"), "d": ("dug", "clip", "dog", "🐶"),
+  "g": ("gut", "clip", "goat", "🐐"), "o": (None, "vowel", "octopus", "🐙"), "c": ("cup", "clip", "cat", "🐱"), "k": ("cub", "clip", "kite", "🪁"),
+  "e": (None, "vowel", "egg", "🥚"), "u": (None, "vowel", "umbrella", "☂️"), "r": ("rug", "clip", "rabbit", "🐰"), "h": ("hut", "clip", "hat", "🎩"),
+  "b": ("bug", "clip", "ball", "⚽"), "f": ("fun", "fric", "fish", "🐟"), "l": ("lug", "clip", "lion", "🦁"), "j": ("jug", "clip", "juice", "🧃"),
+  "v": ("van", "vfric", "van", "🚐"), "w": ("one", "clip", "web", "🕸️"), "y": ("yum", "clip", "yoyo", "🪀"), "z": ("zip", "vfric", "zebra", "🦓"),
+  "x": ("box", "tail", "box", "📦"), "qu": ("quick", "clip2", "queen", "👸"), "sh": ("shut", "fric", "ship", "🚢"), "ch": ("chug", "clip", "chip", "🍟"),
+  "th": ("thumb", "fric", "thumb", "👍"),
+}
+# consonant+vowel blend: source word ending in a stop, cut before its closure
+BLEND_SRC = {"sa": "sat", "ma": "mat", "ta": "tap", "pa": "pat", "na": "nap", "ca": "cat", "ba": "bat", "ha": "hat", "va": "vat", "ja": "jab",
+  "me": "met", "te": "Ted", "pe": "pet", "ne": "net", "be": "bet", "le": "let", "he": "heck", "we": "wet",
+  "si": "sit", "mi": "mitt", "ti": "tip", "pi": "pit", "ni": "nip", "di": "dip", "zi": "zip", "li": "lip", "ki": "kit", "bi": "bit",
+  "so": "sock", "mo": "mop", "to": "top", "po": "pot", "no": "not", "do": "dot", "fo": "fog", "bo": "bog", "lo": "lot", "ho": "hot",
+  "su": "sub", "mu": "mud", "tu": "tub", "pu": "pup", "nu": "nut", "bu": "bug", "cu": "cut"}
+PHONICS = [  # steps shown in the Sound Garden, each with 5 lessons
+  {"step": "Letter sounds", "lessons": [
+     {"kind": "letters", "items": ["s", "a", "t", "p", "i", "n"]}, {"kind": "letters", "items": ["m", "d", "g", "o", "c", "k"]},
+     {"kind": "letters", "items": ["e", "u", "r", "h", "b", "f"]}, {"kind": "letters", "items": ["l", "j", "v", "w", "y", "z"]},
+     {"kind": "letters", "items": ["x", "qu", "sh", "ch", "th"]}]},
+  {"step": "Blend two sounds", "lessons": [
+     {"kind": "blends", "items": ["sa", "ma", "ta", "pa", "na", "ca"]}, {"kind": "blends", "items": ["me", "te", "pe", "ne", "be", "le"]},
+     {"kind": "blends", "items": ["si", "mi", "ti", "pi", "ni", "di"]}, {"kind": "blends", "items": ["so", "mo", "to", "po", "no", "do"]},
+     {"kind": "blends", "items": ["su", "mu", "tu", "pu", "nu", "bu"]}]},
+  {"step": "Sound out words", "lessons": [
+     {"kind": "phwords", "items": ["cat", "map", "bag", "hat", "van", "jam"]}, {"kind": "phwords", "items": ["hen", "bed", "pen", "web", "net", "leg"]},
+     {"kind": "phwords", "items": ["pig", "six", "zip", "lip", "kid", "bin"]}, {"kind": "phwords", "items": ["dog", "fox", "box", "log", "pot", "hop"]},
+     {"kind": "phwords", "items": ["sun", "bus", "cup", "bug", "mug", "nut"]}]},
+  {"step": "Read by myself", "lessons": [{"kind": "phread", "items": []} for _ in range(5)]},
+]
+PHRASES.update({
+  "ph_pick": "Welcome to Sound Garden! Every letter makes a sound. Learn the sounds, blend them together, and read real words!",
+  "ph_board": "Tap any letter to hear its sound.",
+  "ph_thisis": "This is", "ph_says": "says",
+  "ph_intro_letters": "Let's learn letter sounds! Listen, then say each sound with me.",
+  "ph_intro_blends": "Let's blend! Two sounds slide together and make a new sound.",
+  "ph_intro_phwords": "Let's sound out words! Say each sound, then push them together to read the word.",
+  "ph_intro_phread": "Now read all by yourself! If you need help, tap Sound it out.",
+  "ph_soundfind": "Which letter makes this sound?",
+  "ph_startsound": "What sound does this word start with?",
+  "ph_soundpop": "Pop the letter that makes this sound!",
+  "ph_blendfind": "Listen. Which blend did you hear?",
+  "ph_blendbuild": "Build the blend you hear. Tap the two letters.",
+  "ph_soundout": "Let's sound it out.",
+  "ph_done": "Great work! You are reading with sounds!",
+})

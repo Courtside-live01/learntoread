@@ -445,6 +445,55 @@ body{touch-action:manipulation;-webkit-user-select:none;user-select:none;-webkit
 .mic-card .url{font-family:var(--read);font-weight:700;color:var(--cons);user-select:text;-webkit-user-select:text}
 .grown label.check{flex-direction:row;align-items:center;gap:10px}
 .grown label.check input{width:22px;height:22px;accent-color:var(--grape)}
+
+/* ---------- v7: Sound Garden (letter sounds, blending, sounding out) ---------- */
+.map-actions{gap:8px}
+.map-actions .pairs-btn{flex-direction:column;gap:1px;padding:min(8px,calc(var(--vh)*1)) 4px;font-size:min(15px,calc(var(--vh)*2.1));border-radius:18px}
+.map-actions .pairs-btn .icon{font-size:min(24px,calc(var(--vh)*3.2))}
+.pairs-btn.sounds{background:var(--grass);box-shadow:0 6px 0 var(--grass-deep)}
+.pairs-btn.sounds:active{box-shadow:0 2px 0 var(--grass-deep)}
+#sounds{display:flex;flex-direction:column;overflow:hidden}
+.ph-home{flex:1;min-height:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:min(10px,calc(var(--vh)*1.3));padding-block:4px 8px}
+.ph-board-btn{font-size:min(26px,calc(var(--vh)*3.5));padding:min(10px,calc(var(--vh)*1.3)) 26px;background:linear-gradient(90deg,#FF6450,#FFC83A 35%,#3DBE7A 65%,#2E7BE6);box-shadow:0 7px 0 #1C5BB5;animation:none}
+.ph-board-btn .abc{font-family:var(--read);font-weight:700;background:#fff;color:var(--coral);border-radius:10px;padding:0 8px;font-size:.9em}
+.ph-step{width:100%;max-width:460px;background:var(--paper);border-radius:20px;padding:min(8px,calc(var(--vh)*1)) 10px min(10px,calc(var(--vh)*1.3));box-shadow:0 5px 0 #9CCDE6;box-sizing:border-box}
+.ph-step-h{display:flex;align-items:center;gap:8px;font-weight:800;font-size:min(17px,calc(var(--vh)*2.3));margin-bottom:min(6px,calc(var(--vh)*.8))}
+.ph-step-h b{width:24px;height:24px;border-radius:50%;display:grid;place-items:center;color:#fff;background:var(--sc);font-size:14px}
+.ph-row{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px}
+.ph-ls{height:min(52px,calc(var(--vh)*7));border-radius:14px;background:var(--sc);color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;line-height:1.05;
+  box-shadow:0 4px 0 rgba(29,41,69,.25);font-weight:800;font-size:min(18px,calc(var(--vh)*2.5));position:relative}
+.ph-ls small{font-family:var(--read);font-size:min(11px,calc(var(--vh)*1.5));font-weight:700;opacity:.95;white-space:nowrap;overflow:hidden;max-width:100%}
+.ph-ls.locked{background:#E3E8F1;color:#9AA7BF;box-shadow:0 4px 0 #C9D1E0}
+.ph-ls.now{animation:pulse 1.4s ease-in-out infinite}
+.ph-ls .ok{position:absolute;top:-7px;right:-5px;width:20px;height:20px;color:var(--sun);filter:drop-shadow(0 1px 0 var(--sun-deep))}
+.ph-ls .ok svg{width:100%;height:100%}
+.sb{flex:1;min-height:0;display:flex;flex-direction:column;align-items:center;gap:min(8px,calc(var(--vh)*1));padding-block:2px 8px}
+.sb-top{display:flex;align-items:center;justify-content:space-between;width:100%;max-width:460px}
+.sb-show{display:flex;align-items:center;gap:12px;background:var(--paper);border-radius:20px;padding:6px 16px;box-shadow:0 5px 0 #9CCDE6;min-height:min(62px,calc(var(--vh)*8.4))}
+.sb-show .e{font-size:min(42px,calc(var(--vh)*5.6))}
+.sb-show .wd{font-family:var(--read);font-weight:700;font-size:min(34px,calc(var(--vh)*4.6))}
+.sb-show .wd .first{background:var(--sun);border-radius:8px;padding:0 3px}
+.sb-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:min(8px,calc(var(--vh)*1));width:100%;max-width:min(420px,calc(var(--vh)*58))}
+.sbt{aspect-ratio:1;border-radius:16px;background:var(--c);color:#fff;font-family:var(--read);font-weight:700;font-size:min(34px,calc(var(--vh)*4.6));line-height:1;
+  display:grid;place-items:center;box-shadow:0 5px 0 rgba(29,41,69,.25);text-shadow:0 2px 0 rgba(29,41,69,.25)}
+.sbt.lit{transform:scale(1.12);box-shadow:0 0 0 5px var(--sun),0 5px 0 rgba(29,41,69,.25)}
+.sbt.all{font-family:var(--display);font-size:min(15px,calc(var(--vh)*2.1));font-weight:800;background:var(--ink)}
+.sbt.wiggle{animation:wiggle .6s ease}
+.bigletter.ph span:last-child{opacity:.75}
+.btn.snd{background:var(--coral);box-shadow:0 6px 0 var(--coral-deep)}
+.blend-row{display:flex;align-items:center;gap:min(8px,2vw)}
+.blend-row .op{font-size:min(34px,calc(var(--vh)*4.5));font-weight:800;color:var(--ink-soft)}
+.blend-row .tile{transition:transform .35s cubic-bezier(.3,1.5,.5,1)}
+.blend-row.merge .t1{transform:translateX(calc(var(--tile)*.55))}
+.blend-row.merge .t2{transform:translateX(calc(var(--tile)*-.55))}
+.blend-row.merge .op{opacity:0}
+.btile{display:inline-flex;border-radius:18px;overflow:hidden;box-shadow:0 6px 0 rgba(29,41,69,.25);font-family:var(--read);font-weight:700;font-size:calc(var(--tile)*.62);line-height:1}
+.btile span{padding:min(12px,calc(var(--vh)*1.6)) min(12px,3vw)}
+.btile .c{background:#fff;color:var(--cons);box-shadow:inset 0 0 0 3px var(--cons)}
+.btile .v{background:var(--coral);color:#fff}
+.btile.lit{transform:scale(1.1);box-shadow:0 0 0 5px var(--sun)}
+button.btile:active{transform:translateY(4px)}
+.btile.right{box-shadow:0 0 0 5px var(--grass),0 6px 0 var(--grass-deep)}
 </style>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -499,6 +548,7 @@ body{touch-action:manipulation;-webkit-user-select:none;user-select:none;-webkit
     <section class="screen" id="level" hidden><div class="stage" id="stage"></div></section>
     <section class="screen" id="pairs" hidden></section>
     <section class="screen" id="talk" hidden></section>
+    <section class="screen" id="sounds" hidden></section>
   </main>
   <footer class="coach" id="coach">
     <svg class="owl" viewBox="0 0 100 100" aria-hidden="true"><use href="#owl"/></svg>
@@ -579,6 +629,7 @@ try { Object.assign(prog, JSON.parse(localStorage.getItem(KEY) || '{}')); } catc
 if (!D.voices.some(v => v.key === prog.voice)) prog.voice = DEF;
 if (typeof prog.pairs !== 'number') prog.pairs = 0;
 if (!prog.talk || typeof prog.talk !== 'object') prog.talk = {};
+if (!Array.isArray(prog.phon)) prog.phon = [];
 const voiceMeta = () => D.voices.find(v => v.key === prog.voice);
 const save = () => { try { localStorage.setItem(KEY, JSON.stringify(prog)); } catch (e) {} };
 
@@ -681,10 +732,10 @@ const sfx = new Proxy({
 let screen = 'start', gen = 0, L = null, R = { miss: 0 }, busy = false, prompt = ['p_welcome'];
 function show(id) {
   screen = id;
-  for (const s of ['start', 'map', 'level', 'pairs', 'talk']) $('#' + s).hidden = s !== id;
+  for (const s of ['start', 'map', 'level', 'pairs', 'talk', 'sounds']) $('#' + s).hidden = s !== id;
   $('#bar').hidden = id === 'start';
   $('#dots').hidden = id !== 'level';
-  $('#homeBtn').hidden = !['level', 'pairs', 'talk'].includes(id);
+  $('#homeBtn').hidden = !['level', 'pairs', 'talk', 'sounds'].includes(id);
   $('#gearBtn').hidden = id !== 'map';
   $('#starCount').textContent = prog.stars.length;
 }
@@ -756,6 +807,7 @@ function renderMap() {
   $('#map').innerHTML = `<div class="mapbox">${s}</div>`;
   $('#map').append(h('div', { class: 'map-actions' },
     h('button', { class: 'pairs-btn', 'aria-label': `Picture Pairs, ${prog.pairs} of ${PL.length} levels done`, onclick: () => { sfx.whoosh(); openPairs(); } }, icon('cards'), 'Pairs'),
+    h('button', { class: 'pairs-btn sounds', 'aria-label': 'Sound Garden: letter sounds and reading', onclick: () => { sfx.whoosh(); openSounds(); } }, icon('abc'), 'Sounds'),
     h('button', { class: 'pairs-btn talk', 'aria-label': 'Talk Time: say words out loud', onclick: () => { sfx.whoosh(); openTalk(); } }, icon('mic'), 'Talk'),
     h('button', { class: 'pairs-btn stickers', 'aria-label': `My stickers, ${prog.stars.length} of ${N}`, onclick: openStickers }, icon('stk'), 'Stickers')));
   $('#map').querySelectorAll('.stop').forEach(g => {
@@ -780,20 +832,25 @@ const W = ([s, p]) => ({ chunks: s.includes('|') ? s.split('|') : [...s], w: s.r
 const S = ([s, p], i) => { const words = s.replace(/\.$/, '').split(' '); return { s, p, i, words, keys: words.map(w => w.toLowerCase()) }; };
 const A = ([l, w, p]) => ({ l, w, p, chunks: [...w] });
 function poolFor(st) {
+  if (st.kind === 'letters') return Object.keys(LS).map(LtO);
+  if (st.kind === 'blends') return D.phonics[1].lessons.flatMap(l => l.items).map(BlO);
+  if (st.kind === 'phwords' || st.kind === 'phread') return PHW.map(WpO);
   if (st.kind === 'alphabet') return D.alphabet.map(A);
   if (st.kind === 'sentences') return D.sentences.map(S);
   if (st.kind === 'vowels') return [...VOW];
   return st.words.map(W);
 }
-function enterLevel(idx) {
+function enterLevel(idx) { enterStage(STG[idx], { island: idx }); }
+function enterStage(st, ctx) {
   gen++; stopVoice(); busy = false;
-  const st = STG[idx], all = poolFor(st);
-  const deck = st.kind === 'vowels' ? all : shuffle(all).slice(0, st.deck);
-  L = { idx, st, all, deck, i: -1, card: 0, seen: new Set(), pools: {}, opts: st.opts || 3 };
+  const all = poolFor(st);
+  const deck = st.kind === 'vowels' ? all : st.kind === 'letters' ? st.items.map(LtO) : st.kind === 'blends' ? st.items.map(BlO)
+    : st.kind === 'phwords' ? st.items.map(WpO) : shuffle(all).slice(0, st.deck || 6);
+  L = { idx: ctx.island, ph: ctx.ph, st, all, deck, i: -1, card: 0, seen: new Set(), pools: {}, opts: st.opts || 3, phon: !!st.phon };
   show('level'); setTitle(st.name, st.sub);
   renderDots(); renderLearn(false);
   const learnId = { vowels: 'p_learnv', alphabet: 'p_learnabc', tricky: 'p_learntricky', sentences: 'p_learnsent' }[st.kind] || 'p_learn';
-  prompt = [`p_intro_${st.key}`, learnId];
+  prompt = st.intro ? [st.intro] : [`p_intro_${st.key}`, learnId];
   say([...prompt, { pause: 250 }, ...cardSpeech()]);
 }
 function renderDots() {
@@ -805,12 +862,13 @@ function renderDots() {
 function chunkTile(c) {
   const team = c.length > 1;
   return h('button', { class: 'tile' + (isV(c[0]) ? ' v' : '') + (team ? ' dg' : ''), 'aria-label': team ? `Letter team ${c}` : `Letter ${c}`,
-    onclick: () => { sfx.tap(); say(team ? 'p_dg_' + c : 'l_' + c); } }, c);
+    onclick: () => { sfx.tap(); say(tileSay(c)); } }, c);
 }
 function tilesFor(chunks, opts = {}) {
   return h('div', { class: 'tiles' }, chunks.map((c, i) => opts.blank === i ? h('div', { class: 'tile slot' + (c.length > 1 ? ' dg' : '') }, '?') : chunkTile(c)));
 }
 function spellSeq(chunks, tilesEl, word) {
+  if (L && L.phon) return soundSeq(chunks, tilesEl, word);
   const kids = tilesEl ? [...tilesEl.children] : [];
   const lit = (i, on) => kids[i] && kids[i].classList.toggle('lit', on);
   const seq = [];
@@ -831,6 +889,17 @@ function cardSpeech() {
   const it = L.deck[L.card], k = L.st.kind;
   if (k === 'vowels') return [`p_vsays_${it}`, { pause: 120 }, 's_' + it, { pause: 260 }, 's_' + it, { pause: 320 }, 'w_' + D.vowels[it].word];
   if (k === 'alphabet') return ['a_' + it.l];
+  if (k === 'letters') {
+    const intro = it.l.length === 1 ? ['p_ph_thisis', 'l_' + it.l, 'p_ph_says', { pause: 120 }] : D.phrases['dg_' + it.l] ? ['p_dg_' + it.l, { pause: 250 }] : [];
+    return [...intro, it.snd, { pause: 380 }, it.snd, { pause: 380 }, 'w_' + it.w];
+  }
+  if (k === 'blends') {
+    const row = $('#blendRow'), kids = row ? [...row.querySelectorAll('.tile,.btile')] : [];
+    const lit = (i, on) => kids[i] && kids[i].classList.toggle('lit', on);
+    return [{ id: sndId(it.c), on: () => { row && row.classList.remove('merge'); lit(0, true); }, off: () => lit(0, false), after: 250 },
+      { id: sndId(it.v), on: () => lit(1, true), off: () => lit(1, false), after: 300 },
+      { id: 'bl_' + it.b, on: () => { row && row.classList.add('merge'); lit(2, true); }, off: () => lit(2, false), after: 350 }, 'bl_' + it.b];
+  }
   if (k === 'sentences') return readSeq(it, $('#learnSent'));
   return ['w_' + it.w, { pause: 350 }, ...spellSeq(it.chunks, $('#learnTiles'), it.w)];
 }
@@ -854,6 +923,19 @@ function renderLearn(speak = true) {
       h('button', { class: 'bigletter', style: 'background:var(--cons);box-shadow:0 8px 0 var(--cons-deep)', 'aria-label': `Hear the letter ${it.l}`, onclick: () => say(['a_' + it.l]) },
         h('span', {}, it.l.toUpperCase()), h('span', {}, it.l)),
       picBtn(it.p, it.w), tilesFor(it.chunks));
+  } else if (k === 'letters') {
+    const ci = Object.keys(LS).indexOf(it.l) % 6;
+    card.append(
+      h('button', { class: 'bigletter ph', style: `background:${BCOL[ci]};box-shadow:0 8px 0 rgba(29,41,69,.28)`, 'aria-label': `Hear the sound of ${it.l}`, onclick: () => say(cardSpeech()) },
+        h('span', {}, it.l), it.l.length === 1 ? h('span', {}, it.l.toUpperCase()) : null),
+      picBtn(it.p, it.w), tilesFor(it.l.length > 1 && it.w.startsWith(it.l) ? [it.l, ...it.w.slice(it.l.length)] : [...it.w]),
+      h('div', { class: 'row' }, h('button', { class: 'btn snd', onclick: () => say([it.snd, { pause: 300 }, it.snd]) }, icon('spk'), 'Sound'),
+        h('button', { class: 'btn say', onclick: () => say('w_' + it.w) }, icon('spk'), 'Word')));
+  } else if (k === 'blends') {
+    const row = h('div', { class: 'blend-row', id: 'blendRow' },
+      h('div', { class: 'tile t1' }, it.c), h('span', { class: 'op' }, '+'), h('div', { class: 'tile v t2' }, it.v), h('span', { class: 'op' }, '='), blendTile(it));
+    card.append(h('p', { class: 'hint-text' }, 'Two sounds slide together'), row,
+      h('div', { class: 'row' }, h('button', { class: 'btn snd', onclick: () => say(cardSpeech()) }, icon('play'), 'Blend it!')));
   } else if (k === 'sentences') {
     const sent = Object.assign(sentTiles(it), { id: 'learnSent' });
     card.append(h('button', { class: 'pic', 'aria-label': 'Hear the sentence', onclick: () => say('t_' + it.i) }, it.p), sent,
@@ -863,9 +945,10 @@ function renderLearn(speak = true) {
     if (k === 'tricky') card.append(h('button', { class: 'wordcard', 'aria-label': `Hear ${it.w}`, onclick: () => say('w_' + it.w) }, it.w === 'i' ? 'I' : it.w));
     else card.append(picBtn(it.p, it.w));
     card.append(tiles);
-    if (['a', 'ei', 'ou'].includes(L.st.key)) card.append(h('p', { class: 'split', html: `${it.w[0]} + <em>${it.w.slice(1)}</em> = ${it.w}` }));
+    if (L.phon && it.w.length === 3) card.append(h('p', { class: 'split', html: `${it.w[0]} · <em>${it.w[1]}</em> · ${it.w[2]} → ${it.w}` }));
+    else if (['a', 'ei', 'ou'].includes(L.st.key)) card.append(h('p', { class: 'split', html: `${it.w[0]} + <em>${it.w.slice(1)}</em> = ${it.w}` }));
     card.append(h('div', { class: 'row' },
-      h('button', { class: 'btn', onclick: () => say(spellSeq(it.chunks, tiles, it.w)) }, icon('abc'), 'Spell it'),
+      h('button', { class: 'btn', onclick: () => say(spellSeq(it.chunks, tiles, it.w)) }, icon('abc'), L.phon ? 'Sound it out' : 'Spell it'),
       h('button', { class: 'btn say', onclick: () => say('w_' + it.w) }, icon('spk'), 'Say it')), legend());
   }
   const last = L.deck.length - 1;
@@ -881,7 +964,7 @@ function renderLearn(speak = true) {
 function startGames() { sfx.whoosh(); nextRound(['p_ready', { pause: 200 }]); }
 function nextRound(lead = []) {
   busy = false; R = { miss: 0 }; L.i++; renderDots();
-  if (L.i >= L.st.games.length) return finishLevel();
+  if (L.i >= L.st.games.length) return L.ph != null ? finishPhonics() : finishLevel();
   $('#level').scrollTop = 0;
   G[L.st.games[L.i]](lead);
 }
@@ -909,7 +992,7 @@ function speakerBtn(seq) { return h('button', { class: 'speaker', 'aria-label': 
 function fillSlot(slot, c) { slot.textContent = c; slot.classList.add('filled'); if (isV(c[0])) slot.classList.add('v'); }
 function optTiles(list, ok, onRight, cls = 'tile') {
   return h('div', { class: 'tiles wrap' }, list.map(c => {
-    const b = h('button', { class: cls + (cls === 'tile' && isV(c) ? ' v' : ''), 'aria-label': c }, c);
+    const b = h('button', { class: cls + (cls === 'tile' && isV(c[0]) ? ' v' : '') + (cls === 'tile' && c.length > 1 ? ' dg' : ''), 'aria-label': c }, c);
     if (c === ok) b.dataset.ok = '1';
     b.onclick = () => { if (busy) return; if (c === ok) onRight(b); else wrong(b); };
     return b;
@@ -1037,7 +1120,7 @@ const G = {
         if (busy) return;
         if (c !== ch[at]) return wrong(b, { voice: false });
         fillSlot(slots.children[at++], c); b.classList.add('used'); b.classList.remove('hint'); sfx.tap(); markNext();
-        if (at === ch.length) correct(null, spellSeq(ch, slots, t.w)); else say(c.length > 1 ? 'p_dg_' + c : 'l_' + c);
+        if (at === ch.length) correct(null, spellSeq(ch, slots, t.w)); else say(tileSay(c));
       };
       return b;
     });
@@ -1056,7 +1139,7 @@ const G = {
     const st = $('#stage'); st.innerHTML = '';
     const word = tilesFor(ch, { blank: k });
     st.append(h('div', { class: 'card' }, picBtn(t.p, t.w), word,
-      optTiles(opts, v, b => { fillSlot(word.querySelector('.slot'), v); correct(b, ['l_' + v, { pause: 200 }, 'w_' + t.w]); })));
+      optTiles(opts, v, b => { fillSlot(word.querySelector('.slot'), v); correct(b, [tileSay(v), { pause: 200 }, 'w_' + t.w]); })));
     ask(['p_missing', { pause: 200 }, 'w_' + t.w], lead);
   },
   memory(lead) {
@@ -1148,6 +1231,193 @@ const G = {
     ask(['p_sentbuild', { pause: 200 }, 't_' + t.i], lead);
   },
 };
+
+/* ---------- Sound Garden: real letter sounds, blending, sounding out ---------- */
+const LS = D.letterSounds, sndId = c => LS[c] ? 'snd_' + c : null;
+const BLENDS = new Set(D.phonics[1].lessons.flatMap(l => l.items).concat(D.blendIds || []));
+const PIC = {};
+STG.forEach(st => (st.words || []).forEach(([w, p]) => { if (p) PIC[w.replace(/\|/g, '')] = p; }));
+Object.values(D.talk).forEach(pool => pool.forEach(([w, p]) => { if (p && !PIC[w]) PIC[w] = p; }));
+const PHW = D.phonics[2].lessons.flatMap(l => l.items);
+const LtO = l => ({ l, w: LS[l][0], p: LS[l][1], snd: 'snd_' + l, chunks: [...LS[l][0]] });
+const BlO = b => ({ b, c: b.slice(0, -1), v: b.slice(-1), w: b });
+const WpO = w => ({ w, p: PIC[w] || '🗣️', chunks: [...w] });
+const PH_GAMES = { letters: ['soundfind', 'startsound', 'soundpop', 'soundfind', 'startsound'], blends: ['blendfind', 'blendbuild', 'blendfind', 'blendbuild', 'blendfind'],
+  phwords: ['findpic', 'build', 'missing', 'findpic', 'build'], phread: ['findpic', 'monster', 'memory', 'findpic', 'monster'] };
+const STEP_COL = ['#FF6450', '#7657F2', '#2E7BE6', '#3DBE7A'];
+const PH = [];
+D.phonics.forEach((step, si) => step.lessons.forEach((ls, li) => PH.push({ key: `ph${si}${li}`, name: `${step.step} ${li + 1}`, step: si, n: li, kind: ls.kind, items: ls.items,
+  sub: ls.items.length ? ls.items.join(' · ') : 'Mixed words', phon: ls.kind === 'phwords' || ls.kind === 'phread', intro: 'p_ph_intro_' + ls.kind, games: PH_GAMES[ls.kind], opts: 3 })));
+const phDone = () => (prog.phon ||= []);
+const phNext = () => { const a = phDone(); let k = 0; while (k < PH.length - 1 && a[k]) k++; return k; };
+function tileSay(c) { return L && L.phon && sndId(c) ? sndId(c) : c.length > 1 ? 'p_dg_' + c : 'l_' + c; }
+function soundSeq(chunks, tilesEl, word) {
+  // c... a... t... → ca... t → cat, with each tile lighting as its sound plays
+  const kids = tilesEl ? [...tilesEl.children] : [];
+  const lit = (idx, on) => idx.forEach(i => kids[i] && kids[i].classList.toggle('lit', on));
+  const seq = chunks.map((c, i) => ({ id: sndId(c) || 'l_' + c, on: () => lit([i], true), off: () => lit([i], false), after: 220 }));
+  const b = chunks.length === 3 && chunks.every(c => c.length === 1) && BLENDS.has(chunks[0] + chunks[1]) ? 'bl_' + chunks[0] + chunks[1] : null;
+  if (b) seq.push({ pause: 150 }, { id: b, on: () => lit([0, 1], true), off: () => lit([0, 1], false), after: 120 }, { id: sndId(chunks[2]) || 'l_' + chunks[2], on: () => lit([2], true), off: () => lit([2], false) });
+  return [...seq, { pause: 250 }, { id: 'w_' + word, on: () => kids.forEach(k => k.classList.add('lit')), off: () => kids.forEach(k => k.classList.remove('lit')) }];
+}
+function enterPh(gi) { enterStage(PH[gi], { ph: gi }); }
+function openSounds(speak = true) {
+  gen++; stopVoice(); busy = false; L = null;
+  show('sounds'); setTitle('Sound Garden', 'Letter sounds and reading');
+  const box = $('#sounds'); box.innerHTML = '';
+  const done = phDone(), nx = phNext();
+  box.append(h('div', { class: 'ph-home' },
+    h('button', { class: 'big-go ph-board-btn', onclick: () => { sfx.whoosh(); openBoard(); } }, h('span', { class: 'abc' }, 'abc'), 'Sound board'),
+    ...D.phonics.map((step, si) => h('div', { class: 'ph-step', style: `--sc:${STEP_COL[si]}` },
+      h('div', { class: 'ph-step-h' }, h('b', {}, String(si + 1)), step.step),
+      h('div', { class: 'ph-row' }, step.lessons.map((ls, li) => {
+        const gi = si * 5 + li, locked = gi > nx, ok = done[gi];
+        const b = h('button', { class: 'ph-ls' + (locked ? ' locked' : '') + (gi === nx && !ok ? ' now' : ''), 'aria-label': `${step.step}, lesson ${li + 1}${locked ? ', locked' : ok ? ', done' : ''}` },
+          String(li + 1), h('small', {}, ls.items.length ? ls.items.slice(0, ls.kind === 'letters' ? 3 : 2).join(' ') : '📖'),
+          ok ? h('span', { class: 'ok', html: '<svg class="icon"><use href="#star"/></svg>' }) : null);
+        b.onclick = () => { if (locked) { sfx.boop(); say('p_pairs_locked'); } else { sfx.whoosh(); enterPh(gi); } };
+        return b;
+      }))))));
+  prompt = ['p_ph_pick'];
+  if (speak) say(prompt); else bubble.textContent = D.phrases.ph_pick;
+}
+function openBoard() {
+  gen++; stopVoice(); busy = false;
+  show('sounds'); setTitle('Sound board', 'Tap a letter to hear its sound');
+  const box = $('#sounds'); box.innerHTML = '';
+  const letters = [...'abcdefghijklmnoprstuvwxyz'].map(c => c).concat([]);
+  letters.splice(16, 0, 'qu');
+  letters.push('sh', 'ch', 'th');
+  const show1 = h('div', { class: 'sb-show', 'aria-live': 'polite' }, h('span', { class: 'e' }, '👆'), h('span', { class: 'wd' }, 'tap a letter'));
+  const play = (l, el) => {
+    wiggle(el);
+    const w = LS[l][0], at = w.indexOf(l);
+    show1.innerHTML = `<span class="e">${LS[l][1]}</span><span class="wd">${at < 0 ? w : `${w.slice(0, at)}<span class="first">${l}</span>${w.slice(at + l.length)}`}</span>`;
+    return say([{ id: 'snd_' + l, on: () => el.classList.add('lit') }, { pause: 300 }, { id: 'snd_' + l }, { pause: 300 }, { id: 'w_' + w, off: () => el.classList.remove('lit') }]);
+  };
+  const tiles = letters.map((l, i) => h('button', { class: 'sbt', style: `--c:${BCOL[i % 6]}`, 'aria-label': `Sound of ${l}`, onclick: e => play(l, e.currentTarget) }, l));
+  const all = h('button', { class: 'sbt all', 'aria-label': 'Play every sound' }, 'Play all');
+  all.onclick = async () => {
+    const g = gen;
+    for (let i = 0; i < letters.length; i++) {
+      if (g !== gen) return;
+      const el = tiles[i]; wiggle(el); el.classList.add('lit');
+      const w = LS[letters[i]][0];
+      show1.innerHTML = `<span class="e">${LS[letters[i]][1]}</span><span class="wd">${w}</span>`;
+      const ok = await say([{ id: 'snd_' + letters[i] }, { pause: 200 }]);
+      el.classList.remove('lit');
+      if (!ok) return;
+    }
+  };
+  box.append(h('div', { class: 'sb' },
+    h('div', { class: 'sb-top' }, h('button', { class: 'btn small-btn', onclick: () => { sfx.tap(); openSounds(false); } }, icon('left'), 'Garden'), show1),
+    h('div', { class: 'sb-grid' }, [...tiles, all])));
+  prompt = ['p_ph_board'];
+  say(prompt);
+}
+function finishPhonics() {
+  const gi = L.ph, last = gi === PH.length - 1;
+  phDone()[gi] = 1; save();
+  winNext = last ? () => openSounds(false) : () => enterPh(gi + 1);
+  winAltFn = () => openSounds(false);
+  $('#winSticker').textContent = '🌻'; $('#winSticker').onclick = null;
+  $('#winTitle').textContent = last ? 'Super reader!' : 'Lesson done!';
+  $('#winText').textContent = last ? 'You finished every Sound Garden lesson!' : `Next: ${PH[gi + 1].name}`;
+  $('#winBtn').innerHTML = last ? '<svg class="icon"><use href="#home"/></svg>Sound Garden' : '<svg class="icon"><use href="#play"/></svg>Next lesson';
+  $('#winAlt').hidden = last; $('#winAlt').innerHTML = '<svg class="icon"><use href="#left"/></svg>Sound Garden';
+  $('#winBox').hidden = false; $('#winBtn').focus();
+  sfx.fanfare(); confetti();
+  prompt = ['p_ph_done'];
+  setTimeout(() => say(['p_ph_done', { pause: 150 }, 'p_praise' + (1 + rnd(8))]), 600);
+}
+function blendTile(o, tag = 'div') {
+  return h(tag, { class: 'btile', 'aria-label': `Blend ${o.b}` }, h('span', { class: 'c' }, o.c), h('span', { class: 'v' }, o.v));
+}
+Object.assign(G, {
+  soundfind(lead) {
+    const t = from('d', L.deck), opts = shuffle([t, ...shuffle(L.deck.filter(x => x !== t)).slice(0, L.opts - 1)]);
+    const st = $('#stage'); st.innerHTML = '';
+    const reveal = h('div', { class: 'reveal' });
+    const seq = ['p_ph_soundfind', { pause: 150 }, t.snd, { pause: 300 }, t.snd];
+    st.append(h('div', { class: 'card' }, h('div', { class: 'ask' }, speakerBtn(seq), h('p', { class: 'hint-text' }, 'Listen, then tap the letter')),
+      optTiles(opts.map(x => x.l), t.l, b => { reveal.innerHTML = `<span class="e">${t.p}</span>${t.w}`; correct(b, [t.snd, { pause: 250 }, 'w_' + t.w]); }), reveal));
+    ask(seq, lead);
+  },
+  startsound(lead) {
+    const cands = L.deck.filter(x => x.w.startsWith(x.l));
+    if (!cands.length) return G.soundfind(lead);
+    const t = from('ss', cands), opts = shuffle([t, ...shuffle(L.deck.filter(x => x !== t)).slice(0, L.opts - 1)]);
+    const chunks = [t.l, ...t.w.slice(t.l.length)];
+    const st = $('#stage'); st.innerHTML = '';
+    const word = tilesFor(chunks, { blank: 0 });
+    st.append(h('div', { class: 'card' }, picBtn(t.p, t.w), word,
+      optTiles(opts.map(x => x.l), t.l, b => { fillSlot(word.children[0], t.l); correct(b, [t.snd, { pause: 250 }, 'w_' + t.w]); })));
+    ask(['w_' + t.w, { pause: 250 }, 'p_ph_startsound'], lead);
+  },
+  soundpop(lead) {
+    const items = shuffle(L.deck).slice(0, 6), targets = shuffle(items).slice(0, 3);
+    let n = 0;
+    const st = $('#stage'); st.innerHTML = '';
+    const box = h('div', { class: 'sky-box' });
+    const bs = items.map((it, i) => {
+      const b = h('button', { class: 'balloon', 'aria-label': `Balloon ${it.l}`, style: `animation-delay:${-(i * .41) % 2.6}s`, html: balloonSvg(it.l, BCOL[i % 6], it.l.length > 1) });
+      if (it.l.length > 1) b.classList.add('wb');
+      b.it = it;
+      b.onclick = () => {
+        if (busy) return;
+        if (it !== targets[n]) { wrong(b, { voice: false }); return say(it.snd); }
+        b.classList.add('popped'); b.classList.remove('hint'); sfx.pop(); n++; R.miss = 0;
+        if (n === targets.length) return correct(null, [it.snd]);
+        mark(); prompt = ['p_ph_soundpop', { pause: 120 }, targets[n].snd];
+        say([it.snd, { pause: 350 }, ...prompt]);
+      };
+      return b;
+    });
+    const mark = () => bs.forEach(b => { if (b.it === targets[n]) b.dataset.ok = '1'; else delete b.dataset.ok; });
+    mark(); box.append(...bs);
+    st.append(h('p', { class: 'hint-text' }, 'Listen, then pop that letter'), box, h('div', { class: 'row' }, speakerBtn(() => ['p_ph_soundpop', { pause: 120 }, targets[n].snd])));
+    ask(['p_ph_soundpop', { pause: 120 }, targets[0].snd], lead);
+  },
+  blendfind(lead) {
+    const t = from('d', L.deck), opts = shuffle([t, ...shuffle(L.deck.filter(x => x !== t)).slice(0, L.opts - 1)]);
+    const st = $('#stage'); st.innerHTML = '';
+    const seq = ['p_ph_blendfind', { pause: 150 }, 'bl_' + t.b];
+    st.append(h('div', { class: 'card' }, h('div', { class: 'ask' }, speakerBtn(seq), h('p', { class: 'hint-text' }, 'Listen, then tap the blend')),
+      h('div', { class: 'tiles wrap' }, opts.map(o => {
+        const b = blendTile(o, 'button');
+        if (o === t) b.dataset.ok = '1';
+        b.onclick = () => { if (busy) return; if (o === t) correct(b, [sndId(t.c), { pause: 150 }, sndId(t.v), { pause: 200 }, 'bl_' + t.b]); else { wrong(b); } };
+        return b;
+      }))));
+    ask(seq, lead);
+  },
+  blendbuild(lead) {
+    const t = from('d', L.deck);
+    const cons = shuffle([...new Set(L.all.map(x => x.c))].filter(c => c !== t.c)).slice(0, 2);
+    const vows = shuffle([...VOW].filter(v => v !== t.v)).slice(0, 1);
+    const st = $('#stage'); st.innerHTML = '';
+    const slots = h('div', { class: 'tiles' }, [t.c, t.v].map(() => h('div', { class: 'tile slot' }, '')));
+    let at = 0;
+    const want = [t.c, t.v];
+    const tiles = shuffle([t.c, t.v, ...cons, ...vows]).map(c => {
+      const b = h('button', { class: 'tile' + (isV(c) ? ' v' : ''), 'aria-label': `Sound ${c}` }, c);
+      b.dataset.c = c;
+      b.onclick = () => {
+        if (busy) return;
+        if (c !== want[at]) { wrong(b, { voice: false }); return say(sndId(c)); }
+        fillSlot(slots.children[at++], c); b.classList.add('used'); b.classList.remove('hint'); sfx.tap(); markNext();
+        if (at === 2) correct(null, [{ id: 'bl_' + t.b, on: () => [...slots.children].forEach(k => k.classList.add('lit')), off: () => [...slots.children].forEach(k => k.classList.remove('lit')) }]);
+        else say(sndId(c));
+      };
+      return b;
+    });
+    const markNext = () => { tiles.forEach(b => delete b.dataset.ok); const nx = tiles.find(b => !b.classList.contains('used') && b.dataset.c === want[at]); if (nx) { nx.dataset.ok = '1'; if (R.miss >= 2) hintNow(); } };
+    markNext();
+    const seq = ['p_ph_blendbuild', { pause: 150 }, 'bl_' + t.b];
+    st.append(h('div', { class: 'card' }, h('div', { class: 'ask' }, speakerBtn(seq)), slots, h('p', { class: 'hint-text' }, 'Tap the two sounds in order'), h('div', { class: 'tiles wrap' }, tiles)));
+    ask(seq, lead);
+  },
+});
 
 function finishLevel() {
   const st = L.st, idx = L.idx, last = idx === N - 1;
@@ -1674,7 +1944,7 @@ $('#grownClose').onclick = () => { $('#grownBox').hidden = true; };
 $('#unlockAll').onclick = () => { prog.unlocked = N; prog.pairs = PL.length - 1; save(); renderMap(); $('#unlockAll').textContent = 'Unlocked'; };
 $('#resetBtn').onclick = e => {
   const b = e.currentTarget;
-  if (b.dataset.armed) { prog = { unlocked: 1, stars: [], pairs: 0, talk: {}, asr: prog.asr, vol: prog.vol, voice: prog.voice }; save(); delete b.dataset.armed; $('#grownBox').hidden = true; goMap(); return; }
+  if (b.dataset.armed) { prog = { unlocked: 1, stars: [], pairs: 0, talk: {}, phon: [], asr: prog.asr, vol: prog.vol, voice: prog.voice }; save(); delete b.dataset.armed; $('#grownBox').hidden = true; goMap(); return; }
   b.dataset.armed = '1'; b.textContent = 'Tap again to wipe';
   setTimeout(() => { delete b.dataset.armed; b.textContent = 'Start over'; }, 4000);
 };

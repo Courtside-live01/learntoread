@@ -35,6 +35,19 @@ Every word, letter and instruction is a recorded clip in eleven natural teacher 
 
 The extra voices live in `voices/*.js` and load only when chosen.
 
+## Sound Garden (phonics)
+
+Real letter sounds ("sss", "mmm", "buh"), not letter names, in the chosen teacher's voice, plus a step-by-step path to reading:
+
+1. **Letter sounds**: 5 lessons in the usual teaching order (s a t p i n / m d g o c k / e u r h b f / l j v w y z / x qu sh ch th). "This is s. s says sss... sun!"
+2. **Blend two sounds**: 5 lessons (one per vowel). sss + a slide together into "sa".
+3. **Sound out words**: 5 lessons. c... a... t... ca... t... cat.
+4. **Read by myself**: 5 lessons of mixed words, with "Sound it out" as help.
+
+The **Sound board** plays every letter sound (a to z, plus qu, sh, ch, th) with a picture word, and "Play all" runs through the alphabet.
+
+The voices cannot say a sound on its own, so `phonics/slice.py` cuts each sound out of the teacher's own recording of a word: the hiss before the vowel in "sun", the hum in "mud", the burst plus a short "uh" in "bug", the "ks" at the end of "box". Where the consonant ends is found from the energy in different frequency bands; hiss sounds are then filtered to pure hiss and hums to pure hum. Blends ("sa") are cut from a word ("sat") just before the final consonant. Short vowels are cut the same way from apple, egg, it, octopus and up.
+
 ## Talk Time (speaking practice)
 
 400 speaking lessons with the microphone: 100 each for 2, 3, 4 and 5-letter words. Each lesson practises 3 words (1 new, 2 review, so every word comes back spaced out). English has only about 35 two-letter words a young child uses, so the 2-letter lessons repeat those words in new mixes; the 3, 4 and 5-letter levels each use 100 different words.
@@ -75,6 +88,7 @@ Real recordings from Wikimedia Commons, trimmed to a short clip and level-matche
 | `template.html` | Page source: layout, styles and game code |
 | `content.py` | Islands, words, pictures, sentences and spoken phrases |
 | `build.py` | Records the clips and builds the page |
+| `phonics/slice.py` | Cuts letter sounds and blends from each voice's words |
 | `animals/` | Trimmed animal clips, their credits, and `trim.py` |
 | `v1/` | The first 5-island version, kept for reference |
 

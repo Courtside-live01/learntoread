@@ -61,6 +61,7 @@ def clip_list():
         words |= {w.replace("|", "") for w, _ in st.get("words", [])} | {st["animal"]}
     for s, _ in SENTENCES:
         words |= set(s.lower().rstrip(".").split())
+    words |= {v[2] for v in LETTER_SOUNDS.values()}
     c = {f"w_{w}": (WORD_TEXT.get(w, w + "."), RATE["w"]) for w in words}
     c.update({f"l_{x}": (x.upper() + ".", RATE["l"]) for x in "abcdefghijklmnopqrstuvwxyz"})
     c.update({f"p_{k}": (t, RATE["p"]) for k, t in PHRASES.items()})
@@ -88,10 +89,46 @@ async def main():
     await asyncio.gather(*jobs)
 
 asyncio.run(main())
+# ---- Sound Garden: cut real letter sounds and blends from each voice's own words ----
+import shutil, sys
+sys.path.insert(0, "phonics"); import slice as ph
+PH_SRC = sorted({v[0] for v in LETTER_SOUNDS.values() if v[0]} | set(BLEND_SRC.values()))
+async def raw_sources():
+    sem = asyncio.Semaphore(12)
+    async def one(voice, key, w):
+        dst = f"audio/{key}/raw/{w}.mp3"
+        if os.path.exists(dst): return
+        async with sem: await tts(w + ".", voice, "-15%", dst)
+    jobs = []
+    for key, voice, *_ in VOICES:
+        os.makedirs(f"audio/{key}/raw", exist_ok=True)
+        jobs += [one(voice, key, w) for w in PH_SRC]
+    await asyncio.gather(*jobs)
+asyncio.run(raw_sources())
+report = {}
+for key, *_ in VOICES:
+    for L, (src, how, *_r) in LETTER_SOUNDS.items():
+        dst = f"audio/{key}/snd_{L}.mp3"
+        if how == "vowel":
+            if not os.path.exists(dst): shutil.copy(f"audio/{key}/s_{L}.mp3", dst)
+        elif not os.path.exists(dst):
+            method = "clip" if how == "clip2" else how
+            if how == "clip2":   # qu: keep more of the "kw" glide
+                full = ph.pcm(f"audio/{key}/raw/{src}.mp3"); ef = ph.frames(full); s0 = ph.start_of_sound(ef)
+                _, ms = None, ph.render(f"audio/{key}/raw/{src}.mp3", s0 / 100, s0 / 100 + .23, dst, fade_out=.06)
+            else:
+                _, ms = ph.sound(f"audio/{key}/raw/{src}.mp3", method, dst)
+            report.setdefault(L, []).append(ms)
+    for b, src in BLEND_SRC.items():
+        dst = f"audio/{key}/bl_{b}.mp3"
+        if not os.path.exists(dst):
+            _, ms = ph.blend(f"audio/{key}/raw/{src.lower()}.mp3" if os.path.exists(f"audio/{key}/raw/{src.lower()}.mp3") else f"audio/{key}/raw/{src}.mp3", dst)
+            report.setdefault("bl_" + b, []).append(ms)
+for k, v in report.items(): print("cut", k, v)
 for key, *_ in VOICES:
     for w in TALK_WORDS: slow_copy(f"audio/{key}/w_{w}.mp3", f"audio/{key}/v_{w}.mp3")
 TALK_IDS = sorted(TALK_NEW) + [f"v_{w}" for w in TALK_WORDS]
-need = set(CLIPS) | {"p_hello"} | {f"s_{v}" for v in VOWELS}
+need = set(CLIPS) | {"p_hello"} | {f"s_{v}" for v in VOWELS} | {f"snd_{L}" for L in LETTER_SOUNDS} | {f"bl_{b}" for b in BLEND_SRC}
 def pack(key):
     return {i: base64.b64encode(open(f"audio/{key}/{i}.mp3", "rb").read()).decode() for i in sorted(need)}
 # Talk Time clips live in their own per-voice pack (voices/<key>.talk.js), loaded when Talk Time opens.
@@ -104,7 +141,7 @@ os.makedirs("voices", exist_ok=True)
 default = VOICES[0][0]
 for key, *_ in VOICES[1:]:
     open(f"voices/{key}.js", "w").write(f"(window.__VP=window.__VP||{{}})[{json.dumps(key)}]={json.dumps(pack(key))};")
-data = {"talk": {str(k): v for k, v in TALK.items()}, "pairLevels": PAIR_LEVELS, "vowels": VOWELS, "firstVowel": FIRST_VOWEL, "alphabet": ALPHABET, "sentences": SENTENCES, "stages": STAGES,
+data = {"blendIds": sorted(BLEND_SRC), "phonics": PHONICS, "letterSounds": {k: [v[2], v[3]] for k, v in LETTER_SOUNDS.items()}, "talk": {str(k): v for k, v in TALK.items()}, "pairLevels": PAIR_LEVELS, "vowels": VOWELS, "firstVowel": FIRST_VOWEL, "alphabet": ALPHABET, "sentences": SENTENCES, "stages": STAGES,
         "phrases": PHRASES, "voices": [{"key": k, "name": n, "accent": a, "g": g} for k, _, n, a, g in VOICES]}
 html = open("template.html", encoding="utf-8").read()
 credits = json.load(open("animals/credits.json"))
