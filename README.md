@@ -35,6 +35,14 @@ Every word, letter and instruction is a recorded clip in eleven natural teacher 
 
 The extra voices live in `voices/*.js` and load only when chosen.
 
+## Talk Time (speaking practice)
+
+400 speaking lessons with the microphone: 100 each for 2, 3, 4 and 5-letter words. Each lesson practises 3 words (1 new, 2 review, so every word comes back spaced out). English has only about 35 two-letter words a young child uses, so the 2-letter lessons repeat those words in new mixes; the 3, 4 and 5-letter levels each use 100 different words.
+
+For each word the teacher says it, then says it slowly; the child taps the big mic and says it. The mic input is cleaned up for a small, soft voice (browser noise suppression, echo cancellation and auto gain, then rumble and hiss filters, a consonant-clarity boost, compression and extra gain). The child hears their own recording next to the teacher's ("This is you... and this is me"). Where the browser has speech recognition (Chrome, Safari), it checks the word: exact or a homophone is a pass, one sound off is "so close", and the tile for the sound that was off is highlighted with a slow model. After three tries the lesson moves on kindly. Without speech recognition, or with it switched off in the grown-ups panel, a grown-up checks with thumbs up.
+
+Recordings stay on the device and are never saved or uploaded. Speech checking uses the browser's own speech service (Google in Chrome, Apple in Safari). The microphone needs the normal web page (https://learntoread-one.vercel.app); it is not available inside the Claude app.
+
 ## Picture Pairs and stickers
 
 Picture Pairs is a matching game with 9 levels (6, 8, 10, 12, 16, 18, 20, 22 and 24 cards). Each pair is a picture and its written word, so matching means reading.
@@ -63,6 +71,7 @@ Real recordings from Wikimedia Commons, trimmed to a short clip and level-matche
 |---|---|
 | `reading-adventure.html` | The built game (open this) |
 | `voices/*.js` | Extra voice packs, loaded on demand |
+| `voices/*.talk.js` | Talk Time words (normal and slow) for each voice |
 | `template.html` | Page source: layout, styles and game code |
 | `content.py` | Islands, words, pictures, sentences and spoken phrases |
 | `build.py` | Records the clips and builds the page |

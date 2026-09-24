@@ -69,27 +69,42 @@ def clip_list():
     return c
 
 CLIPS = clip_list()
+TALK_WORDS = sorted({w for pool in TALK.values() for w, _ in pool})
+TALK_NEW = {f"w_{w}": (WORD_TEXT.get(w, w + "."), RATE["w"]) for w in TALK_WORDS if f"w_{w}" not in CLIPS}
+
+def slow_copy(src, dst):
+    # a slower model of the word (pitch kept) so a child can hear every sound
+    if not os.path.exists(dst):
+        subprocess.run(FF + ["-i", src, "-af", "atempo=0.72,apad=pad_dur=0.05", "-b:a", "40k", dst], check=True)
 
 async def main():
-    sem = asyncio.Semaphore(8)
+    sem = asyncio.Semaphore(12)
     jobs = []
     for key, voice, name, *_ in VOICES:
         out = f"audio/{key}"; os.makedirs(out, exist_ok=True)
-        for cid, (text, rate) in CLIPS.items(): jobs.append(clip(sem, voice, f"{out}/{cid}.mp3", text, rate))
+        for cid, (text, rate) in {**CLIPS, **TALK_NEW}.items(): jobs.append(clip(sem, voice, f"{out}/{cid}.mp3", text, rate))
         jobs.append(clip(sem, voice, f"{out}/p_hello.mp3", f"Hi! I'm {name}. Let's read together!", RATE["p"]))
         for v, d in VOWELS.items(): jobs.append(vowel_sound(sem, voice, f"{out}/s_{v}.mp3", d["src"]))
     await asyncio.gather(*jobs)
 
 asyncio.run(main())
+for key, *_ in VOICES:
+    for w in TALK_WORDS: slow_copy(f"audio/{key}/w_{w}.mp3", f"audio/{key}/v_{w}.mp3")
+TALK_IDS = sorted(TALK_NEW) + [f"v_{w}" for w in TALK_WORDS]
 need = set(CLIPS) | {"p_hello"} | {f"s_{v}" for v in VOWELS}
 def pack(key):
     return {i: base64.b64encode(open(f"audio/{key}/{i}.mp3", "rb").read()).decode() for i in sorted(need)}
+# Talk Time clips live in their own per-voice pack (voices/<key>.talk.js), loaded when Talk Time opens.
+os.makedirs("voices", exist_ok=True)
+for key, *_ in VOICES:
+    tp = {i: base64.b64encode(open(f"audio/{key}/{i}.mp3", "rb").read()).decode() for i in TALK_IDS}
+    open(f"voices/{key}.talk.js", "w").write(f"(window.__TP=window.__TP||{{}})[{json.dumps(key)}]={json.dumps(tp)};")
 # The default voice ships inside the page; the others are loaded only when chosen (voices/<key>.js).
 os.makedirs("voices", exist_ok=True)
 default = VOICES[0][0]
 for key, *_ in VOICES[1:]:
     open(f"voices/{key}.js", "w").write(f"(window.__VP=window.__VP||{{}})[{json.dumps(key)}]={json.dumps(pack(key))};")
-data = {"pairLevels": PAIR_LEVELS, "vowels": VOWELS, "firstVowel": FIRST_VOWEL, "alphabet": ALPHABET, "sentences": SENTENCES, "stages": STAGES,
+data = {"talk": {str(k): v for k, v in TALK.items()}, "pairLevels": PAIR_LEVELS, "vowels": VOWELS, "firstVowel": FIRST_VOWEL, "alphabet": ALPHABET, "sentences": SENTENCES, "stages": STAGES,
         "phrases": PHRASES, "voices": [{"key": k, "name": n, "accent": a, "g": g} for k, _, n, a, g in VOICES]}
 html = open("template.html", encoding="utf-8").read()
 credits = json.load(open("animals/credits.json"))

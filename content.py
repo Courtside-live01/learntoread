@@ -137,3 +137,62 @@ PHRASES.update({
 })
 for v in VOWELS: PHRASES[f"vsays_{v}"] = f"The letter {v.upper()} says"
 WORD_TEXT = {"i": "I.", "a": "a.", "yoyo": "yo-yo."}  # how the voice should say these words
+
+# ---------- Talk Time: speaking practice (easiest first; picture where an emoji fits) ----------
+TALK = {
+ 2: [("hi","👋"),("go","🟢"),("no","🙅"),("up","⬆️"),("me","🙋"),("we","👫"),("ox","🐂"),("in","📥"),("on","💡"),("ma","👩"),("pa","👨"),("oh","😮"),
+     ("ow","🤕"),("ok","👌"),("ha","😂"),("ah","😌"),("my",""),("he","👦"),("be",""),("by",""),("do",""),("so",""),("to",""),("is",""),("it",""),
+     ("if",""),("at",""),("am",""),("an",""),("as",""),("us","👨‍👩‍👦"),("of",""),("or","")],
+ 3: [("cat","🐱"),("hat","🎩"),("bat","🦇"),("rat","🐀"),("mat",""),("van","🚐"),("fan","🪭"),("can","🥫"),("pan","🍳"),("man","👨"),("ran","🏃"),("map","🗺️"),
+     ("cap","🧢"),("tap","🚰"),("nap","😴"),("bag","👜"),("tag","🏷️"),("wag","🐕"),("jam","🍯"),("ham","🍖"),("dad","👨‍👧"),("sad","😢"),("mad","😠"),("lap",""),
+     ("bed","🛏️"),("red","🔴"),("hen","🐔"),("pen","🖊️"),("ten","🔟"),("men",""),("net","🥅"),("pet","🐕"),("wet","💦"),("jet","✈️"),("vet","🩺"),("leg","🦵"),
+     ("peg",""),("web","🕸️"),("yes","✅"),("get",""),("beg",""),("fed",""),
+     ("pig","🐷"),("big",""),("dig","⛏️"),("wig",""),("fig",""),("pin","📌"),("bin","🗑️"),("win","🏆"),("fin","🦈"),("tin",""),("sit","🪑"),("hit",""),
+     ("kit","🧰"),("lip","👄"),("hip",""),("zip","🤐"),("dip",""),("six","6️⃣"),("fix","🔧"),("mix","🥣"),("kid","🧒"),("lid",""),
+     ("dog","🐶"),("log","🪵"),("fog","🌫️"),("hog","🐗"),("hot","🥵"),("pot","🍲"),("dot","⚫"),("cot",""),("not",""),("got",""),("box","📦"),("fox","🦊"),
+     ("top",""),("mop","🧹"),("hop","🐇"),("pop","🍿"),("job","💼"),("pod","🫛"),
+     ("sun","☀️"),("run","🏃"),("fun","🎉"),("bun","🥯"),("cup","🥤"),("pup","🐶"),("bus","🚌"),("bug","🐛"),("hug","🤗"),("mug","☕"),("rug",""),("jug","🏺"),
+     ("nut","🥜"),("hut","🛖"),("cut","✂️"),("tub","🛁"),("mud",""),("gum","")],
+ 4: [("frog","🐸"),("crab","🦀"),("drum","🥁"),("star","⭐"),("flag","🚩"),("sled","🛷"),("swan","🦢"),("clap","👏"),("stop","🛑"),("spin","🌀"),("swim","🏊"),("skip",""),
+     ("slip",""),("plum",""),("drip","💧"),("grin","😁"),("trip","🧳"),("trap","🪤"),("flip",""),("snap","🫰"),
+     ("milk","🥛"),("lamp","💡"),("tent","⛺"),("hand","✋"),("gift","🎁"),("nest","🪺"),("belt",""),("desk",""),("jump","🤸"),("pond",""),("sand","🏖️"),("band",""),
+     ("wind","🌬️"),("mask","🎭"),("help","🆘"),("bump",""),("fast","💨"),("list","📝"),("lost",""),("mint","🌿"),
+     ("fish","🐟"),("ship","🚢"),("chip","🍟"),("shop","🛍️"),("shed",""),("duck","🦆"),("sock","🧦"),("rock","🪨"),("kick",""),("back",""),("lock","🔒"),("neck",""),
+     ("bell","🔔"),("doll","🪆"),("ball","⚽"),("hill","⛰️"),("well",""),("king","🤴"),("ring","💍"),("wing","🪽"),("sing","🎤"),("song","🎵"),("bath","🛁"),("math","🧮"),
+     ("moon","🌙"),("book","📖"),("food","🍔"),("foot","🦶"),("cook","🧑‍🍳"),("tree","🌳"),("feet","🦶"),("seed","🌱"),("keep",""),("deer","🦌"),
+     ("boat","⛵"),("coat","🧥"),("goat","🐐"),("road","🛣️"),("soap","🧼"),("rain","🌧️"),("tail",""),("mail","📬"),("cake","🎂"),("lake","🏞️"),
+     ("game","🎮"),("kite","🪁"),("bike","🚲"),("five","5️⃣"),("nine","9️⃣"),("bone","🦴"),("rose","🌹"),("home","🏠"),("cube","🧊"),("bear","🐻"),
+     ("bird","🐦"),("fork","🍴"),("corn","🌽"),("card","🃏"),("farm","🚜"),("park",""),("girl","👧"),("baby","👶"),("lion","🦁"),("snow","❄️")],
+ 5: [("apple","🍎"),("horse","🐴"),("sheep","🐑"),("mouse","🐭"),("tiger","🐯"),("zebra","🦓"),("whale","🐳"),("snake","🐍"),("camel","🐫"),("koala","🐨"),
+     ("panda","🐼"),("llama","🦙"),("puppy","🐶"),("bunny","🐰"),("chick","🐥"),("goose","🪿"),("eagle","🦅"),("shark","🦈"),("sloth","🦥"),("skunk","🦨"),
+     ("otter","🦦"),("hippo","🦛"),("moose","🫎"),("train","🚂"),("truck","🚚"),("plane","✈️"),("ferry","⛴️"),("bread","🍞"),("pizza","🍕"),("lemon","🍋"),
+     ("grape","🍇"),("peach","🍑"),("melon","🍈"),("candy","🍬"),("juice","🧃"),("water","💧"),("toast",""),("pasta","🍝"),("honey","🍯"),("bagel","🥯"),
+     ("salad","🥗"),("fries","🍟"),("onion","🧅"),("beans","🫘"),("chair","🪑"),("table",""),("clock","⏰"),("house","🏠"),("plant","🪴"),("heart","❤️"),
+     ("crown","👑"),("robot","🤖"),("ghost","👻"),("smile","😊"),("happy","😀"),("cloud","☁️"),("storm","⛈️"),("river","🏞️"),("beach","🏖️"),("ocean","🌊"),
+     ("grass","🌱"),("stone","🪨"),("light","💡"),("phone","📱"),("radio","📻"),("piano","🎹"),("paint","🎨"),("brush","🖌️"),("books","📚"),("shirt","👕"),
+     ("shoes","👟"),("dress","👗"),("socks","🧦"),("glove","🧤"),("scarf","🧣"),("watch","⌚"),("tooth","🦷"),("mouth","👄"),("hands","🙌"),("sleep","😴"),
+     ("dance","💃"),("laugh","😂"),("music","🎵"),("party","🎉"),("queen","👸"),("fairy","🧚"),("magic","🪄"),("seven","7️⃣"),("three","3️⃣"),("eight","8️⃣"),
+     ("green","🟢"),("black","⚫"),("white","⚪"),("brown","🟤"),("pink",""),("sweet","🍭"),("teddy","🧸"),("drink","🥤"),("jelly",""),("lunch","🍱")],
+}
+TALK[4] = [x for x in TALK[4] if x[0] not in {"keep", "back", "well", "lost"}]
+TALK[5] = [x for x in TALK[5] if len(x[0]) == 5 and x[0] != "fries"] + [("spoon","🥄"),("snail","🐌")]
+WORD_TEXT.update({"ok": "okay.", "ma": "ma.", "pa": "pa.", "us": "us.", "am": "am."})
+PHRASES.update({
+  "talk_pick": "Welcome to Talk Time! Here you practise saying words out loud, nice and clear. Listen to me first, then it's your turn!",
+  "talk_listen": "Listen carefully.",
+  "talk_turn": "Your turn! Tap the microphone and say",
+  "talk_slow": "Now slowly.",
+  "talk_great": "I heard you! You said it so clearly!",
+  "talk_close": "So close! Let's say it one more time, nice and slow.",
+  "talk_again": "Let's try again. Listen to me first.",
+  "talk_start": "Listen to the start of the word.",
+  "talk_middle": "Listen to the middle of the word.",
+  "talk_end": "Listen to the end of the word.",
+  "talk_moveon": "Good trying! Practice makes your words clearer. Let's go on.",
+  "talk_loud": "I couldn't hear you. Say it a little louder, close to the phone!",
+  "talk_nomic": "I can't hear the microphone yet. Ask a grown-up to allow the microphone.",
+  "talk_check": "Did you sound the same as me? Tap the green thumb, or try again.",
+  "talk_thisisyou": "This is you!",
+  "talk_thisisme": "And this is me.",
+  "talk_done": "You finished the lesson! Your talking is getting clearer and clearer!",
+})

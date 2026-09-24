@@ -395,6 +395,56 @@ body{touch-action:manipulation;-webkit-user-select:none;user-select:none;-webkit
 .credits summary{font-weight:800;cursor:pointer;color:var(--ink)}
 .credits ul{margin:6px 0 0;padding-left:18px;display:flex;flex-direction:column;gap:3px;user-select:text;-webkit-user-select:text}
 .credits a{color:var(--cons)}
+
+/* ---------- v6: Talk Time (speaking practice with the microphone) ---------- */
+.map-actions .pairs-btn{padding-inline:8px;gap:6px}
+.pairs-btn.talk{background:var(--coral);box-shadow:0 6px 0 var(--coral-deep)}
+.pairs-btn.talk:active{box-shadow:0 2px 0 var(--coral-deep)}
+#talk{display:flex;flex-direction:column;overflow:hidden}
+.tk-home{flex:1;min-height:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:min(12px,calc(var(--vh)*1.6));padding-block:4px 8px}
+.tk-home .vtabs{width:100%;max-width:440px}
+.tk-start{flex-direction:column;gap:2px;padding:min(12px,calc(var(--vh)*1.5)) 30px;line-height:1.05;animation:none}
+.tk-start .l1{display:flex;align-items:center;gap:10px}
+.tk-start small{font-family:var(--read);font-size:min(17px,calc(var(--vh)*2.3));font-weight:700;opacity:.9}
+.tk-pager{display:flex;align-items:center;gap:12px;font-weight:800;color:var(--ink-soft);font-size:min(17px,calc(var(--vh)*2.3));font-variant-numeric:tabular-nums}
+.tk-pager .round{width:44px;height:44px;font-size:22px}
+.tk-pager .round[disabled]{opacity:.35}
+.tk-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:min(8px,calc(var(--vh)*1));width:100%;max-width:min(440px,calc(var(--vh)*52))}
+.tk-ls{aspect-ratio:1;border-radius:16px;background:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;line-height:1;
+  box-shadow:0 4px 0 #9CCDE6,inset 0 0 0 3px #D6EEF9;font-weight:800;font-size:min(20px,calc(var(--vh)*2.7));color:var(--ink)}
+.tk-ls small{font-size:min(11px,calc(var(--vh)*1.5));letter-spacing:.5px;color:var(--sun-deep)}
+.tk-ls.done{background:#FFF6D6;box-shadow:0 4px 0 var(--sun-deep),inset 0 0 0 3px var(--sun)}
+.tk-ls.now{background:var(--coral);color:#fff;box-shadow:0 4px 0 var(--coral-deep);animation:pulse 1.4s ease-in-out infinite}
+.tk-ls.locked{background:#E3E8F1;color:#9AA7BF;box-shadow:0 4px 0 #C9D1E0}
+.tk-lesson{flex:1;min-height:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:min(10px,calc(var(--vh)*1.3));padding-block:2px 6px}
+.tk-card{gap:min(10px,calc(var(--vh)*1.3))}
+.tk-card .pic{width:calc(var(--pic)*.72);font-size:calc(var(--pic)*.42)}
+.btn.slow{background:var(--sun);color:var(--ink);box-shadow:0 6px 0 var(--sun-deep)}
+.mic-wrap{display:flex;align-items:center;gap:14px}
+.mic-btn{--lvl:0;width:min(104px,calc(var(--vh)*13.5));height:min(104px,calc(var(--vh)*13.5));border-radius:50%;display:grid;place-items:center;
+  background:var(--coral);color:#fff;font-size:min(48px,calc(var(--vh)*6.2));transition:box-shadow .08s,background .2s;
+  box-shadow:0 7px 0 var(--coral-deep),0 0 0 calc(var(--lvl)*28px) rgba(255,100,80,.28)}
+.mic-btn.ready{animation:pulse 1.3s ease-in-out infinite}
+.mic-btn.listening{background:var(--grass);box-shadow:0 7px 0 var(--grass-deep),0 0 0 calc(6px + var(--lvl)*30px) rgba(61,190,122,.3)}
+.mic-btn.thinking{background:var(--grape);box-shadow:0 7px 0 var(--grape-deep)}
+.mic-btn.check{font-size:min(20px,calc(var(--vh)*2.6));font-weight:800;line-height:1.1;padding:10px;text-align:center}
+.mic-side{width:56px;height:56px;border-radius:50%;display:grid;place-items:center;background:#fff;color:var(--grape);font-size:26px;box-shadow:0 5px 0 #9CCDE6}
+.mic-side[disabled]{opacity:.3}
+.mic-cap{margin:0;font-weight:800;font-size:min(19px,calc(var(--vh)*2.6));color:var(--ink);text-align:center;min-height:1.3em}
+.mic-cap .heard{font-family:var(--read);color:var(--grape)}
+.tk-stars{display:flex;gap:4px;height:min(34px,calc(var(--vh)*4.4))}
+.tk-stars svg{height:100%;width:auto;color:#D6DEEB}
+.tk-stars svg.on{color:var(--sun);filter:drop-shadow(0 2px 0 var(--sun-deep));animation:starIn .6s cubic-bezier(.2,1.6,.4,1) both}
+.thumbs{display:flex;gap:14px}
+.thumbs .btn{font-size:min(22px,calc(var(--vh)*2.9))}
+.tile.diff{background:var(--sun);color:var(--ink);box-shadow:0 6px 0 var(--sun-deep);animation:shake .5s ease 2}
+.mic-card{max-width:420px;text-align:center}
+.mic-card h3{font-size:28px}
+.mic-card .thumbs{flex-wrap:wrap;justify-content:center}
+.mic-card p{margin:0;color:var(--ink-soft);font-weight:600;font-size:min(16px,calc(var(--vh)*2.2))}
+.mic-card .url{font-family:var(--read);font-weight:700;color:var(--cons);user-select:text;-webkit-user-select:text}
+.grown label.check{flex-direction:row;align-items:center;gap:10px}
+.grown label.check input{width:22px;height:22px;accent-color:var(--grape)}
 </style>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -423,6 +473,7 @@ body{touch-action:manipulation;-webkit-user-select:none;user-select:none;-webkit
     <symbol id="lock" viewBox="0 0 24 24"><rect x="4.5" y="10.5" width="15" height="11" rx="2.5"/><path d="M8 10.5V8a4 4 0 018 0v2.5" fill="none" stroke="currentColor" stroke-width="2.6"/></symbol>
     <symbol id="abc" viewBox="0 0 24 24"><text x="12" y="17" text-anchor="middle" font-size="13" font-weight="700" font-family="Andika, sans-serif">abc</text></symbol>
     <symbol id="cards" viewBox="0 0 24 24"><rect x="2.5" y="5" width="10" height="14" rx="2.2" transform="rotate(-10 7.5 12)"/><rect x="11" y="4" width="10" height="14" rx="2.2" transform="rotate(8 16 11)" opacity=".75"/></symbol>
+    <symbol id="mic" viewBox="0 0 24 24"><rect x="8.5" y="2.5" width="7" height="12" rx="3.5"/><path d="M5.5 11.5a6.5 6.5 0 0 0 13 0M12 18v3.5M8.5 21.5h7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></symbol>
     <symbol id="stk" viewBox="0 0 24 24"><path d="M4 3h11l6 6v12H4z"/><path d="M15 3v6h6" fill="#fff" opacity=".55"/><circle cx="9.5" cy="12" r="1.3" fill="#fff"/><circle cx="14.5" cy="12" r="1.3" fill="#fff"/><path d="M8.5 15.5q3.5 3 7 0" stroke="#fff" stroke-width="1.6" fill="none" stroke-linecap="round"/></symbol>
   </defs>
 </svg>
@@ -447,6 +498,7 @@ body{touch-action:manipulation;-webkit-user-select:none;user-select:none;-webkit
     <section class="screen" id="map" hidden></section>
     <section class="screen" id="level" hidden><div class="stage" id="stage"></div></section>
     <section class="screen" id="pairs" hidden></section>
+    <section class="screen" id="talk" hidden></section>
   </main>
   <footer class="coach" id="coach">
     <svg class="owl" viewBox="0 0 100 100" aria-hidden="true"><use href="#owl"/></svg>
@@ -484,8 +536,9 @@ body{touch-action:manipulation;-webkit-user-select:none;user-select:none;-webkit
     <label for="vol">Voice loudness
       <input type="range" id="vol" min="0.6" max="2.4" step="0.1">
     </label>
+    <label class="check" for="asrOn"><input type="checkbox" id="asrOn"> Talk Time: the app listens and checks each word</label>
     <div class="grown-row"><button class="btn" id="unlockAll">Unlock all</button><button class="btn warn" id="resetBtn">Start over</button></div>
-    <details class="credits"><summary>Teaching tips</summary><p class="note">Sit together and let your child do the tapping. Point to each letter as the teacher says it. Red tiles are vowels, blue tiles are consonants, and wide tiles are letter teams like sh and ee. One or two islands a day is plenty; replaying an island gives new words.</p></details>
+    <details class="credits"><summary>Teaching tips</summary><p class="note">Sit together and let your child do the tapping. Point to each letter as the teacher says it. Red tiles are vowels, blue tiles are consonants, and wide tiles are letter teams like sh and ee. One or two islands a day is plenty; replaying an island gives new words.</p><p class="note">Talk Time: your child's recordings stay on this device and are never saved or uploaded. To check words, the browser's own speech service listens (Google in Chrome, Apple in Safari). Turn the switch off to check by ear instead.</p></details>
     <details class="credits"><summary>Animal sound credits</summary><ul id="creditList"></ul></details>
     <button class="btn say" id="grownClose">Done</button>
   </div>
@@ -525,6 +578,7 @@ try { const old = JSON.parse(localStorage.getItem('hoot-reading-v1') || '{}'); i
 try { Object.assign(prog, JSON.parse(localStorage.getItem(KEY) || '{}')); } catch (e) {}
 if (!D.voices.some(v => v.key === prog.voice)) prog.voice = DEF;
 if (typeof prog.pairs !== 'number') prog.pairs = 0;
+if (!prog.talk || typeof prog.talk !== 'object') prog.talk = {};
 const voiceMeta = () => D.voices.find(v => v.key === prog.voice);
 const save = () => { try { localStorage.setItem(KEY, JSON.stringify(prog)); } catch (e) {} };
 
@@ -557,15 +611,16 @@ function loadVoice(key) {
 function decode(id) {
   const animal = id.startsWith('x_'), v = AUD[prog.voice] ? prog.voice : DEF, key = (animal ? 'x' : v) + ':' + id;
   if (cache[key]) return cache[key];
-  const b = animal ? (ANIM[id.slice(2)] || {}).b64 : AUD[v][id];
+  const b = animal ? (ANIM[id.slice(2)] || {}).b64 : AUD[v][id] || (TALKA[v] || {})[id] || (TALKA[DEF] || {})[id];
   if (!b || !ctx) return Promise.resolve(null);
   const bin = atob(b), u = new Uint8Array(bin.length);
   for (let i = 0; i < bin.length; i++) u[i] = bin.charCodeAt(i);
   return cache[key] = new Promise(res => ctx.decodeAudioData(u.buffer, res, () => res(null)));
 }
-function playBuf(b) {
+function playBuf(b, g) {
   return new Promise(res => {
-    const s = ctx.createBufferSource(); s.buffer = b; s.connect(voiceBus);
+    const s = ctx.createBufferSource(); s.buffer = b;
+    if (g) { const n = ctx.createGain(); n.gain.value = g; s.connect(n); n.connect(voiceBus); } else s.connect(voiceBus);
     s.onended = () => { if (cur === s) cur = null; res(); };
     cur = s; s.start();
   });
@@ -584,6 +639,7 @@ async function say(seq) {
     if (t !== token) return false;
     const it = typeof raw === 'string' ? { id: raw } : raw;
     if (it.pause) { await wait(it.pause); continue; }
+    if (it.buf) { await playBuf(it.buf, it.buf.gainNorm); continue; }
     if (it.on) it.on();
     if (it.id === 'p_hello') bubble.textContent = `Hi! I'm ${voiceMeta().name}. Let's read together!`;
     else if (it.id.startsWith('p_')) bubble.textContent = D.phrases[it.id.slice(2)];
@@ -625,10 +681,10 @@ const sfx = new Proxy({
 let screen = 'start', gen = 0, L = null, R = { miss: 0 }, busy = false, prompt = ['p_welcome'];
 function show(id) {
   screen = id;
-  for (const s of ['start', 'map', 'level', 'pairs']) $('#' + s).hidden = s !== id;
+  for (const s of ['start', 'map', 'level', 'pairs', 'talk']) $('#' + s).hidden = s !== id;
   $('#bar').hidden = id === 'start';
   $('#dots').hidden = id !== 'level';
-  $('#homeBtn').hidden = id !== 'level' && id !== 'pairs';
+  $('#homeBtn').hidden = !['level', 'pairs', 'talk'].includes(id);
   $('#gearBtn').hidden = id !== 'map';
   $('#starCount').textContent = prog.stars.length;
 }
@@ -699,8 +755,9 @@ function renderMap() {
   s += `<g class="map-owl" pointer-events="none"><use href="#owl" x="${ox + (ox > 250 ? -84 : 34)}" y="${oy - 58}" width="46" height="46"/></g></svg>`;
   $('#map').innerHTML = `<div class="mapbox">${s}</div>`;
   $('#map').append(h('div', { class: 'map-actions' },
-    h('button', { class: 'pairs-btn', 'aria-label': `Picture Pairs, ${prog.pairs} of ${PL.length} levels done`, onclick: () => { sfx.whoosh(); openPairs(); } }, icon('cards'), 'Pairs', h('span', { class: 'ct' }, `${prog.pairs}/${PL.length}`)),
-    h('button', { class: 'pairs-btn stickers', 'aria-label': `My stickers, ${prog.stars.length} of ${N}`, onclick: openStickers }, icon('stk'), 'Stickers', h('span', { class: 'ct' }, `${prog.stars.length}/${N}`))));
+    h('button', { class: 'pairs-btn', 'aria-label': `Picture Pairs, ${prog.pairs} of ${PL.length} levels done`, onclick: () => { sfx.whoosh(); openPairs(); } }, icon('cards'), 'Pairs'),
+    h('button', { class: 'pairs-btn talk', 'aria-label': 'Talk Time: say words out loud', onclick: () => { sfx.whoosh(); openTalk(); } }, icon('mic'), 'Talk'),
+    h('button', { class: 'pairs-btn stickers', 'aria-label': `My stickers, ${prog.stars.length} of ${N}`, onclick: openStickers }, icon('stk'), 'Stickers')));
   $('#map').querySelectorAll('.stop').forEach(g => {
     const go = () => tapStop(+g.dataset.n);
     g.addEventListener('click', go);
@@ -1111,7 +1168,8 @@ function finishLevel() {
 }
 let winNext = goMap;
 $('#winBtn').onclick = () => { $('#winBox').hidden = true; sfx.whoosh(); winNext(); };
-$('#winAlt').onclick = () => { $('#winBox').hidden = true; sfx.tap(); openPairs(false); };
+let winAltFn = () => openPairs(false);
+$('#winAlt').onclick = () => { $('#winBox').hidden = true; sfx.tap(); winAltFn(); };
 
 function wiggle(el) { el.classList.remove('wiggle'); void el.offsetWidth; el.classList.add('wiggle'); }
 function animalSay(st, el) {
@@ -1255,11 +1313,303 @@ function finishPairs(lastWord) {
   $('#winTitle').textContent = last ? 'Pairs champion!' : 'All pairs found!';
   $('#winText').textContent = last ? 'You matched all 24 cards. Amazing reading!' : `Next: level ${lv + 2} with ${PL[lv + 1].cards} cards.`;
   $('#winBtn').innerHTML = last ? '<svg class="icon"><use href="#home"/></svg>All levels' : '<svg class="icon"><use href="#play"/></svg>Next level';
-  $('#winAlt').hidden = last;
+  $('#winAlt').hidden = last; winAltFn = () => openPairs(false); $('#winAlt').innerHTML = '<svg class="icon"><use href="#left"/></svg>All levels';
   $('#winBox').hidden = false; $('#winBtn').focus();
   sfx.fanfare(); confetti();
   prompt = ['p_pairs_done'];
   setTimeout(() => say(['w_' + lastWord, { pause: 250 }, 'p_pairs_done', { pause: 150 }, 'p_praise' + (1 + rnd(8))]), 600);
+}
+
+/* ---------- Talk Time: say words out loud with the microphone ---------- */
+const TK = D.talk, TLV = ['2', '3', '4', '5'], TALKA = {};
+const DIG = { 1: 'one', 2: 'two', 3: 'three', 4: 'four', 5: 'five', 6: 'six', 7: 'seven', 8: 'eight', 9: 'nine', 10: 'ten' };
+const HOMO = { to: ['two', 'too'], be: ['bee', 'b'], by: ['bye', 'buy'], no: ['know'], oh: ['o', 'owe'], so: ['sew', 'sow'], we: ['wee', 'whee'],
+  hi: ['high', 'hey', 'hiya'], or: ['oar', 'ore'], ok: ['okay'], ma: ['mom', 'mum', 'mah', 'mama'], pa: ['pah', 'papa'], ah: ['aah', 'ahh'], ha: ['hah', 'haha'],
+  ow: ['owe', 'ouch'], my: ['mi'], in: ['inn'], i: ['eye'], sun: ['son'], ten: [], red: ['read'], eight: ['ate'], bear: ['bare'], deer: ['dear'], tail: ['tale'],
+  mail: ['male'], rose: ['rows'], road: ['rode', 'rowed'], rain: ['reign', 'rein'], feet: ['feat'], not: ['knot'], ring: ['wring'], whale: ['wail'],
+  plane: ['plain'], sweet: ['suite'], pup: ['pop'], hog: ['hug'], cot: ['caught'], pod: ['pot'], mat: ['matt'], fin: ['finn'], jam: ['jamb'],
+  hay: ['hey'], four: ['for'], two: ['to'], dough: ['doe'], nine: [], seven: [], three: [], five: [], six: ['sex'] };
+const sameWord = (tok, w) => tok === w || (HOMO[w] || []).includes(tok);
+function edit(a, b) {
+  const d = Array.from({ length: a.length + 1 }, (_, i) => [i, ...Array(b.length).fill(0)]);
+  for (let j = 1; j <= b.length; j++) d[0][j] = j;
+  for (let i = 1; i <= a.length; i++) for (let j = 1; j <= b.length; j++)
+    d[i][j] = Math.min(d[i - 1][j] + 1, d[i][j - 1] + 1, d[i - 1][j - 1] + (a[i - 1] === b[j - 1] ? 0 : 1));
+  return d[a.length][b.length];
+}
+function judge(word, alts) {
+  // Decide from every alternative the recogniser offers: exact (or a homophone) = great, one sound off = close.
+  const toks = [];
+  alts.forEach(a => a.toLowerCase().replace(/[^a-z0-9' ]/g, ' ').split(/\s+/).filter(Boolean).forEach(t => toks.push(DIG[t] || t.replace(/'/g, ''))));
+  if (toks.some(t => sameWord(t, word))) return { kind: 'great' };
+  let best = null;
+  for (const t of toks) { const e = edit(t, word); if (!best || e < best.e) best = { t, e }; }
+  if (!best) return { kind: 'none' };
+  const closeLimit = word.length <= 2 ? 1 : word.length <= 4 ? 1 : 2;
+  const kind = best.e <= closeLimit ? 'close' : 'miss';
+  let pos = -1;
+  if (Math.abs(best.t.length - word.length) <= 1) for (let i = 0; i < word.length; i++) if (best.t[i] !== word[i]) { pos = i; break; }
+  return { kind, heard: best.t, pos };
+}
+function lessonWords(lv, k) {
+  // one new word plus two review words, so every word comes back spaced out
+  const pool = TK[lv], n = pool.length, out = [];
+  for (let i of [k, k >= 3 ? k - 3 : k + 1, k >= 10 ? k - 10 : k + 2]) { i = ((i % n) + n) % n; while (out.includes(i)) i = (i + 5) % n; out.push(i); }
+  return out.map(i => ({ w: pool[i][0], p: pool[i][1] }));
+}
+const talkStars = lv => (prog.talk[lv] ||= []);
+function nextLesson(lv) { const a = talkStars(lv); let k = 0; while (k < 99 && a[k]) k++; return k; }
+function loadTalk(key) {
+  if (TALKA[key]) return Promise.resolve(true);
+  return new Promise(res => {
+    const s = document.createElement('script');
+    s.src = `voices/${key}.talk.js`;
+    s.onload = () => { if (window.__TP && window.__TP[key]) TALKA[key] = window.__TP[key]; res(!!TALKA[key]); };
+    s.onerror = () => res(false);
+    document.head.append(s);
+  });
+}
+let T = null, talkLv = null, talkPage = null;
+async function openTalk(speak = true) {
+  gen++; stopVoice(); busy = false; T = null;
+  show('talk'); setTitle('Talk Time', 'Say words out loud');
+  const box = $('#talk'); box.innerHTML = '';
+  if (!TALKA[prog.voice] && !TALKA[DEF]) {
+    box.append(h('div', { class: 'tk-home' }, h('p', { class: 'hint-text' }, 'Getting the words ready…')));
+    await Promise.all([loadTalk(prog.voice), loadTalk(DEF)]);
+    if (screen !== 'talk') return;
+  } else loadTalk(prog.voice);
+  if (!talkLv) talkLv = TLV.find(l => nextLesson(l) < 99 || !talkStars(l)[99]) || '2';
+  const nx = nextLesson(talkLv);
+  if (talkPage == null) talkPage = Math.floor(nx / 20);
+  box.innerHTML = '';
+  const a = talkStars(talkLv), from = talkPage * 20;
+  const tabs = h('div', { class: 'vtabs', role: 'tablist' }, TLV.map(l => h('button', { class: 'vtab', role: 'tab', 'aria-selected': String(l === talkLv),
+    onclick: () => { talkLv = l; talkPage = null; sfx.tap(); openTalk(false); } }, `${l} letters`)));
+  const words = lessonWords(talkLv, nx).map(x => x.w).join(' · ');
+  const start = h('button', { class: 'big-go tk-start', onclick: () => { sfx.whoosh(); startLesson(talkLv, nx); } },
+    h('span', { class: 'l1' }, icon('mic'), `Lesson ${nx + 1}`), h('small', {}, words));
+  const pager = h('div', { class: 'tk-pager' },
+    h('button', { class: 'round', 'aria-label': 'Earlier lessons', onclick: () => { if (talkPage > 0) { talkPage--; sfx.tap(); openTalk(false); } } }, icon('left')),
+    h('span', {}, `Lessons ${from + 1}–${from + 20}`),
+    h('button', { class: 'round', 'aria-label': 'Later lessons', onclick: () => { if (talkPage < 4) { talkPage++; sfx.tap(); openTalk(false); } } }, icon('right')));
+  if (talkPage === 0) pager.children[0].setAttribute('disabled', '');
+  if (talkPage === 4) pager.children[2].setAttribute('disabled', '');
+  const grid = h('div', { class: 'tk-grid' }, Array.from({ length: 20 }, (_, j) => {
+    const k = from + j, st = a[k] || 0, locked = k > nx, now = k === nx;
+    const b = h('button', { class: 'tk-ls' + (st ? ' done' : '') + (now ? ' now' : '') + (locked ? ' locked' : ''),
+      'aria-label': `Lesson ${k + 1}${st ? `, ${st} stars` : ''}${locked ? ', locked' : ''}` }, String(k + 1), st ? h('small', {}, '★'.repeat(st)) : null);
+    b.onclick = () => { if (locked) { sfx.boop(); say('p_pairs_locked'); } else { sfx.whoosh(); startLesson(talkLv, k); } };
+    return b;
+  }));
+  box.append(h('div', { class: 'tk-home' }, tabs, start, pager, grid));
+  prompt = ['p_talk_pick'];
+  if (speak) say(prompt); else bubble.textContent = D.phrases.talk_pick;
+}
+
+/* microphone: cleaned-up capture so a small, soft voice comes through clearly */
+const Mic = {};
+async function micInit() {
+  if (Mic.ok) return true;
+  unlock();
+  if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia || !ctx) { Mic.err = 'unsupported'; return false; }
+  try {
+    Mic.raw = await navigator.mediaDevices.getUserMedia({ audio: { echoCancellation: true, noiseSuppression: true, autoGainControl: true, channelCount: 1 } });
+  } catch (e) { Mic.err = e.name || 'blocked'; return false; }
+  const src = ctx.createMediaStreamSource(Mic.raw);
+  const hp = ctx.createBiquadFilter(); hp.type = 'highpass'; hp.frequency.value = 90;           // rumble and handling noise
+  const lp = ctx.createBiquadFilter(); lp.type = 'lowpass'; lp.frequency.value = 8000;          // hiss
+  const pres = ctx.createBiquadFilter(); pres.type = 'peaking'; pres.frequency.value = 3200; pres.Q.value = .9; pres.gain.value = 5; // crisper consonants
+  const comp = ctx.createDynamicsCompressor(); comp.threshold.value = -38; comp.ratio.value = 4; comp.attack.value = .004; comp.release.value = .2;
+  const gain = ctx.createGain(); gain.gain.value = 2.2;                                          // lift a quiet child's voice
+  Mic.an = ctx.createAnalyser(); Mic.an.fftSize = 1024; Mic.buf = new Float32Array(1024);
+  Mic.dest = ctx.createMediaStreamDestination();
+  src.connect(hp); hp.connect(lp); lp.connect(pres); pres.connect(comp); comp.connect(gain); gain.connect(Mic.an); gain.connect(Mic.dest);
+  Mic.ok = true;
+  return true;
+}
+function micLevel() { Mic.an.getFloatTimeDomainData(Mic.buf); let s = 0; for (let i = 0; i < Mic.buf.length; i++) s += Mic.buf[i] * Mic.buf[i]; return Math.sqrt(s / Mic.buf.length); }
+function capture(word, btn) {
+  return new Promise(resolve => {
+    const out = { alts: [], asr: false, spoke: false, blob: null };
+    const chunks = [];
+    let mr = null;
+    try { mr = new MediaRecorder(Mic.dest.stream); mr.ondataavailable = e => e.data.size && chunks.push(e.data); mr.start(); } catch (e) { mr = null; }
+    const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+    let rec = null, recDone = true;
+    if (SR && prog.asr !== false && !Mic.asrBroken) {
+      rec = new SR(); recDone = false;
+      rec.lang = 'en-US'; rec.interimResults = true; rec.maxAlternatives = 10; rec.continuous = false;
+      try { if ('SpeechRecognitionPhrase' in window) rec.phrases = [new SpeechRecognitionPhrase(word, 3)]; } catch (e) {}
+      rec.onresult = e => { out.asr = true; for (const r of e.results) for (const a of r) if (a.transcript) out.alts.push(a.transcript); };
+      rec.onerror = e => { if (['not-allowed', 'service-not-allowed', 'audio-capture', 'language-not-supported'].includes(e.error)) Mic.asrBroken = true; if (e.error === 'no-speech') out.asr = true; };
+      rec.onend = () => { recDone = true; };
+      try { rec.start(Mic.dest.stream.getAudioTracks()[0]); } catch (e) { try { rec.start(); } catch (e2) { recDone = true; rec = null; } }
+    }
+    const t0 = performance.now();
+    let floor = null, lastLoud = 0, finished = false;
+    const tick = () => {
+      if (finished) return;
+      const now = performance.now(), lv = micLevel();
+      floor = floor == null ? lv : Math.min(Math.max(floor * .97 + lv * .03, .002), floor * 1.02 + .0005);
+      const thr = Math.max(.02, floor * 3.5);
+      btn.style.setProperty('--lvl', Math.min(1, lv * 6).toFixed(2));
+      if (lv > thr && now - t0 > 150) { out.spoke = true; lastLoud = now; }
+      if ((out.spoke && now - lastLoud > 850) || now - t0 > (out.spoke ? 4500 : 5500)) return stop();
+      requestAnimationFrame(tick);
+    };
+    const stop = () => {
+      finished = true; btn.style.setProperty('--lvl', 0);
+      if (rec) try { rec.stop(); } catch (e) {}
+      const done = () => { out.blob = chunks.length ? new Blob(chunks, { type: mr.mimeType }) : null; resolve(out); };
+      const waitRec = t => (recDone || t > 2600) ? done() : setTimeout(() => waitRec(t + 100), 100);
+      if (mr && mr.state !== 'inactive') { mr.onstop = () => waitRec(0); mr.stop(); } else waitRec(0);
+    };
+    requestAnimationFrame(tick);
+  });
+}
+async function toBuffer(blob) {
+  if (!blob) return null;
+  try {
+    const b = await new Promise((res, rej) => blob.arrayBuffer().then(ab => ctx.decodeAudioData(ab, res, rej)));
+    // trim the silence around the child's voice so playback starts right away
+    const d = b.getChannelData(0); let peak = 0; for (const v of d) peak = Math.max(peak, Math.abs(v));
+    if (peak < .005) return null;
+    const th = peak * .08; let s = 0, e = d.length - 1;
+    while (s < e && Math.abs(d[s]) < th) s++;
+    while (e > s && Math.abs(d[e]) < th) e--;
+    s = Math.max(0, s - b.sampleRate * .08); e = Math.min(d.length, e + b.sampleRate * .15);
+    const out = ctx.createBuffer(1, Math.max(1, e - s), b.sampleRate);
+    out.getChannelData(0).set(d.subarray(s, e));
+    out.gainNorm = Math.min(6, .9 / peak);   // play it back as loud as the teacher
+    return out;
+  } catch (e) { return null; }
+}
+function startLesson(lv, k) {
+  gen++; stopVoice(); busy = false;
+  T = { lv, k, words: lessonWords(lv, k), i: 0, stars: [] };
+  talkLv = lv; talkPage = Math.floor(k / 20);
+  show('talk'); setTitle(`Lesson ${k + 1}`, `${lv}-letter words · Talk Time`);
+  loadTalk(prog.voice).then(() => talkWord());
+}
+function talkWord() {
+  const g = gen, it = T.words[T.i], w = it.w;
+  T.try = 0; T.buf = null; T.state = 'intro';
+  const box = $('#talk'); box.innerHTML = '';
+  const dots = h('div', { class: 'dots' }, T.words.map((_, j) => h('i', { class: j < T.i ? 'done' : j === T.i ? 'now' : '' })));
+  const tiles = tilesFor([...w]);
+  const card = h('div', { class: 'card tk-card' },
+    h('button', { class: 'pic', 'aria-label': `Hear ${w}`, onclick: () => say('w_' + w) }, it.p || '🗣️'), tiles,
+    h('div', { class: 'row' },
+      h('button', { class: 'btn say', onclick: () => say('w_' + w) }, icon('spk'), 'Listen'),
+      h('button', { class: 'btn slow', onclick: () => say('v_' + w) }, '🐢 Slow')));
+  const mic = h('button', { class: 'mic-btn', 'aria-label': `Tap and say ${w}`, html: '<svg class="icon"><use href="#mic"/></svg>' });
+  const me = h('button', { class: 'mic-side', 'aria-label': 'Hear my voice', disabled: '', html: '<svg class="icon"><use href="#play"/></svg>' });
+  const stars = h('div', { class: 'tk-stars', 'aria-hidden': 'true' }, [0, 1, 2].map(() => h('span', { html: '<svg class="icon" viewBox="0 0 24 24"><use href="#star"/></svg>', style: 'display:contents' })));
+  const cap = h('p', { class: 'mic-cap' }, 'Listen first…');
+  const area = h('div', { class: 'mic-wrap' }, h('span', { style: 'width:56px' }), mic, me);
+  box.append(h('div', { class: 'tk-lesson' }, dots, card, area, cap, stars));
+  Object.assign(T, { tiles, mic, me, cap, stars, g });
+  me.onclick = () => T.buf && say([{ buf: T.buf }]);
+  mic.onclick = () => onMic();
+  prompt = ['p_talk_turn', { pause: 150 }, 'w_' + w];
+  say(['p_talk_listen', { pause: 150 }, 'w_' + w, { pause: 500 }, 'p_talk_slow', { pause: 150 }, 'v_' + w, { pause: 500 }, ...prompt]).then(ok => {
+    if (ok && g === gen && T && T.state === 'intro') ready();
+  });
+  setTimeout(() => { if (T && g === gen && T.state === 'intro') ready(); }, 9000);
+}
+function ready(text) {
+  T.state = 'ready';
+  T.mic.className = 'mic-btn ready';
+  T.cap.textContent = text || `Tap the mic and say “${T.words[T.i].w}”`;
+}
+async function onMic() {
+  if (!T || T.state === 'listening' || T.state === 'thinking' || T.state === 'done') return;
+  const g = gen, w = T.words[T.i].w;
+  if (T.state === 'check') return;
+  stopVoice();
+  if (Mic.none) { T.try++; return selfCheck(['w_' + w]); }
+  if (!(await micInit())) return noMic();
+  T.state = 'listening'; T.mic.className = 'mic-btn listening'; T.cap.textContent = 'I’m listening… say it now!';
+  sfx.tap();
+  const r = await capture(w, T.mic);
+  if (g !== gen || !T) return;
+  T.state = 'thinking'; T.mic.className = 'mic-btn thinking'; T.cap.textContent = 'Thinking…';
+  if (!r.spoke) { await say('p_talk_loud'); return g === gen && ready('Say it a little louder!'); }
+  T.try++;
+  T.buf = await toBuffer(r.blob);
+  if (T.buf) T.me.removeAttribute('disabled');
+  const mine = T.buf ? [{ id: 'p_talk_thisisyou' }, { buf: T.buf }, { pause: 250 }, 'p_talk_thisisme', 'w_' + w] : ['w_' + w];
+  if (!r.asr || Mic.asrBroken) return selfCheck(mine);
+  const v = judge(w, r.alts);
+  if (v.kind === 'great') return pass(3 - Math.min(2, T.try - 1), [{ pause: 100 }, 'p_talk_great', ...(T.buf ? [{ pause: 150 }, { buf: T.buf }] : [])]);
+  T.cap.innerHTML = v.heard ? `I heard <span class="heard">“${v.heard}”</span>` : 'Hmm, I didn’t catch that';
+  if (T.try >= 3) return pass(1, ['p_talk_moveon']);
+  const tile = v.pos >= 0 ? T.tiles.children[v.pos] : null;
+  if (tile) tile.classList.add('diff');
+  const where = v.pos < 0 ? [] : [v.pos === 0 ? 'p_talk_start' : v.pos === w.length - 1 ? 'p_talk_end' : 'p_talk_middle', { pause: 120 }, 'l_' + w[v.pos], { pause: 250 }];
+  sfx.boop();
+  await say([v.kind === 'close' ? 'p_talk_close' : 'p_talk_again', { pause: 200 }, ...mine, { pause: 300 }, ...where, 'v_' + w, { pause: 300 }, 'w_' + w]);
+  if (tile) tile.classList.remove('diff');
+  if (g === gen && T) ready(`Try again: “${w}”`);
+}
+function resetStars() { T.stars.innerHTML = ''; T.stars.className = 'tk-stars'; }
+function selfCheck(mine) {
+  // no speech recogniser here: play both voices and let the child (or a grown-up) decide
+  T.state = 'check';
+  T.cap.textContent = 'Did it sound the same?';
+  T.mic.className = 'mic-btn thinking';
+  const thumbs = h('div', { class: 'thumbs' },
+    h('button', { class: 'btn say', onclick: () => pass(3 - Math.min(2, T.try - 1), ['p_praise' + (1 + rnd(8))]) }, '👍 Yes!'),
+    h('button', { class: 'btn slow', onclick: () => { resetStars(); ready(`Try again: “${T.words[T.i].w}”`); say(['v_' + T.words[T.i].w]); } }, '🔁 Again'));
+  T.stars.replaceWith(thumbs); T.stars = thumbs;
+  say([...mine, { pause: 300 }, 'p_talk_check']);
+}
+function noMic() {
+  T.state = 'check';
+  const blocked = Mic.err === 'NotAllowedError' || Mic.err === 'SecurityError';
+  T.cap.textContent = blocked ? 'The microphone is blocked' : 'No microphone found';
+  const close = () => { ov.remove(); };
+  const ov = h('div', { class: 'overlay' }, h('div', { class: 'panel mic-card', role: 'dialog' },
+    h('h3', {}, 'Microphone'),
+    h('p', {}, blocked ? 'Grown-up: allow the microphone for this page (tap the icon beside the web address), then try again. The Claude app can’t use the microphone, so play at:' : 'This browser can’t use a microphone. Try Chrome or Safari at:'),
+    h('p', { class: 'url' }, 'learntoread-one.vercel.app'),
+    h('div', { class: 'thumbs' },
+      h('button', { class: 'btn', onclick: () => { close(); ready(); } }, 'Try again'),
+      h('button', { class: 'btn say', onclick: () => { close(); Mic.none = true; T.try++; selfCheck(['w_' + T.words[T.i].w]); } }, 'Grown-up checks'))));
+  document.body.append(ov);
+  say('p_talk_nomic');
+}
+async function pass(n, lines) {
+  const g = gen, w = T.words[T.i].w;
+  T.state = 'done'; T.mic.className = 'mic-btn';
+  T.stars.innerHTML = ''; T.stars.className = 'tk-stars';
+  T.stars.append(...[0, 1, 2].map(i => h('span', { html: `<svg class="icon${i < n ? ' on' : ''}" viewBox="0 0 24 24" style="animation-delay:${i * .15}s"><use href="#star"/></svg>`, style: 'display:contents' })));
+  if (n >= 2) { sfx.ding(); sparkle(T.mic); } else sfx.tap();
+  T.cap.textContent = n === 3 ? 'Super clear!' : n === 2 ? 'Great talking!' : 'Good trying!';
+  T.stars_ = (T.stars_ || []);
+  T.stars_.push(n);
+  await say(lines);
+  await wait(500);
+  if (g !== gen || !T) return;
+  if (++T.i < T.words.length) return talkWord();
+  finishLesson();
+}
+function finishLesson() {
+  const { lv, k } = T, got = Math.max(1, Math.round(T.stars_.reduce((a, b) => a + b, 0) / T.stars_.length));
+  const a = talkStars(lv); a[k] = Math.max(a[k] || 0, got); save();
+  const last = k >= 99;
+  winNext = last ? () => openTalk(false) : () => startLesson(lv, k + 1);
+  winAltFn = () => openTalk(false);
+  $('#winSticker').textContent = '🎤'; $('#winSticker').onclick = null;
+  $('#winTitle').textContent = `Lesson ${k + 1} done!`;
+  $('#winText').textContent = `${'★'.repeat(got)}${'☆'.repeat(3 - got)}  ` + (last ? `You finished all 100 ${lv}-letter lessons!` : `Next: lesson ${k + 2}`);
+  $('#winBtn').innerHTML = last ? '<svg class="icon"><use href="#home"/></svg>All lessons' : '<svg class="icon"><use href="#play"/></svg>Next lesson';
+  $('#winAlt').hidden = last; $('#winAlt').innerHTML = '<svg class="icon"><use href="#left"/></svg>All lessons';
+  $('#winBox').hidden = false; $('#winBtn').focus();
+  sfx.fanfare(); confetti();
+  prompt = ['p_talk_done'];
+  setTimeout(() => say(prompt), 600);
 }
 
 /* ---------- celebration graphics ---------- */
@@ -1302,7 +1652,7 @@ function renderVoices(loading) {
 async function chooseVoice(key) {
   unlock();
   if (!AUD[key]) { renderVoices(key); if (!(await loadVoice(key))) return renderVoices('!' + key); }
-  prog.voice = key; save(); renderVoices(); say('p_hello');
+  prog.voice = key; save(); renderVoices(); if (screen === 'talk') loadTalk(key); say('p_hello');
 }
 renderVoices();
 if (!AUD[prog.voice]) loadVoice(prog.voice);
@@ -1315,6 +1665,7 @@ $('#goBtn').onclick = () => {
 $('#homeBtn').onclick = () => { sfx.tap(); goMap(); };
 $('#againBtn').onclick = () => { if (screen === 'start') return $('#goBtn').click(); say(prompt); };
 $('#stickerClose').onclick = () => { $('#stickerBox').hidden = true; stopVoice(); };
+const asrOn = $('#asrOn'); asrOn.checked = prog.asr !== false; asrOn.onchange = () => { prog.asr = asrOn.checked; save(); };
 const vol = $('#vol'); vol.value = prog.vol;
 vol.oninput = () => { prog.vol = +vol.value; if (voiceBus) voiceBus.gain.value = prog.vol; save(); };
 vol.onchange = () => say('p_praise1');
@@ -1323,7 +1674,7 @@ $('#grownClose').onclick = () => { $('#grownBox').hidden = true; };
 $('#unlockAll').onclick = () => { prog.unlocked = N; prog.pairs = PL.length - 1; save(); renderMap(); $('#unlockAll').textContent = 'Unlocked'; };
 $('#resetBtn').onclick = e => {
   const b = e.currentTarget;
-  if (b.dataset.armed) { prog = { unlocked: 1, stars: [], pairs: 0, vol: prog.vol, voice: prog.voice }; save(); delete b.dataset.armed; $('#grownBox').hidden = true; goMap(); return; }
+  if (b.dataset.armed) { prog = { unlocked: 1, stars: [], pairs: 0, talk: {}, asr: prog.asr, vol: prog.vol, voice: prog.voice }; save(); delete b.dataset.armed; $('#grownBox').hidden = true; goMap(); return; }
   b.dataset.armed = '1'; b.textContent = 'Tap again to wipe';
   setTimeout(() => { delete b.dataset.armed; b.textContent = 'Start over'; }, 4000);
 };
