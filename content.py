@@ -1,12 +1,17 @@
 # Lesson content shared by build.py (audio) and the page (data).
 # Word entries: "f|i|sh" marks letter teams (sh, ch, ck, ee, oo, ng) that are shown as one tile.
-VOICES = [  # key, edge-tts voice, teacher name, accent
-  ("ava", "en-US-AvaNeural", "Miss Ava", "American"),
-  ("emma", "en-US-EmmaNeural", "Miss Emma", "American"),
-  ("jenny", "en-US-JennyNeural", "Miss Jenny", "American"),
-  ("sonia", "en-GB-SoniaNeural", "Miss Sonia", "British"),
-  ("libby", "en-GB-LibbyNeural", "Miss Libby", "British"),
-  ("natasha", "en-AU-NatashaNeural", "Miss Natasha", "Australian"),
+VOICES = [  # key, edge-tts voice, teacher name, accent, "f"/"m"
+  ("ava", "en-US-AvaNeural", "Miss Ava", "American", "f"),
+  ("emma", "en-US-EmmaNeural", "Miss Emma", "American", "f"),
+  ("jenny", "en-US-JennyNeural", "Miss Jenny", "American", "f"),
+  ("sonia", "en-GB-SoniaNeural", "Miss Sonia", "British", "f"),
+  ("libby", "en-GB-LibbyNeural", "Miss Libby", "British", "f"),
+  ("natasha", "en-AU-NatashaNeural", "Miss Natasha", "Australian", "f"),
+  ("andrew", "en-US-AndrewNeural", "Mr Andrew", "American", "m"),
+  ("brian", "en-US-BrianNeural", "Mr Brian", "American", "m"),
+  ("ryan", "en-GB-RyanNeural", "Mr Ryan", "British", "m"),
+  ("thomas", "en-GB-ThomasNeural", "Mr Thomas", "British", "m"),
+  ("william", "en-AU-WilliamMultilingualNeural", "Mr William", "Australian", "m"),
 ]
 VOWELS = {
   "a": {"word": "apple", "pic": "🍎", "src": "apple"},
@@ -25,35 +30,35 @@ SENTENCES = [("I see a cat.","🐱"),("The dog can run.","🐕"),("A fish can sw
   ("The duck is wet.","🦆"),("I can see a bee.","🐝")]
 
 STAGES = [
-  {"key":"vowels","name":"Vowel Valley","sub":"a e i o u","kind":"vowels","land":"valley","sticker":"🦄",
+  {"key":"vowels","name":"Vowel Valley","sub":"a e i o u","kind":"vowels","land":"valley","sticker":"🐴","animal":"horse",
    "games":["whichvowel","firstvowel","pop","whichvowel","firstvowel"]},
-  {"key":"abc","name":"Alphabet Beach","sub":"Letter friends","kind":"alphabet","land":"beach","sticker":"🐬","opts":3,"deck":6,
+  {"key":"abc","name":"Alphabet Beach","sub":"Letter friends","kind":"alphabet","land":"beach","sticker":"🐬","animal":"dolphin","opts":3,"deck":6,
    "games":["letterfind","firstletter","letterfind","firstletter","letterfind"]},
-  {"key":"two","name":"Two-Letter Town","sub":"up · go · hi","kind":"words","land":"town","sticker":"🐶","opts":2,"deck":6,
+  {"key":"two","name":"Two-Letter Town","sub":"up · go · hi","kind":"words","land":"town","sticker":"🐶","animal":"dog","opts":2,"deck":6,
    "words":[("up","🎈⬆️"),("go","🟢"),("no","🙅"),("hi","👋"),("me","🙋"),("we","👫"),("ox","🐂"),("in","🐱📦")],
    "games":["findpic","monster","build","memory","findpic"]},
-  {"key":"a","name":"Cat Farm","sub":"cat · hat · van","kind":"words","land":"farm","sticker":"🐮","opts":2,"deck":6,
+  {"key":"a","name":"Cat Farm","sub":"cat · hat · van","kind":"words","land":"farm","sticker":"🐮","animal":"cow","opts":2,"deck":6,
    "words":[("cat","🐱"),("hat","🎩"),("bat","🦇"),("rat","🐀"),("van","🚐"),("fan","🪭"),("map","🗺️"),("bag","👜"),("jam","🍯"),("cap","🧢"),("pan","🍳"),("can","🥫")],
    "games":["findpic","monster","missing","build","memory"]},
-  {"key":"ei","name":"Hen House","sub":"hen · pig · bed","kind":"words","land":"coop","sticker":"🐣","opts":3,"deck":6,
+  {"key":"ei","name":"Hen House","sub":"hen · pig · bed","kind":"words","land":"coop","sticker":"🐓","animal":"rooster","opts":3,"deck":6,
    "words":[("hen","🐔"),("bed","🛏️"),("pen","🖊️"),("web","🕸️"),("net","🥅"),("ten","🔟"),("leg","🦵"),("pig","🐷"),("pin","📌"),("six","6️⃣"),("zip","🤐"),("bin","🗑️"),("lip","👄"),("kid","🧒")],
    "games":["findpic","missing","monster","build","wordpop"]},
-  {"key":"ou","name":"Sunny Pond","sub":"dog · sun · bus","kind":"words","land":"pond","sticker":"🐢","opts":3,"deck":6,
+  {"key":"ou","name":"Sunny Pond","sub":"dog · sun · bus","kind":"words","land":"pond","sticker":"🦆","animal":"duck","opts":3,"deck":6,
    "words":[("dog","🐶"),("fox","🦊"),("box","📦"),("log","🪵"),("pot","🍲"),("hot","🥵"),("sun","☀️"),("bus","🚌"),("cup","🥤"),("bug","🐛"),("mug","☕"),("nut","🥜"),("hug","🤗"),("tub","🛁")],
    "games":["findpic","missing","memory","build","wordpop"]},
-  {"key":"tricky","name":"Tricky Treehouse","sub":"the · I · you","kind":"tricky","land":"treehouse","sticker":"🐒","opts":3,"deck":6,
+  {"key":"tricky","name":"Tricky Treehouse","sub":"the · I · you","kind":"tricky","land":"treehouse","sticker":"🐒","animal":"monkey","opts":3,"deck":6,
    "words":[("the",""),("and",""),("is",""),("i",""),("to",""),("you",""),("my",""),("see",""),("look",""),("like","")],
    "games":["monster","memory","wordpop","monster","monster"]},
-  {"key":"blend","name":"Frog Forest","sub":"frog · star · drum","kind":"words","land":"forest","sticker":"🐸","opts":3,"deck":6,
+  {"key":"blend","name":"Frog Forest","sub":"frog · star · drum","kind":"words","land":"forest","sticker":"🐸","animal":"frog","opts":3,"deck":6,
    "words":[("frog","🐸"),("crab","🦀"),("drum","🥁"),("star","⭐"),("flag","🚩"),("sled","🛷"),("swan","🦢"),("clap","👏"),("nest","🪺"),("milk","🥛"),("lamp","💡"),("tent","⛺"),("hand","✋"),("gift","🎁")],
    "games":["findpic","build","monster","missing","memory"]},
-  {"key":"team","name":"Ship Shore","sub":"sh · ch · ee · oo","kind":"words","land":"ship","sticker":"🦀","opts":3,"deck":6,
+  {"key":"team","name":"Ship Shore","sub":"sh · ch · ee · oo","kind":"words","land":"ship","sticker":"🐳","animal":"whale","opts":3,"deck":6,
    "words":[("f|i|sh","🐟"),("sh|i|p","🚢"),("ch|i|p","🍟"),("d|u|ck","🦆"),("s|o|ck","🧦"),("r|o|ck","🪨"),("m|oo|n","🌙"),("b|oo|k","📖"),("t|r|ee","🌳"),("f|ee|t","🦶"),("k|i|ng","🤴"),("r|i|ng","💍")],
    "games":["findpic","build","monster","memory","findpic"]},
-  {"key":"five","name":"Five-Letter Castle","sub":"horse · train","kind":"words","land":"castle","sticker":"🦁","opts":3,"deck":6,
+  {"key":"five","name":"Five-Letter Castle","sub":"horse · train","kind":"words","land":"castle","sticker":"🦁","animal":"lion","opts":3,"deck":6,
    "words":[("truck","🚚"),("snake","🐍"),("horse","🐴"),("sheep","🐑"),("train","🚂"),("house","🏠"),("mouse","🐭"),("plant","🪴"),("bread","🍞"),("chair","🪑"),("clock","⏰"),("crown","👑"),("heart","❤️"),("pizza","🍕"),("robot","🤖"),("tiger","🐯"),("zebra","🦓"),("whale","🐳"),("lemon","🍋")],
    "games":["findpic","missing","build","monster","memory"]},
-  {"key":"sent","name":"Sentence Summit","sub":"Read whole sentences","kind":"sentences","land":"summit","sticker":"🦅","opts":3,"deck":5,
+  {"key":"sent","name":"Sentence Summit","sub":"Read whole sentences","kind":"sentences","land":"summit","sticker":"🦅","animal":"eagle","opts":3,"deck":5,
    "games":["sentpic","sentbuild","sentpic","sentbuild","sentpic"]},
 ]
 
@@ -98,7 +103,7 @@ PHRASES = {
   "retry1": "Oops, try again!", "retry2": "Almost! Have another go!", "retry3": "Hmm, look again and try.",
   "star": "You did it! You earned a gold star!",
   "sticker": "And you got a new sticker for your sticker book!",
-  "stickerbook": "Here is your sticker book. Can you collect them all?",
+  "stickerbook": "Here is your sticker book. Tap a sticker to hear the real animal!",
   "alldone": "Hooray! You finished the whole reading adventure! You are a reading champion!",
   "locked": "That island is still locked. Finish the one before it first!",
   "popdone": "You popped all the vowels!",
@@ -122,6 +127,7 @@ PAIR_LEVELS = [  # Picture Pairs: card count, and which islands' words it draws 
   {"cards": 24, "from": ["blend", "team", "five"]},
 ]
 PHRASES.update({
+  "stickerlocked": "Finish that island to win this sticker!",
   "pairs_pick": "Welcome to Picture Pairs! Every picture has a word friend. Pick a level to play.",
   "pairs_look": "Look carefully at all the cards. Read each word!",
   "pairs_go": "Now turn them over. Find each picture and its word!",

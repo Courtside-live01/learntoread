@@ -1,0 +1,68 @@
+{
+ "horse": {
+  "file": "File:Wiehern.ogg",
+  "license": "Public domain",
+  "author": "Hü.",
+  "page": "https://commons.wikimedia.org/wiki/File:Wiehern.ogg"
+ },
+ "dolphin": {
+  "file": "File:161691 felixblume dolphin-screaming-underwater-in-caribbean-sea-mexico.wav",
+  "license": "CC0",
+  "author": "Felix Blume",
+  "page": "https://commons.wikimedia.org/wiki/File:161691_felixblume_dolphin-screaming-underwater-in-caribbean-sea-mexico.wav"
+ },
+ "dog": {
+  "file": "File:Barking of a dog.ogg",
+  "license": "CC BY-SA 3.0",
+  "author": "Amada44",
+  "page": "https://commons.wikimedia.org/wiki/File:Barking_of_a_dog.ogg"
+ },
+ "cow": {
+  "file": "File:Single Cow Moo.ogg",
+  "license": "CC BY-SA 4.0",
+  "author": "MichaeltheFox8621",
+  "page": "https://commons.wikimedia.org/wiki/File:Single_Cow_Moo.ogg"
+ },
+ "rooster": {
+  "file": "File:Medium rooster crowing.ogg",
+  "license": "Public domain",
+  "author": "alys",
+  "page": "https://commons.wikimedia.org/wiki/File:Medium_rooster_crowing.ogg"
+ },
+ "duck": {
+  "file": "File:Anas platyrhynchos - Mallard - XC62258.ogg",
+  "license": "CC BY-SA 3.0",
+  "author": "Jonathon Jongsma",
+  "page": "https://commons.wikimedia.org/wiki/File:Anas_platyrhynchos_-_Mallard_-_XC62258.ogg"
+ },
+ "whale": {
+  "file": "File:Humpbackwhale2.ogg",
+  "license": "CC0",
+  "author": "Spyrogumas",
+  "page": "https://commons.wikimedia.org/wiki/File:Humpbackwhale2.ogg"
+ },
+ "lion": {
+  "file": "File:Lion raring-sound1TamilNadu178.ogg",
+  "license": "Public domain",
+  "author": "த*உழவன்",
+  "page": "https://commons.wikimedia.org/wiki/File:Lion_raring-sound1TamilNadu178.ogg"
+ },
+ "eagle": {
+  "file": "File:Bald Eagle Yellowstone National Park.ogg",
+  "license": "Public domain",
+  "author": "National Park Service",
+  "page": "https://commons.wikimedia.org/wiki/File:Bald_Eagle_Yellowstone_National_Park.ogg"
+ },
+ "monkey": {
+  "file": "File:Howler monkey.ogg",
+  "license": "CC BY 3.0",
+  "author": "David O'Hara",
+  "page": "https://commons.wikimedia.org/wiki/File:Howler_monkey.ogg"
+ },
+ "frog": {
+  "file": "File:Banded Bull Frog Call.ogg",
+  "license": "CC BY-SA 3.0",
+  "author": "Inspector",
+  "page": "https://commons.wikimedia.org/wiki/File:Banded_Bull_Frog_Call.ogg"
+ }
+}

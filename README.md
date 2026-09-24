@@ -28,7 +28,34 @@ Open `reading-adventure.html` in a browser and tap **Let's read!** (browsers onl
 
 ## Voices
 
-Every word, letter and instruction is a recorded clip in six natural female teacher voices (Microsoft neural voices via [edge-tts](https://github.com/rany2/edge-tts)): Ava (default, built into the page), Emma, Jenny, Sonia, Libby and Natasha. The five extra voices live in `voices/*.js` and load only when chosen.
+Every word, letter and instruction is a recorded clip in eleven natural teacher voices (Microsoft neural voices via [edge-tts](https://github.com/rany2/edge-tts)).
+
+- Female: Ava (default, built into the page), Emma, Jenny (American), Sonia, Libby (British), Natasha (Australian)
+- Male: Andrew, Brian (American), Ryan, Thomas (British), William (Australian)
+
+The extra voices live in `voices/*.js` and load only when chosen.
+
+## Picture Pairs and stickers
+
+Picture Pairs is a matching game with 9 levels (6, 8, 10, 12, 16, 18, 20, 22 and 24 cards). Each pair is a picture and its written word, so matching means reading.
+
+Each island awards an animal sticker. Tapping a sticker plays a real field recording of that animal, then the teacher says its name.
+
+### Animal sound credits
+
+Real recordings from Wikimedia Commons, trimmed to a short clip and level-matched (no other processing):
+
+- Horse: [Wiehern.ogg](https://commons.wikimedia.org/wiki/File:Wiehern.ogg) by Hü., Public domain
+- Dolphin: [161691 felixblume dolphin-screaming-underwater-in-caribbean-sea-mexico.wav](https://commons.wikimedia.org/wiki/File:161691_felixblume_dolphin-screaming-underwater-in-caribbean-sea-mexico.wav) by Felix Blume, CC0
+- Dog: [Barking of a dog.ogg](https://commons.wikimedia.org/wiki/File:Barking_of_a_dog.ogg) by Amada44, CC BY-SA 3.0
+- Cow: [Single Cow Moo.ogg](https://commons.wikimedia.org/wiki/File:Single_Cow_Moo.ogg) by MichaeltheFox8621, CC BY-SA 4.0
+- Rooster: [Medium rooster crowing.ogg](https://commons.wikimedia.org/wiki/File:Medium_rooster_crowing.ogg) by alys, Public domain
+- Duck: [Anas platyrhynchos - Mallard - XC62258.ogg](https://commons.wikimedia.org/wiki/File:Anas_platyrhynchos_-_Mallard_-_XC62258.ogg) by Jonathon Jongsma, CC BY-SA 3.0
+- Whale: [Humpbackwhale2.ogg](https://commons.wikimedia.org/wiki/File:Humpbackwhale2.ogg) by Spyrogumas, CC0
+- Lion: [Lion raring-sound1TamilNadu178.ogg](https://commons.wikimedia.org/wiki/File:Lion_raring-sound1TamilNadu178.ogg) by த*உழவன், Public domain
+- Eagle: [Bald Eagle Yellowstone National Park.ogg](https://commons.wikimedia.org/wiki/File:Bald_Eagle_Yellowstone_National_Park.ogg) by National Park Service, Public domain
+- Monkey: [Howler monkey.ogg](https://commons.wikimedia.org/wiki/File:Howler_monkey.ogg) by David O'Hara, CC BY 3.0
+- Frog: [Banded Bull Frog Call.ogg](https://commons.wikimedia.org/wiki/File:Banded_Bull_Frog_Call.ogg) by Inspector, CC BY-SA 3.0
 
 ## Files
 
@@ -39,6 +66,7 @@ Every word, letter and instruction is a recorded clip in six natural female teac
 | `template.html` | Page source: layout, styles and game code |
 | `content.py` | Islands, words, pictures, sentences and spoken phrases |
 | `build.py` | Records the clips and builds the page |
+| `animals/` | Trimmed animal clips, their credits, and `trim.py` |
 | `v1/` | The first 5-island version, kept for reference |
 
 ## Rebuild

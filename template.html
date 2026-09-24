@@ -237,7 +237,7 @@ canvas#confetti{position:fixed;inset:0;width:100%;height:100%;pointer-events:non
 /* stickers */
 .stickers{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;width:100%}
 .stk{display:flex;flex-direction:column;align-items:center;gap:2px;padding:8px 4px;border-radius:18px;background:#fff;box-shadow:0 4px 0 #9CCDE6}
-.stk span{font-size:44px;line-height:1.1}
+.stk .em{font-size:44px;line-height:1.1}
 .stk small{font-size:12px;font-weight:700;color:var(--ink-soft);line-height:1.1;text-align:center}
 .stk.no span{filter:grayscale(1) brightness(1.6) contrast(.3);opacity:.45}
 .panel .big-sticker{font-size:84px;line-height:1;animation:starIn .9s .3s cubic-bezier(.2,1.6,.4,1) both}
@@ -356,6 +356,45 @@ body{touch-action:manipulation;-webkit-user-select:none;user-select:none;-webkit
 .mcard.glow .f{box-shadow:0 0 0 5px var(--sun),0 0 22px 6px rgba(255,200,58,.9)!important}
 .mcard.done{animation:yay .6s ease}
 .wd{display:inline-block;white-space:nowrap;line-height:1}
+
+/* ---------- v5: male voices, talking sticker book ---------- */
+.vbox{width:100%;display:flex;flex-direction:column;gap:8px}
+.vtabs{display:flex;gap:4px;padding:4px;border-radius:99px;background:rgba(29,41,69,.08)}
+.vtab{flex:1;padding:min(7px,calc(var(--vh)*.9)) 10px;border-radius:99px;font-weight:800;font-size:min(16px,calc(var(--vh)*2.2));color:var(--ink-soft)}
+.vtab[aria-selected=true]{background:#fff;color:var(--ink);box-shadow:0 2px 0 #9CCDE6}
+.map-actions{flex:none;display:flex;gap:10px;justify-content:center;width:100%;max-width:480px}
+.map-actions .pairs-btn{flex:1 1 0;justify-content:center;padding-inline:12px;min-width:0}
+.pairs-btn.stickers{background:var(--sun);color:var(--ink);box-shadow:0 6px 0 var(--sun-deep)}
+.pairs-btn.stickers:active{box-shadow:0 2px 0 var(--sun-deep)}
+.pairs-btn .ct{font-size:.7em;font-weight:800;background:rgba(255,255,255,.3);border-radius:99px;padding:2px 8px;margin-left:2px}
+.pairs-btn.stickers .ct{background:rgba(29,41,69,.12)}
+#stickerBox .panel{max-width:440px;gap:min(10px,calc(var(--vh)*1.3));padding:min(20px,calc(var(--vh)*2.6)) 16px}
+#stickerBox h3{font-size:min(30px,calc(var(--vh)*4))}
+.stickers{gap:min(10px,calc(var(--vh)*1.3))}
+.stk{position:relative;gap:0;padding:min(8px,calc(var(--vh)*1)) 4px;border-radius:18px;transition:transform .1s}
+.stk:active{transform:translateY(3px)}
+.stk .em{font-size:min(46px,calc(var(--vh)*6.2));line-height:1.1;display:block}
+.stk .nm,.stk .nm span{font-size:min(20px,calc(var(--vh)*2.7))}
+.stk .nm{font-family:var(--read);font-weight:700;font-size:min(20px,calc(var(--vh)*2.7));line-height:1.1}
+.stk small{font-size:min(12px,calc(var(--vh)*1.7))}
+.stk .spk{position:absolute;top:6px;right:6px;width:16px;height:16px;color:var(--grape);opacity:.7}
+.stk .spk svg,.stk .lk svg{width:100%;height:100%}
+.stk .lk{position:absolute;top:6px;right:6px;width:14px;height:14px;color:var(--ink-soft)}
+.stk.no .em{filter:grayscale(1) brightness(1.7) contrast(.35);opacity:.5}
+.stk.wiggle .em{animation:wiggle .7s ease}
+.stk.playing{box-shadow:0 4px 0 var(--grape-deep),inset 0 0 0 4px var(--grape)}
+@keyframes wiggle{20%{transform:scale(1.3) rotate(-12deg)}45%{transform:scale(1.25) rotate(10deg)}70%{transform:scale(1.15) rotate(-5deg)}}
+.big-sticker{cursor:pointer;background:none;border:0;padding:0}
+.big-sticker.wiggle{animation:wiggle .7s ease}
+.grown-row{display:flex;gap:10px}
+.grown-row .btn{flex:1 1 0;min-width:0;font-size:17px;padding:9px 10px}
+.grown{gap:min(12px,calc(var(--vh)*1.5))!important}
+.grown h3{font-size:min(26px,calc(var(--vh)*3.6))}
+.credits .note{margin-top:6px}
+.credits{font-size:13px;color:var(--ink-soft);font-weight:600}
+.credits summary{font-weight:800;cursor:pointer;color:var(--ink)}
+.credits ul{margin:6px 0 0;padding-left:18px;display:flex;flex-direction:column;gap:3px;user-select:text;-webkit-user-select:text}
+.credits a{color:var(--cons)}
 </style>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -393,7 +432,6 @@ body{touch-action:manipulation;-webkit-user-select:none;user-select:none;-webkit
     <button class="round" id="homeBtn" aria-label="Back to the map"><svg class="icon"><use href="#home"/></svg></button>
     <h1 id="barTitle">Reading Island<small id="barSub">Pick an island</small></h1>
     <div class="stars" aria-label="Stars earned"><svg class="icon"><use href="#star"/></svg><span id="starCount">0</span></div>
-    <button class="round" id="stickerBtn" aria-label="My sticker book"><svg class="icon"><use href="#stk"/></svg></button>
     <button class="round" id="gearBtn" aria-label="Settings for grown-ups"><svg class="icon"><use href="#gear"/></svg></button>
   </header>
   <div class="dots" id="dots" hidden></div>
@@ -404,7 +442,7 @@ body{touch-action:manipulation;-webkit-user-select:none;user-select:none;-webkit
       <p>Eleven islands, from the first vowels all the way to reading whole sentences. Turn the sound up!</p>
       <div class="path-preview" aria-hidden="true"><b><em>a</em></b><b>g<em>o</em></b><b>c<em>a</em>t</b><b>fr<em>o</em>g</b><b>sh<em>i</em>p</b><b>I s<em>ee</em> a c<em>a</em>t.</b></div>
       <button class="big-go" id="goBtn"><svg class="icon"><use href="#play"/></svg>Let's read!</button>
-      <div class="voice-pick"><h4>Choose your teacher's voice</h4><div class="voices" data-voices></div></div>
+      <div class="voice-pick"><h4>Choose your teacher's voice</h4><div class="vbox" data-voices></div></div>
     </section>
     <section class="screen" id="map" hidden></section>
     <section class="screen" id="level" hidden><div class="stage" id="stage"></div></section>
@@ -421,7 +459,7 @@ body{touch-action:manipulation;-webkit-user-select:none;user-select:none;-webkit
   <div class="panel">
     <div class="win-row">
       <svg class="big-star" viewBox="0 0 24 24" aria-hidden="true"><use href="#star" fill="#FFC83A" stroke="#E0A100" stroke-width=".8"/></svg>
-      <div class="big-sticker" id="winSticker"></div>
+      <button class="big-sticker" id="winSticker" aria-label="Hear your new sticker"></button>
     </div>
     <h3 id="winTitle">Gold star!</h3>
     <p id="winText">You finished Vowel Valley.</p>
@@ -432,7 +470,7 @@ body{touch-action:manipulation;-webkit-user-select:none;user-select:none;-webkit
 
 <div class="overlay" id="stickerBox" hidden>
   <div class="panel scroll" role="dialog" aria-labelledby="stkTitle">
-    <h3 id="stkTitle">My sticker book</h3>
+    <h3 id="stkTitle">My stickers</h3>
     <p id="stkCount"></p>
     <div class="stickers" id="stickerGrid"></div>
     <button class="btn say" id="stickerClose">Close</button>
@@ -442,13 +480,13 @@ body{touch-action:manipulation;-webkit-user-select:none;user-select:none;-webkit
 <div class="overlay" id="grownBox" hidden>
   <div class="panel grown scroll" role="dialog" aria-labelledby="grownTitle">
     <h3 id="grownTitle">For grown-ups</h3>
-    <div class="voice-pick"><h4>Teacher's voice</h4><div class="voices" data-voices></div></div>
+    <div class="voice-pick"><h4>Teacher's voice</h4><div class="vbox" data-voices></div></div>
     <label for="vol">Voice loudness
       <input type="range" id="vol" min="0.6" max="2.4" step="0.1">
     </label>
-    <button class="btn" id="unlockAll">Unlock all islands</button>
-    <button class="btn warn" id="resetBtn">Start over from Vowel Valley</button>
-    <p class="note">Sit together and let your child do the tapping. Point to each letter as the teacher says it. Red tiles are vowels, blue tiles are consonants, and wide tiles are letter teams like sh and ee. One or two islands a day is plenty; replaying an island gives new words.</p>
+    <div class="grown-row"><button class="btn" id="unlockAll">Unlock all</button><button class="btn warn" id="resetBtn">Start over</button></div>
+    <details class="credits"><summary>Teaching tips</summary><p class="note">Sit together and let your child do the tapping. Point to each letter as the teacher says it. Red tiles are vowels, blue tiles are consonants, and wide tiles are letter teams like sh and ee. One or two islands a day is plenty; replaying an island gives new words.</p></details>
+    <details class="credits"><summary>Animal sound credits</summary><ul id="creditList"></ul></details>
     <button class="btn say" id="grownClose">Done</button>
   </div>
 </div>
@@ -456,6 +494,7 @@ body{touch-action:manipulation;-webkit-user-select:none;user-select:none;-webkit
 
 <script>
 const AUD = /*__AUDIO__*/{};
+const ANIM = /*__ANIM__*/{};   // real animal recordings (see credits in the grown-ups panel)
 const D = /*__DATA__*/{};
 const DEF = D.voices[0].key;
 
@@ -516,9 +555,9 @@ function loadVoice(key) {
   });
 }
 function decode(id) {
-  const v = AUD[prog.voice] ? prog.voice : DEF, key = v + ':' + id;
+  const animal = id.startsWith('x_'), v = AUD[prog.voice] ? prog.voice : DEF, key = (animal ? 'x' : v) + ':' + id;
   if (cache[key]) return cache[key];
-  const b = AUD[v][id];
+  const b = animal ? (ANIM[id.slice(2)] || {}).b64 : AUD[v][id];
   if (!b || !ctx) return Promise.resolve(null);
   const bin = atob(b), u = new Uint8Array(bin.length);
   for (let i = 0; i < bin.length; i++) u[i] = bin.charCodeAt(i);
@@ -590,7 +629,7 @@ function show(id) {
   $('#bar').hidden = id === 'start';
   $('#dots').hidden = id !== 'level';
   $('#homeBtn').hidden = id !== 'level' && id !== 'pairs';
-  $('#gearBtn').hidden = $('#stickerBtn').hidden = id !== 'map';
+  $('#gearBtn').hidden = id !== 'map';
   $('#starCount').textContent = prog.stars.length;
 }
 function setTitle(t, s) { $('#barTitle').firstChild.textContent = t; $('#barSub').textContent = s; }
@@ -659,7 +698,9 @@ function renderMap() {
   const [ox, oy] = POS[curI];
   s += `<g class="map-owl" pointer-events="none"><use href="#owl" x="${ox + (ox > 250 ? -84 : 34)}" y="${oy - 58}" width="46" height="46"/></g></svg>`;
   $('#map').innerHTML = `<div class="mapbox">${s}</div>`;
-  $('#map').append(h('button', { class: 'pairs-btn', onclick: () => { sfx.whoosh(); openPairs(); } }, icon('cards'), h('span', {}, 'Picture Pairs ', h('small', {}, `· ${prog.pairs} of ${PL.length} levels`))));
+  $('#map').append(h('div', { class: 'map-actions' },
+    h('button', { class: 'pairs-btn', 'aria-label': `Picture Pairs, ${prog.pairs} of ${PL.length} levels done`, onclick: () => { sfx.whoosh(); openPairs(); } }, icon('cards'), 'Pairs', h('span', { class: 'ct' }, `${prog.pairs}/${PL.length}`)),
+    h('button', { class: 'pairs-btn stickers', 'aria-label': `My stickers, ${prog.stars.length} of ${N}`, onclick: openStickers }, icon('stk'), 'Stickers', h('span', { class: 'ct' }, `${prog.stars.length}/${N}`))));
   $('#map').querySelectorAll('.stop').forEach(g => {
     const go = () => tapStop(+g.dataset.n);
     g.addEventListener('click', go);
@@ -1057,26 +1098,41 @@ function finishLevel() {
   prog.unlocked = Math.max(prog.unlocked, Math.min(idx + 2, N));
   save(); $('#starCount').textContent = prog.stars.length;
   $('#winSticker').textContent = st.sticker;
+  $('#winSticker').onclick = () => animalSay(st, $('#winSticker'));
   $('#winTitle').textContent = last ? 'Reading champion!' : 'Gold star!';
   $('#winText').textContent = last ? 'You read all the way to the top of Sentence Summit!' : `You finished ${st.name}. ${STG[idx + 1].name} is open!`;
   winNext = goMap; $('#winAlt').hidden = true;
   $('#winBtn').innerHTML = '<svg class="icon"><use href="#home"/></svg>Back to the map';
   $('#winBox').hidden = false; $('#winBtn').focus();
   sfx.fanfare(); confetti();
-  prompt = last ? ['p_star', 'p_sticker', 'p_alldone'] : ['p_star', 'p_sticker'];
+  const call = [{ pause: 200 }, { id: 'x_' + st.animal, on: () => wiggle($('#winSticker')) }, { pause: 250 }, 'w_' + st.animal];
+  prompt = last ? ['p_star', 'p_sticker', ...call, { pause: 300 }, 'p_alldone'] : ['p_star', 'p_sticker', ...call];
   setTimeout(() => say(prompt), 700);
 }
 let winNext = goMap;
 $('#winBtn').onclick = () => { $('#winBox').hidden = true; sfx.whoosh(); winNext(); };
 $('#winAlt').onclick = () => { $('#winBox').hidden = true; sfx.tap(); openPairs(false); };
 
+function wiggle(el) { el.classList.remove('wiggle'); void el.offsetWidth; el.classList.add('wiggle'); }
+function animalSay(st, el) {
+  wiggle(el);
+  return say([{ id: 'x_' + st.animal, on: () => el.classList.add('playing') }, { pause: 250 }, { id: 'w_' + st.animal, off: () => el.classList.remove('playing') }]);
+}
 function openStickers() {
   const g = $('#stickerGrid'); g.innerHTML = '';
-  STG.forEach(st => {
+  STG.forEach((st, i) => {
     const got = prog.stars.includes(st.key);
-    g.append(h('div', { class: 'stk' + (got ? '' : ' no') }, h('span', {}, st.sticker), h('small', {}, got ? st.name : '?')));
+    const b = h('button', { class: 'stk' + (got ? '' : ' no'), 'aria-label': got ? `${st.animal} sticker, tap to hear it` : `Locked sticker, win it on island ${i + 1}` },
+      h('span', { class: 'em' }, st.sticker),
+      got ? h('span', { class: 'nm', html: wordHTML(st.animal) }) : h('small', {}, `Island ${i + 1}`),
+      h('span', { class: got ? 'spk' : 'lk', html: `<svg class="icon"><use href="#${got ? 'spk' : 'lock'}"/></svg>` }));
+    b.onclick = () => {
+      g.querySelectorAll('.playing').forEach(x => x.classList.remove('playing'));
+      if (got) animalSay(st, b); else { sfx.boop(); wiggle(b); say('p_stickerlocked'); }
+    };
+    g.append(b);
   });
-  $('#stkCount').textContent = `${prog.stars.length} of ${N} stickers`;
+  $('#stkCount').textContent = prog.stars.length ? `${prog.stars.length} of ${N} · tap one to hear it!` : `Win a sticker on every island`;
   $('#stickerBox').hidden = false; sfx.whoosh(); say('p_stickerbook');
 }
 
@@ -1195,6 +1251,7 @@ function finishPairs(lastWord) {
   prog.pairs = Math.max(prog.pairs, lv + 1); save();
   winNext = last ? () => openPairs(false) : () => startPairs(lv + 1);
   $('#winSticker').textContent = '🃏';
+  $('#winSticker').onclick = null;
   $('#winTitle').textContent = last ? 'Pairs champion!' : 'All pairs found!';
   $('#winText').textContent = last ? 'You matched all 24 cards. Amazing reading!' : `Next: level ${lv + 2} with ${PL[lv + 1].cards} cards.`;
   $('#winBtn').innerHTML = last ? '<svg class="icon"><use href="#home"/></svg>All levels' : '<svg class="icon"><use href="#play"/></svg>Next level';
@@ -1231,11 +1288,15 @@ function confetti() {
 }
 
 /* ---------- controls ---------- */
+let vTab = null;
 function renderVoices(loading) {
+  if (!vTab) vTab = (D.voices.find(v => v.key === prog.voice) || D.voices[0]).g;
   document.querySelectorAll('[data-voices]').forEach(box => {
     box.innerHTML = '';
-    for (const v of D.voices) box.append(h('button', { class: 'voice', 'aria-pressed': String(v.key === prog.voice), 'aria-label': `${v.name}, ${v.accent} voice`,
-      onclick: () => chooseVoice(v.key) }, h('b', {}, v.name.replace('Miss ', '')), h('small', {}, loading === v.key ? 'Loading…' : loading === '!' + v.key ? 'Try again' : v.accent)));
+    box.append(h('div', { class: 'vtabs', role: 'tablist' }, [['f', 'Female voices'], ['m', 'Male voices']].map(([g, label]) =>
+      h('button', { class: 'vtab', role: 'tab', 'aria-selected': String(vTab === g), onclick: () => { vTab = g; sfx.tap(); renderVoices(); } }, label))));
+    box.append(h('div', { class: 'voices' }, D.voices.filter(v => v.g === vTab).map(v => h('button', { class: 'voice', 'aria-pressed': String(v.key === prog.voice), 'aria-label': `${v.name}, ${v.accent} voice`,
+      onclick: () => chooseVoice(v.key) }, h('b', {}, v.name.replace(/^(Miss|Mr) /, '')), h('small', {}, loading === v.key ? 'Loading…' : loading === '!' + v.key ? 'Try again' : v.accent)))));
   });
 }
 async function chooseVoice(key) {
@@ -1245,6 +1306,7 @@ async function chooseVoice(key) {
 }
 renderVoices();
 if (!AUD[prog.voice]) loadVoice(prog.voice);
+$('#creditList').append(...Object.entries(ANIM).map(([k, c]) => h('li', {}, `${k[0].toUpperCase() + k.slice(1)}: `, h('a', { href: c.page, target: '_blank', rel: 'noopener' }, c.file.replace(/^File:/, '')), ` by ${c.author} (${c.license}), Wikimedia Commons, trimmed`)));
 $('#goBtn').onclick = () => {
   unlock(); sfx.fanfare();
   try { navigator.wakeLock && navigator.wakeLock.request('screen').catch(() => {}); } catch (e) {}
@@ -1252,19 +1314,18 @@ $('#goBtn').onclick = () => {
 };
 $('#homeBtn').onclick = () => { sfx.tap(); goMap(); };
 $('#againBtn').onclick = () => { if (screen === 'start') return $('#goBtn').click(); say(prompt); };
-$('#stickerBtn').onclick = openStickers;
-$('#stickerClose').onclick = () => { $('#stickerBox').hidden = true; };
+$('#stickerClose').onclick = () => { $('#stickerBox').hidden = true; stopVoice(); };
 const vol = $('#vol'); vol.value = prog.vol;
 vol.oninput = () => { prog.vol = +vol.value; if (voiceBus) voiceBus.gain.value = prog.vol; save(); };
 vol.onchange = () => say('p_praise1');
-$('#gearBtn').onclick = () => { $('#grownBox').hidden = false; $('#resetBtn').textContent = 'Start over from Vowel Valley'; };
+$('#gearBtn').onclick = () => { $('#grownBox').hidden = false; $('#resetBtn').textContent = 'Start over'; };
 $('#grownClose').onclick = () => { $('#grownBox').hidden = true; };
-$('#unlockAll').onclick = () => { prog.unlocked = N; prog.pairs = PL.length - 1; save(); renderMap(); $('#unlockAll').textContent = 'All islands unlocked'; };
+$('#unlockAll').onclick = () => { prog.unlocked = N; prog.pairs = PL.length - 1; save(); renderMap(); $('#unlockAll').textContent = 'Unlocked'; };
 $('#resetBtn').onclick = e => {
   const b = e.currentTarget;
   if (b.dataset.armed) { prog = { unlocked: 1, stars: [], pairs: 0, vol: prog.vol, voice: prog.voice }; save(); delete b.dataset.armed; $('#grownBox').hidden = true; goMap(); return; }
-  b.dataset.armed = '1'; b.textContent = 'Tap again to wipe the stars';
-  setTimeout(() => { delete b.dataset.armed; b.textContent = 'Start over from Vowel Valley'; }, 4000);
+  b.dataset.armed = '1'; b.textContent = 'Tap again to wipe';
+  setTimeout(() => { delete b.dataset.armed; b.textContent = 'Start over'; }, 4000);
 };
 document.addEventListener('visibilitychange', () => { if (document.hidden) stopVoice(); });
 show('start');

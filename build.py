@@ -58,7 +58,7 @@ def clip_list():
     """Every clip the page needs: id -> (text, rate). Vowel sounds are handled separately."""
     words = set(w for w, _ in FIRST_VOWEL) | {d["word"] for d in VOWELS.values()} | {w for _, w, _ in ALPHABET}
     for st in STAGES:
-        words |= {w.replace("|", "") for w, _ in st.get("words", [])}
+        words |= {w.replace("|", "") for w, _ in st.get("words", [])} | {st["animal"]}
     for s, _ in SENTENCES:
         words |= set(s.lower().rstrip(".").split())
     c = {f"w_{w}": (WORD_TEXT.get(w, w + "."), RATE["w"]) for w in words}
@@ -73,7 +73,7 @@ CLIPS = clip_list()
 async def main():
     sem = asyncio.Semaphore(8)
     jobs = []
-    for key, voice, name, _ in VOICES:
+    for key, voice, name, *_ in VOICES:
         out = f"audio/{key}"; os.makedirs(out, exist_ok=True)
         for cid, (text, rate) in CLIPS.items(): jobs.append(clip(sem, voice, f"{out}/{cid}.mp3", text, rate))
         jobs.append(clip(sem, voice, f"{out}/p_hello.mp3", f"Hi! I'm {name}. Let's read together!", RATE["p"]))
@@ -90,8 +90,11 @@ default = VOICES[0][0]
 for key, *_ in VOICES[1:]:
     open(f"voices/{key}.js", "w").write(f"(window.__VP=window.__VP||{{}})[{json.dumps(key)}]={json.dumps(pack(key))};")
 data = {"pairLevels": PAIR_LEVELS, "vowels": VOWELS, "firstVowel": FIRST_VOWEL, "alphabet": ALPHABET, "sentences": SENTENCES, "stages": STAGES,
-        "phrases": PHRASES, "voices": [{"key": k, "name": n, "accent": a} for k, _, n, a in VOICES]}
+        "phrases": PHRASES, "voices": [{"key": k, "name": n, "accent": a, "g": g} for k, _, n, a, g in VOICES]}
 html = open("template.html", encoding="utf-8").read()
+credits = json.load(open("animals/credits.json"))
+anim = {a: {"b64": base64.b64encode(open(f"animals/clips/{a}.mp3", "rb").read()).decode(), **c} for a, c in credits.items()}
+html = html.replace("/*__ANIM__*/{}", json.dumps(anim, ensure_ascii=False))
 html = html.replace("/*__AUDIO__*/{}", json.dumps({default: pack(default)})).replace("/*__DATA__*/{}", json.dumps(data, ensure_ascii=False))
 open("reading-adventure.html", "w", encoding="utf-8").write(html)
 print(len(need), "clips per voice;", round(len(html) / 1e6, 2), "MB html;",
