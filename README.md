@@ -48,6 +48,16 @@ The **Sound board** plays every letter sound (a to z, plus qu, sh, ch, th) with 
 
 The voices cannot say a sound on its own, so `phonics/slice.py` cuts each sound out of the teacher's own recording of a word: the hiss before the vowel in "sun", the hum in "mud", the burst plus a short "uh" in "bug", the "ks" at the end of "box". Where the consonant ends is found from the energy in different frequency bands; hiss sounds are then filtered to pure hiss and hums to pure hum. Blends ("sa") are cut from a word ("sat") just before the final consonant. Short vowels are cut the same way from apple, egg, it, octopus and up.
 
+## Sound World (open-world 3D)
+
+A free-roaming island (first button on the 3D menu) with 29 letter friends: the vowels live in red houses in Vowel Village in the middle, the consonants (plus qu, sh, ch, th) stand on blue statues around the island. A floating arrow points to the nearest letter not yet found. Walking up to a letter opens its card:
+
+1. **Listen**: "This is b. b says buh... buh... ball!" (vowels add "This letter is a vowel").
+2. **Say the sound** into the mic; the child hears their own voice next to the teacher's.
+3. **Say the word** ("ball"); speech recognition checks it (with the same forgiving checker as Talk Time), coaching up to three tries.
+
+Found letters turn gold, get a star, and fill the letter tray at the top; progress is saved. Without a microphone or speech recognition, a grown-up checks with thumbs up.
+
 ## Word Island 3D
 
 A low-poly 3D island (three.js, loaded from cdnjs only when opened) where a blocky buddy walks, runs and jumps down a path of reading gates: a floating joystick on the left of the screen, a JUMP button on the right, arrow keys/WASD and space on a computer.

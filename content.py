@@ -176,7 +176,7 @@ TALK = {
 }
 TALK[4] = [x for x in TALK[4] if x[0] not in {"keep", "back", "well", "lost"}]
 TALK[5] = [x for x in TALK[5] if len(x[0]) == 5 and x[0] != "fries"] + [("spoon","🥄"),("snail","🐌")]
-WORD_TEXT.update({"ok": "okay.", "ma": "ma.", "pa": "pa.", "us": "us.", "am": "am."})
+WORD_TEXT.update({"yoyo": "yo-yo.", "ok": "okay.", "ma": "ma.", "pa": "pa.", "us": "us.", "am": "am."})
 PHRASES.update({
   "talk_pick": "Welcome to Talk Time! Here you practise saying words out loud, nice and clear. Listen to me first, then it's your turn!",
   "talk_listen": "Listen carefully.",
@@ -258,4 +258,16 @@ PHRASES.update({
   "wi_missing": "Which word is missing? Walk into it!",
   "wi_thatis": "That is",
   "wi_done": "Hooray! You reached the trophy! You are a reading hero!",
+})
+
+# ---------- Sound World (open-world 3D letter sounds + speaking) ----------
+PHRASES.update({
+  "sw_intro": "Welcome to Sound World! Walk anywhere on the island and find the letter friends. Walk up to a letter to hear its sound, then say it with me!",
+  "sw_turn_sound": "Your turn! Tap the microphone and say the sound",
+  "sw_turn_word": "Now tap the microphone and say the word",
+  "sw_heard": "I heard you! Great sound!",
+  "sw_found": "You found a new letter friend!",
+  "sw_find": "Let's find another letter. Follow the arrow!",
+  "sw_all": "Wow! You found every letter sound! You are a sound superstar!",
+  "sw_vowel": "This letter is a vowel. Vowels live in Vowel Village.",
 })
