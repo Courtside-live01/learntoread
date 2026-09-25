@@ -48,6 +48,16 @@ The **Sound board** plays every letter sound (a to z, plus qu, sh, ch, th) with 
 
 The voices cannot say a sound on its own, so `phonics/slice.py` cuts each sound out of the teacher's own recording of a word: the hiss before the vowel in "sun", the hum in "mud", the burst plus a short "uh" in "bug", the "ks" at the end of "box". Where the consonant ends is found from the energy in different frequency bands; hiss sounds are then filtered to pure hiss and hums to pure hum. Blends ("sa") are cut from a word ("sat") just before the final consonant. Short vowels are cut the same way from apple, egg, it, octopus and up.
 
+## Word Island 3D
+
+A low-poly 3D island (three.js, loaded from cdnjs only when opened) where a blocky buddy walks, runs and jumps down a path of reading gates: a floating joystick on the left of the screen, a JUMP button on the right, arrow keys/WASD and space on a computer.
+
+- **Letter Land**: walk into the letter the teacher asks for; "b... buh... ball".
+- **Word Builder**: spell a word sound by sound (the next letter is asked for by its sound).
+- **Sentence Trail**: the teacher reads a sentence with a gap; walk into the missing word.
+
+Adapted from a separate Word Island prototype: it now uses the chosen teacher voice and real letter sounds instead of the device's speech voice, the app's own letters, words, pictures and sentences (lowercase, vowels red), saves stars to the app's progress, keeps its touch handling and render loop inside its own screen (stopped when closed), and places the signs beside the path so the answer blocks stay in view on a phone.
+
 ## Talk Time (speaking practice)
 
 400 speaking lessons with the microphone: 100 each for 2, 3, 4 and 5-letter words. Each lesson practises 3 words (1 new, 2 review, so every word comes back spaced out). English has only about 35 two-letter words a young child uses, so the 2-letter lessons repeat those words in new mixes; the 3, 4 and 5-letter levels each use 100 different words.

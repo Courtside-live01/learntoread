@@ -494,6 +494,59 @@ body{touch-action:manipulation;-webkit-user-select:none;user-select:none;-webkit
 .btile.lit{transform:scale(1.1);box-shadow:0 0 0 5px var(--sun)}
 button.btile:active{transform:translateY(4px)}
 .btile.right{box-shadow:0 0 0 5px var(--grass),0 6px 0 var(--grass-deep)}
+
+/* ---------- v8: Word Island 3D (walk, jump and read) ---------- */
+.pairs-btn.isle3d{background:#FF8A3D;box-shadow:0 6px 0 #D2601A}
+.pairs-btn.isle3d:active{box-shadow:0 2px 0 #D2601A}
+.map-actions{gap:6px}
+.map-actions .pairs-btn{font-size:min(13.5px,calc(var(--vh)*2))}
+#wi{position:fixed;inset:0;z-index:40;background:#7EC8F5;touch-action:none;overscroll-behavior:none;font-family:var(--display);color:var(--ink)}
+#wiGame{position:absolute;inset:0}
+#wiGame canvas{display:block;width:100%;height:100%}
+.wi-screen{position:absolute;inset:0;z-index:3;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:min(12px,calc(var(--vh)*1.6));
+  text-align:center;padding:calc(12px + env(safe-area-inset-top,0px)) 16px calc(12px + env(safe-area-inset-bottom,0px));
+  background:linear-gradient(#8ED3FF 0%,#BDE8FF 56%,#7CCB5D 56.4%,#5FB84A 100%);overflow:hidden}
+.wi-screen .deco{position:absolute;font-size:min(12vw,72px);animation:bob 3.4s ease-in-out infinite;pointer-events:none}
+.wi-title{margin:0;font-size:min(12vw,58px,calc(var(--vh)*7.5));font-weight:800;line-height:1;color:#fff;text-shadow:0 4px 0 rgba(29,41,69,.28),0 10px 24px rgba(29,41,69,.25);text-wrap:balance}
+.wi-sub{margin:0;font-weight:700;font-size:min(20px,calc(var(--vh)*2.8));color:#164a2b}
+.wi-mode{display:flex;align-items:center;gap:14px;width:min(88vw,380px);border:0;border-radius:22px;padding:min(12px,calc(var(--vh)*1.6)) 18px;color:#fff;text-align:left;
+  font-size:min(22px,calc(var(--vh)*3));font-weight:800;box-shadow:0 6px 0 rgba(0,0,0,.18),0 12px 22px rgba(0,0,0,.15);line-height:1.1}
+.wi-mode:active{transform:translateY(4px);box-shadow:0 2px 0 rgba(0,0,0,.18)}
+.wi-mode .big{font-size:min(36px,calc(var(--vh)*4.8))}
+.wi-mode small{display:block;font-size:min(14px,calc(var(--vh)*2));font-weight:700;opacity:.95;margin-top:2px}
+.wi-mode.easy{background:linear-gradient(#5ecf6d,#3aa84c)}
+.wi-mode.med{background:linear-gradient(#ffb340,#f28a1c)}
+.wi-mode.hard{background:linear-gradient(#ff7a8a,#e84f66)}
+.wi-mode.back{background:rgba(29,41,69,.55);justify-content:center;font-size:min(18px,calc(var(--vh)*2.5))}
+.wi-best{font-weight:700;font-size:14px;color:#1d5c33;min-height:1em}
+#wiHud{position:absolute;inset:0;z-index:2;pointer-events:none}
+.wi-chip{position:absolute;top:calc(env(safe-area-inset-top,0px) + 10px);left:12px;display:flex;align-items:center;gap:6px;background:rgba(255,255,255,.94);
+  border-radius:99px;padding:7px 14px;font-weight:800;font-size:20px;box-shadow:0 3px 10px rgba(29,41,69,.25);font-variant-numeric:tabular-nums}
+.wi-chip svg{color:var(--sun);width:22px;height:22px}
+.wi-top{position:absolute;top:calc(env(safe-area-inset-top,0px) + 10px);right:12px;display:flex;gap:10px;pointer-events:auto}
+.wi-top .round{background:rgba(255,255,255,.94)}
+#wiBanner{position:absolute;left:50%;transform:translateX(-50%);top:calc(env(safe-area-inset-top,0px) + 70px);background:#fff;border-radius:20px;
+  padding:6px 18px 8px;box-shadow:0 6px 0 rgba(29,41,69,.15),0 10px 24px rgba(29,41,69,.2);text-align:center;pointer-events:auto;cursor:pointer;
+  max-width:calc(100vw - 32px);border:4px solid var(--sun);box-sizing:border-box}
+#wiBanner .e{font-size:40px;line-height:1.05}
+#wiBanner .w{font-family:var(--read);font-size:32px;font-weight:700;letter-spacing:4px;line-height:1.1}
+#wiBanner .w .v{color:var(--coral)} #wiBanner .w .c{color:var(--cons)}
+#wiBanner .w .done{color:#3aa84c} #wiBanner .w .next{color:var(--coral);text-decoration:underline} #wiBanner .w .todo{color:#b9c6d2}
+#wiBanner .w.sent{font-size:24px;letter-spacing:1px}
+#wiBanner .h{font-size:13px;font-weight:700;color:#8aa0b2}
+#wiToast{position:absolute;left:50%;top:40%;transform:translate(-50%,-50%) scale(0);font-size:min(11vw,52px);font-weight:800;color:#fff;
+  text-shadow:0 4px 0 rgba(29,41,69,.3);transition:transform .25s;white-space:nowrap;pointer-events:none}
+#wiToast.show{transform:translate(-50%,-50%) scale(1)}
+#wiStickZone{position:absolute;left:0;bottom:0;width:58%;height:55%;pointer-events:auto}
+#wiStick{position:absolute;width:120px;height:120px;border-radius:50%;background:rgba(255,255,255,.28);border:3px solid rgba(255,255,255,.65);display:none;pointer-events:none}
+#wiKnob{position:absolute;width:56px;height:56px;border-radius:50%;left:32px;top:32px;background:rgba(255,255,255,.95);box-shadow:0 3px 8px rgba(29,41,69,.3)}
+#wiJump{position:absolute;right:18px;bottom:calc(env(safe-area-inset-bottom,0px) + 24px);width:96px;height:96px;border-radius:50%;pointer-events:auto;
+  background:radial-gradient(circle at 35% 30%,#ffe27a,#ffb340);font-size:18px;font-weight:800;color:#7c4a00;box-shadow:0 6px 0 #c47a12,0 12px 20px rgba(29,41,69,.3)}
+#wiJump:active{transform:translateY(4px);box-shadow:0 2px 0 #c47a12}
+#wiHint{position:absolute;left:50%;transform:translateX(-50%);bottom:calc(env(safe-area-inset-bottom,0px) + 14px);font-size:14px;font-weight:700;color:#fff;
+  background:rgba(29,41,69,.45);padding:6px 14px;border-radius:99px;white-space:nowrap}
+#wiStickHint{position:absolute;left:14%;bottom:calc(env(safe-area-inset-bottom,0px) + 70px);width:110px;height:110px;border-radius:50%;border:3px dashed rgba(255,255,255,.8);
+  display:grid;place-items:center;color:#fff;font-weight:800;font-size:15px;text-align:center;line-height:1.1;pointer-events:none;animation:pulse 1.6s ease-in-out infinite}
 </style>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -523,6 +576,7 @@ button.btile:active{transform:translateY(4px)}
     <symbol id="abc" viewBox="0 0 24 24"><text x="12" y="17" text-anchor="middle" font-size="13" font-weight="700" font-family="Andika, sans-serif">abc</text></symbol>
     <symbol id="cards" viewBox="0 0 24 24"><rect x="2.5" y="5" width="10" height="14" rx="2.2" transform="rotate(-10 7.5 12)"/><rect x="11" y="4" width="10" height="14" rx="2.2" transform="rotate(8 16 11)" opacity=".75"/></symbol>
     <symbol id="mic" viewBox="0 0 24 24"><rect x="8.5" y="2.5" width="7" height="12" rx="3.5"/><path d="M5.5 11.5a6.5 6.5 0 0 0 13 0M12 18v3.5M8.5 21.5h7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></symbol>
+    <symbol id="isl" viewBox="0 0 24 24"><path d="M3 20.5c2-1.4 5.2-2 9-2s7 .6 9 2c-2 .9-5.2 1.5-9 1.5s-7-.6-9-1.5z"/><path d="M12.2 19c.4-3.6.1-7-1.4-10" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><path d="M10.8 9C9 5.4 5.2 4.8 2.5 7c3-.3 5.6.4 8.3 2zm0 0c.8-3.8 4.6-6 8.8-4.4-3.2.2-6.2 1.6-8.8 4.4zm0 0c3.6-.6 7 .8 8.6 3.8-2.8-1.4-5.6-2.4-8.6-3.8zm0 0c-3 .4-5 2.4-5.8 5.2 1.8-2 3.8-3.4 5.8-5.2z"/></symbol>
     <symbol id="stk" viewBox="0 0 24 24"><path d="M4 3h11l6 6v12H4z"/><path d="M15 3v6h6" fill="#fff" opacity=".55"/><circle cx="9.5" cy="12" r="1.3" fill="#fff"/><circle cx="14.5" cy="12" r="1.3" fill="#fff"/><path d="M8.5 15.5q3.5 3 7 0" stroke="#fff" stroke-width="1.6" fill="none" stroke-linecap="round"/></symbol>
   </defs>
 </svg>
@@ -593,6 +647,41 @@ button.btile:active{transform:translateY(4px)}
     <button class="btn say" id="grownClose">Done</button>
   </div>
 </div>
+<div id="wi" hidden>
+  <div id="wiGame"></div>
+  <div id="wiHud" hidden>
+    <div class="wi-chip"><svg class="icon"><use href="#star"/></svg><span id="wiStars">0</span></div>
+    <div class="wi-top">
+      <button class="round" id="wiSay" aria-label="Hear it again"><svg class="icon"><use href="#spk"/></svg></button>
+      <button class="round" id="wiMenu" aria-label="Back to adventures"><svg class="icon"><use href="#home"/></svg></button>
+    </div>
+    <div id="wiBanner" role="button" aria-label="Hear the challenge again" hidden></div>
+    <div id="wiToast"></div>
+    <div id="wiStickZone"><div id="wiStick"><div id="wiKnob"></div></div></div>
+    <div id="wiStickHint">Push<br>here<br>to walk</div>
+    <button id="wiJump">JUMP</button>
+    <div id="wiHint">Push the stick to walk · push far to run</div>
+  </div>
+  <div class="wi-screen" id="wiStart">
+    <div class="deco" style="left:6%;top:9%">🐱</div><div class="deco" style="right:8%;top:7%;animation-delay:.7s">🌈</div>
+    <div class="deco" style="left:9%;bottom:10%;animation-delay:1.2s">🍎</div><div class="deco" style="right:7%;bottom:13%;animation-delay:.4s">🦊</div>
+    <h2 class="wi-title">Word Island</h2>
+    <p class="wi-sub">Walk, jump and read!</p>
+    <button class="wi-mode easy" data-mode="easy"><span class="big">🟢</span><span>Letter Land<small>Find the letters and their sounds</small></span></button>
+    <button class="wi-mode med" data-mode="med"><span class="big">🟡</span><span>Word Builder<small>Spell little words, sound by sound</small></span></button>
+    <button class="wi-mode hard" data-mode="hard"><span class="big">🔴</span><span>Sentence Trail<small>Find the missing word</small></span></button>
+    <div class="wi-best" id="wiBest"></div>
+    <button class="wi-mode back" id="wiExit">Back to the map</button>
+  </div>
+  <div class="wi-screen" id="wiFinish" hidden>
+    <div class="deco" style="left:8%;top:10%">🎉</div><div class="deco" style="right:8%;top:12%;animation-delay:.6s">🎈</div>
+    <h2 class="wi-title">🏆 You did it!</h2>
+    <p class="wi-sub" id="wiFinishMsg"></p>
+    <div class="wi-chip" style="position:static"><svg class="icon"><use href="#star"/></svg><span id="wiFinishStars">0</span></div>
+    <button class="wi-mode easy" id="wiAgain"><span class="big">🔁</span><span>Play again</span></button>
+    <button class="wi-mode med" id="wiChoose"><span class="big">🏝️</span><span>Choose adventure</span></button>
+  </div>
+</div>
 <canvas id="confetti"></canvas>
 
 <script>
@@ -630,6 +719,7 @@ if (!D.voices.some(v => v.key === prog.voice)) prog.voice = DEF;
 if (typeof prog.pairs !== 'number') prog.pairs = 0;
 if (!prog.talk || typeof prog.talk !== 'object') prog.talk = {};
 if (!Array.isArray(prog.phon)) prog.phon = [];
+if (!prog.wi || typeof prog.wi !== 'object') prog.wi = {};
 const voiceMeta = () => D.voices.find(v => v.key === prog.voice);
 const save = () => { try { localStorage.setItem(KEY, JSON.stringify(prog)); } catch (e) {} };
 
@@ -809,6 +899,7 @@ function renderMap() {
     h('button', { class: 'pairs-btn', 'aria-label': `Picture Pairs, ${prog.pairs} of ${PL.length} levels done`, onclick: () => { sfx.whoosh(); openPairs(); } }, icon('cards'), 'Pairs'),
     h('button', { class: 'pairs-btn sounds', 'aria-label': 'Sound Garden: letter sounds and reading', onclick: () => { sfx.whoosh(); openSounds(); } }, icon('abc'), 'Sounds'),
     h('button', { class: 'pairs-btn talk', 'aria-label': 'Talk Time: say words out loud', onclick: () => { sfx.whoosh(); openTalk(); } }, icon('mic'), 'Talk'),
+    h('button', { class: 'pairs-btn isle3d', 'aria-label': 'Word Island 3D: walk, jump and read', onclick: () => { sfx.whoosh(); openWordIsland(); } }, icon('isl'), '3D'),
     h('button', { class: 'pairs-btn stickers', 'aria-label': `My stickers, ${prog.stars.length} of ${N}`, onclick: openStickers }, icon('stk'), 'Stickers')));
   $('#map').querySelectorAll('.stop').forEach(g => {
     const go = () => tapStop(+g.dataset.n);
@@ -1882,6 +1973,415 @@ function finishLesson() {
   setTimeout(() => say(prompt), 600);
 }
 
+/* ---------- Word Island 3D: walk, jump and read (three.js loads only when opened) ---------- */
+const WI = { open: false, raf: 0, ready: false, mode: null, stars: 0, running: false, finished: false,
+  px: 0, pz: -4, py: 0, vy: 0, onGround: true, heading: 0, cooldown: 0, prompt: [] };
+const WI_N = 6, WI_SPACE = 26, WI_FIRST = 18;
+const WI_NOUNS = ['cat', 'dog', 'fish', 'sun', 'frog', 'bus', 'hat', 'moon', 'duck', 'bee'];
+const WI_NAME = { easy: 'Letter Land', med: 'Word Builder', hard: 'Sentence Trail' };
+let T3 = null, wiR, wiScene, wiCam, wiWorld, wiAvatar, wiClock, wiStations = [], wiPickups = [], wiParts = [], wiClouds = [], wiHurdles = [], wiFinishZ = 0, wiWalk = 0;
+const wiKeys = {}, wiJoy = { on: false, id: null, cx: 0, cy: 0, x: 0, y: 0 };
+const wi$ = id => document.getElementById(id);
+
+function loadThree() {
+  if (window.THREE) return Promise.resolve(true);
+  return new Promise(res => {
+    const s = document.createElement('script');
+    s.src = 'https://cdnjs.cloudflare.com/ajax/libs/three.js/0.160.0/three.min.js';
+    s.onload = () => res(!!window.THREE); s.onerror = () => res(false);
+    document.head.append(s);
+  });
+}
+async function openWordIsland() {
+  gen++; stopVoice(); busy = false;
+  WI.open = true; wi$('wi').hidden = false;
+  wi$('wiHud').hidden = true; wi$('wiFinish').hidden = true; wi$('wiStart').hidden = false;
+  wiShowBest();
+  say(['p_wi_pick']);
+  try { await document.fonts.load('700 80px Andika'); await document.fonts.load('700 40px "Baloo 2"'); } catch (e) {}
+  if (!(await loadThree())) return wiNo3D('The 3D island needs the internet the first time. Please check the connection and try again.');
+  if (!WI.ready) wiInit();
+}
+function wiNo3D(msg) {
+  const p = h('p', { class: 'wi-sub', style: 'color:#fff;background:rgba(29,41,69,.5);padding:8px 14px;border-radius:14px' }, msg);
+  wi$('wiStart').append(p);
+}
+function closeWordIsland() {
+  WI.open = false; WI.running = false;
+  cancelAnimationFrame(WI.raf); WI.raf = 0;
+  wiJoyEnd({ changedTouches: [{ identifier: wiJoy.id }] });
+  wi$('wi').hidden = true;
+  goMap();
+}
+function wiInit() {
+  T3 = window.THREE;
+  try {
+    wiR = new T3.WebGLRenderer({ antialias: true });
+    wiR.setPixelRatio(Math.min(devicePixelRatio || 1, 1.75));
+    wiR.setSize(innerWidth, innerHeight);
+    wi$('wiGame').append(wiR.domElement);
+  } catch (e) { return wiNo3D('This device can’t draw the 3D island. Try Chrome or Safari.'); }
+  wiScene = new T3.Scene();
+  wiScene.background = new T3.Color(0x7EC8F5);
+  wiScene.fog = new T3.Fog(0x7EC8F5, 60, 150);
+  wiCam = new T3.PerspectiveCamera(innerWidth / innerHeight < .8 ? 70 : 58, innerWidth / innerHeight, .1, 400);   // wider view when the phone is upright
+  wiScene.add(new T3.AmbientLight(0xffffff, .85));
+  const dl = new T3.DirectionalLight(0xfff3d0, 1.15); dl.position.set(20, 40, -10); wiScene.add(dl);
+  wiClock = new T3.Clock();
+  addEventListener('resize', () => { if (!wiR) return; wiCam.aspect = innerWidth / innerHeight; wiCam.fov = wiCam.aspect < .8 ? 70 : 58; wiCam.updateProjectionMatrix(); wiR.setSize(innerWidth, innerHeight); });
+  WI.ready = true;
+}
+const wiMat = c => new T3.MeshLambertMaterial({ color: c });
+function wiCanvas(w, hgt) { const c = document.createElement('canvas'); c.width = w; c.height = hgt; return c; }
+function wiRound(x, X, Y, w, hh, r) { x.beginPath(); x.moveTo(X + r, Y); x.arcTo(X + w, Y, X + w, Y + hh, r); x.arcTo(X + w, Y + hh, X, Y + hh, r); x.arcTo(X, Y + hh, X, Y, r); x.arcTo(X, Y, X + w, Y, r); x.closePath(); }
+function wiTex(c) { const t = new T3.CanvasTexture(c); t.anisotropy = 4; return t; }
+function wiLetterTex(text, bg) {
+  const c = wiCanvas(256, 256), x = c.getContext('2d');
+  x.fillStyle = '#' + bg.toString(16).padStart(6, '0'); x.fillRect(0, 0, 256, 256);
+  x.fillStyle = 'rgba(255,255,255,.22)'; wiRound(x, 14, 14, 228, 110, 26); x.fill();
+  x.font = `700 ${text.length > 3 ? 78 : text.length > 1 ? 96 : 150}px Andika, sans-serif`;
+  x.textAlign = 'center'; x.textBaseline = 'middle';
+  x.lineWidth = 14; x.strokeStyle = 'rgba(29,41,69,.55)'; x.strokeText(text, 128, 136);
+  x.fillStyle = '#fff'; x.fillText(text, 128, 136);
+  return wiTex(c);
+}
+function wiSignTex(emoji, line1, line2) {
+  const c = wiCanvas(512, 340), x = c.getContext('2d');
+  x.fillStyle = '#fff'; wiRound(x, 6, 6, 500, 328, 40); x.fill();
+  x.lineWidth = 12; x.strokeStyle = '#FFC83A'; wiRound(x, 12, 12, 488, 316, 36); x.stroke();
+  x.textAlign = 'center';
+  if (emoji) { x.font = '130px serif'; x.fillText(emoji, 256, 150); }
+  x.fillStyle = '#1D2945'; x.font = `700 ${line1.length > 9 ? 62 : 84}px Andika, sans-serif`; x.fillText(line1, 256, emoji ? 268 : 170);
+  if (line2) { x.font = '700 42px "Baloo 2", sans-serif'; x.fillStyle = '#8aa0b2'; x.fillText(line2, 256, 312); }
+  return wiTex(c);
+}
+function wiFaceTex() {
+  const c = wiCanvas(256, 256), x = c.getContext('2d');
+  x.fillStyle = '#FFD93D'; x.fillRect(0, 0, 256, 256); x.fillStyle = '#1D2945';
+  x.beginPath(); x.arc(88, 105, 16, 0, 7); x.fill(); x.beginPath(); x.arc(168, 105, 16, 0, 7); x.fill();
+  x.lineWidth = 12; x.strokeStyle = '#1D2945'; x.lineCap = 'round'; x.beginPath(); x.arc(128, 140, 46, .25 * Math.PI, .75 * Math.PI); x.stroke();
+  x.fillStyle = 'rgba(255,107,107,.7)'; x.beginPath(); x.arc(58, 150, 14, 0, 7); x.fill(); x.beginPath(); x.arc(198, 150, 14, 0, 7); x.fill();
+  return new T3.CanvasTexture(c);
+}
+function wiEmoji(e, size) {
+  const c = wiCanvas(128, 128), x = c.getContext('2d');
+  x.font = '100px serif'; x.textAlign = 'center'; x.textBaseline = 'middle'; x.fillText(e, 64, 70);
+  const s = new T3.Sprite(new T3.SpriteMaterial({ map: new T3.CanvasTexture(c), transparent: true })); s.scale.set(size, size, 1); return s;
+}
+function wiAvatarMesh(shirt) {
+  const g = new T3.Group(), sh = wiMat(shirt), pants = wiMat(0x4dabf7);
+  const legL = new T3.Mesh(new T3.BoxGeometry(.32, .7, .36), pants); legL.position.set(-.2, .35, 0);
+  const legR = legL.clone(); legR.position.x = .2;
+  const body = new T3.Mesh(new T3.BoxGeometry(.85, .95, .5), sh); body.position.y = 1.18;
+  const armL = new T3.Mesh(new T3.BoxGeometry(.26, .8, .34), sh); armL.position.set(-.58, 1.25, 0);
+  const armR = armL.clone(); armR.position.x = .58;
+  const skin = wiMat(0xFFD93D);
+  const head = new T3.Mesh(new T3.BoxGeometry(.8, .8, .8), [skin, skin, skin, skin, new T3.MeshLambertMaterial({ map: wiFaceTex() }), skin]); head.position.y = 2.1;
+  const cap = new T3.Mesh(new T3.BoxGeometry(.86, .22, .86), wiMat(0x7657F2)); cap.position.y = 2.52;
+  const shadow = new T3.Mesh(new T3.CircleGeometry(.62, 20), new T3.MeshBasicMaterial({ color: 0x1d5c33, transparent: true, opacity: .25 }));
+  shadow.rotation.x = -Math.PI / 2; shadow.position.y = .02;
+  g.add(legL, legR, body, armL, armR, head, cap, shadow);
+  g.userData = { legL, legR, armL, armR, shadow };
+  return g;
+}
+function wiTree(x, z, s) {
+  const g = new T3.Group();
+  const trunk = new T3.Mesh(new T3.CylinderGeometry(.28 * s, .38 * s, 1.6 * s, 7), wiMat(0x9c6b3f)); trunk.position.y = .8 * s;
+  const col = [0x51cf66, 0x3aa84c, 0x74d97a][rnd(3)];
+  const top = new T3.Mesh(new T3.IcosahedronGeometry(1.15 * s, 0), wiMat(col)); top.position.y = 2.2 * s;
+  const top2 = new T3.Mesh(new T3.IcosahedronGeometry(.8 * s, 0), wiMat(col)); top2.position.set(.5 * s, 1.7 * s, .3 * s);
+  g.add(trunk, top, top2); g.position.set(x, 0, z); g.rotation.y = Math.random() * 6.28;
+  return g;
+}
+const WI_COL = { v: 0xFF6450, c: 0x2E7BE6, w: 0x7657F2 };
+function wiBlock(label, color) {
+  const face = () => new T3.MeshLambertMaterial({ map: wiLetterTex(label, color) });
+  const side = wiMat(color);
+  const wide = label.length > 3 ? 3.1 : label.length > 1 ? 2.5 : 1.7;
+  const m = new T3.Mesh(new T3.BoxGeometry(wide, 1.7, 1.1), [side, side, side, side, face(), face()]);
+  m.userData.baseY = 1.5; m.position.y = 1.5;
+  return m;
+}
+function wiSign(emoji, l1, l2) {
+  const g = new T3.Group(), w = 6.4;
+  const postL = new T3.Mesh(new T3.CylinderGeometry(.14, .14, 3.6, 7), wiMat(0x9c6b3f)); postL.position.set(-(w / 2) + .3, 1.8, 0);
+  const postR = postL.clone(); postR.position.x = (w / 2) - .3;
+  const white = wiMat(0xffffff);
+  const board = new T3.Mesh(new T3.BoxGeometry(w, w * .66, .18), [white, white, white, white, new T3.MeshLambertMaterial({ map: wiSignTex(emoji, l1, l2) }), new T3.MeshLambertMaterial({ map: wiSignTex(emoji, l1, l2) })]);
+  board.position.y = 3.9;
+  g.add(postL, postR, board); g.userData.board = board;
+  return g;
+}
+function wiGate() {
+  const g = new T3.Group();
+  for (let i = -3; i <= 3; i++) { const p = new T3.Mesh(new T3.BoxGeometry(.35, 2.2, .35), wiMat(i % 2 ? 0xffa94d : 0xffd43b)); p.position.set(i * 1.15, 1.1, 0); g.add(p); }
+  const rail = new T3.Mesh(new T3.BoxGeometry(7.6, .3, .4), wiMat(0xff8787)); rail.position.y = 2.1; g.add(rail);
+  return g;
+}
+function wiHurdle(z) {
+  const g = new T3.Group(), gap = rnd(3) - 1;
+  for (let i = -1; i <= 1; i++) {
+    if (i === gap) continue;
+    const log = new T3.Mesh(new T3.CylinderGeometry(.42, .42, 3.4, 10), wiMat(0xc98d54)); log.rotation.z = Math.PI / 2; log.position.set(i * 3.5, .42, 0); g.add(log);
+  }
+  g.position.z = z; g.userData.z = z;
+  return g;
+}
+
+/* challenge content comes from the app's own lessons, so every word has a real recorded voice */
+function wiStation(mode, used) {
+  if (mode === 'easy') {
+    const pool = shuffle(Object.keys(LS).filter(l => l.length === 1 && !used.has(l)));
+    const t = pool[0]; used.add(t);
+    const [w, p] = LS[t];
+    return { kind: 'pick', target: t, opts: shuffle([t, pool[1], pool[2]]), emoji: p, sign: t, sign2: 'Find it!',
+      prompt: ['p_findletter', { pause: 100 }, 'l_' + t, { pause: 300 }, 'snd_' + t],
+      win: ['l_' + t, { pause: 200 }, 'snd_' + t, { pause: 300 }, 'w_' + w], say: l => 'l_' + l };
+  }
+  if (mode === 'med') {
+    const w = pick(PHW.filter(x => !used.has(x))); used.add(w);
+    return { kind: 'build', word: w, next: 0, opts: shuffle([...w]), emoji: PIC[w] || '🗣️', sign: w.replace(/./g, '_ ').trim(), sign2: 'Spell it!',
+      prompt: ['p_wi_spell', { pause: 100 }, 'w_' + w, { pause: 350 }, 'p_wi_next', { pause: 120 }, 'snd_' + w[0]],
+      win: [...[...w].flatMap(c => ['snd_' + c, { pause: 180 }]), { pause: 150 }, 'w_' + w], say: l => 'snd_' + l };
+  }
+  const all = D.sentences.map(S);
+  const t = pick(all.filter(x => !used.has(x.i))); used.add(t.i);
+  const miss = t.keys.findIndex(k => WI_NOUNS.includes(k)), word = t.keys[miss];
+  const others = shuffle(WI_NOUNS.filter(n => n !== word)).slice(0, 2);
+  const read = t.keys.flatMap((k, i) => i === miss ? [{ pause: 700 }] : ['w_' + k, { pause: 120 }]);
+  return { kind: 'pick', target: word, opts: shuffle([word, ...others]), emoji: t.p, sign: 'Read it!', sign2: '', sentence: t.words, miss,
+    prompt: [...read, { pause: 350 }, 'p_wi_missing'], win: ['t_' + t.i], say: l => 'w_' + l };
+}
+function wiBuild(mode) {
+  if (wiWorld) wiScene.remove(wiWorld);
+  wiWorld = new T3.Group(); wiScene.add(wiWorld);
+  wiStations = []; wiPickups = []; wiParts = []; wiClouds = []; wiHurdles = [];
+  wiFinishZ = WI_FIRST + WI_N * WI_SPACE;
+  const ground = new T3.Mesh(new T3.BoxGeometry(90, 1, wiFinishZ + 120), wiMat(0x6FC959)); ground.position.set(0, -.5, wiFinishZ / 2); wiWorld.add(ground);
+  const path = new T3.Mesh(new T3.BoxGeometry(11, .12, wiFinishZ + 40), wiMat(0xF2D883)); path.position.set(0, .06, wiFinishZ / 2); wiWorld.add(path);
+  const waterL = new T3.Mesh(new T3.BoxGeometry(60, .6, wiFinishZ + 160), wiMat(0x4dabf7)); waterL.position.set(-73, -.4, wiFinishZ / 2); wiWorld.add(waterL);
+  const waterR = waterL.clone(); waterR.position.x = 73; wiWorld.add(waterR);
+  for (let i = 0; i < 36; i++) wiWorld.add(wiTree((Math.random() < .5 ? -1 : 1) * (8 + Math.random() * 22), Math.random() * (wiFinishZ + 30) - 8, .8 + Math.random() * .9));
+  const fl = [0xff6b6b, 0x4dabf7, 0x9b5de5, 0xffd43b, 0xf783ac];
+  for (let i = 0; i < 50; i++) {
+    const f = new T3.Mesh(new T3.SphereGeometry(.18, 6, 6), wiMat(fl[i % 5]));
+    f.position.set((Math.random() < .5 ? -1 : 1) * (6.5 + Math.random() * 18), .3, Math.random() * (wiFinishZ + 20) - 6); wiWorld.add(f);
+  }
+  for (let i = 0; i < 8; i++) {
+    const c = new T3.Group();
+    for (let k = 0; k < 3; k++) { const b = new T3.Mesh(new T3.SphereGeometry(1.6 - k * .35, 10, 10), wiMat(0xffffff)); b.position.set(k * 1.6 - 1.6, Math.random() * .4, 0); c.add(b); }
+    c.position.set(Math.random() * 60 - 30, 16 + Math.random() * 7, Math.random() * wiFinishZ); c.userData.v = .01 + Math.random() * .02; wiClouds.push(c); wiWorld.add(c);
+  }
+  const sun = wiEmoji('☀️', 9); sun.position.set(-26, 26, 40); wiWorld.add(sun);
+  const used = new Set();
+  for (let i = 0; i < WI_N; i++) {
+    const z = WI_FIRST + i * WI_SPACE, st = wiStation(mode, used);
+    Object.assign(st, { z, gateZ: z + 9.5, solved: false, active: false, blocks: [] });
+    st.signObj = wiSign(st.emoji, st.sign, st.sign2); st.signObj.position.set(i % 2 ? 7.4 : -7.4, 0, z + 1); st.signObj.rotation.y = i % 2 ? -.45 : .45; st.signObj.scale.setScalar(.8); wiWorld.add(st.signObj);   // beside the path, so the letter blocks stay in view
+    st.opts.forEach((label, k) => {
+      const b = wiBlock(label, mode === 'hard' ? WI_COL.w : isV(label) ? WI_COL.v : WI_COL.c);
+      b.position.set((k - (st.opts.length - 1) / 2) * 3.6, 1.5, z + 5.2);
+      Object.assign(b.userData, { label, st, wob: 0, hot: false });
+      wiWorld.add(b); st.blocks.push(b);
+    });
+    st.gate = wiGate(); st.gate.position.set(0, 0, st.gateZ); wiWorld.add(st.gate);
+    const hz = z + 15 + Math.random() * 4, hu = wiHurdle(hz); wiWorld.add(hu); wiHurdles.push(hu);
+    for (let k = 0; k < 2; k++) { const s = wiEmoji('⭐', 1.5); s.position.set(Math.random() * 8 - 4, 1.4, z + 12 + k * 6); s.userData = { t: Math.random() * 6 }; wiWorld.add(s); wiPickups.push(s); }
+    wiStations.push(st);
+  }
+  const podium = new T3.Mesh(new T3.CylinderGeometry(3.4, 4, 1.4, 24), wiMat(0xFFD93D)); podium.position.set(0, .7, wiFinishZ + 6); wiWorld.add(podium);
+  const trophy = wiEmoji('🏆', 4.4); trophy.position.set(0, 3.6, wiFinishZ + 6); wiWorld.add(trophy);
+  const rb = wiEmoji('🌈', 16); rb.position.set(0, 8, wiFinishZ + 12); wiWorld.add(rb);
+  if (wiAvatar) wiScene.remove(wiAvatar);
+  wiAvatar = wiAvatarMesh(mode === 'easy' ? 0x51cf66 : mode === 'med' ? 0xffa94d : 0xff6b6b);
+  wiScene.add(wiAvatar);
+  Object.assign(WI, { px: 0, pz: -4, py: 0, vy: 0, heading: 0, finished: false, onGround: true, cooldown: 0 });
+}
+function wiBurst(x, y, z, n, e) {
+  for (let i = 0; i < n; i++) {
+    const s = wiEmoji(e || ['⭐', '✨', '🎉'][i % 3], .9 + Math.random() * .7); s.position.set(x, y, z);
+    s.userData = { vx: (Math.random() - .5) * 8, vy: 4 + Math.random() * 6, vz: (Math.random() - .5) * 8, life: 1.4 };
+    wiWorld.add(s); wiParts.push(s);
+  }
+}
+function wiToast(msg) { const t = wi$('wiToast'); t.textContent = msg; t.classList.add('show'); setTimeout(() => t.classList.remove('show'), 1300); }
+function wiBanner(st) {
+  const b = wi$('wiBanner');
+  if (!st) { b.hidden = true; return; }
+  b.hidden = false;
+  if (st.kind === 'build') {
+    const w = st.word;
+    b.innerHTML = `<div class="e">${st.emoji}</div><div class="w"><span class="done">${w.slice(0, st.next)}</span><span class="next">${w[st.next] || ''}</span><span class="todo">${w.slice(st.next + 1)}</span></div><div class="h">tap to hear it again</div>`;
+  } else if (st.sentence) {
+    b.innerHTML = `<div class="e">${st.emoji}</div><div class="w sent">${st.sentence.map((w, i) => i === st.miss ? '<span class="next">___</span>' : w).join(' ')}.</div><div class="h">tap to hear it again</div>`;
+  } else {
+    b.innerHTML = `<div class="e">${st.emoji}</div><div class="w"><span class="${isV(st.target) ? 'v' : 'c'}">${st.target}</span></div><div class="h">find this letter</div>`;
+  }
+}
+function wiSetStars(n) { WI.stars = n; wi$('wiStars').textContent = n; }
+function wiShowBest() { const b = (prog.wi || {}); wi$('wiBest').textContent = Object.keys(WI_NAME).filter(m => b[m]).map(m => `${WI_NAME[m]}: ${b[m]}★`).join(' · '); }
+function wiStart(mode) {
+  if (!WI.ready) return;
+  WI.mode = mode; WI.running = true; wiSetStars(0);
+  wiBuild(mode);
+  wi$('wiStart').hidden = true; wi$('wiFinish').hidden = true; wi$('wiHud').hidden = false;
+  wi$('wiHint').hidden = false; wi$('wiStickHint').hidden = false;
+  wiBanner(null);
+  WI.prompt = ['p_wi_intro_' + mode];
+  say(WI.prompt);
+  setTimeout(() => { wi$('wiHint').hidden = true; }, 9000);
+  wiClock.getDelta();
+  if (!WI.raf) WI.raf = requestAnimationFrame(wiStep);
+}
+function wiMenu() { WI.running = false; stopVoice(); wi$('wiHud').hidden = true; wi$('wiFinish').hidden = true; wi$('wiStart').hidden = false; wiShowBest(); }
+function wiFinishRun() {
+  WI.finished = true; WI.running = false;
+  sfx.fanfare(); say(['p_wi_done']);
+  prog.wi = prog.wi || {};
+  prog.wi[WI.mode] = Math.max(prog.wi[WI.mode] || 0, WI.stars); save();
+  wi$('wiFinishStars').textContent = WI.stars;
+  wi$('wiFinishMsg').textContent = `You finished ${WI_NAME[WI.mode]}!`;
+  setTimeout(() => { if (!WI.open) return; wi$('wiHud').hidden = true; wi$('wiFinish').hidden = false; }, 3400);
+}
+function wiActivate(st) { st.active = true; wiBanner(st); WI.prompt = st.prompt; say(st.prompt); }
+function wiSolve(st) {
+  st.solved = true; st.active = false; wiBanner(null);
+  sfx.fanfare(); wiToast('Great job! 🎉');
+  say([...st.win, { pause: 250 }, 'p_praise' + (1 + rnd(8))]);
+  st.blocks.forEach(b => { b.visible = false; });
+  wiBurst(0, 2, st.z + 5, 16);
+  wiSetStars(WI.stars + 3);
+  st.gate.userData.opening = true;
+}
+function wiTouch(b) {
+  const st = b.userData.st, label = b.userData.label;
+  if (!st.active || st.solved || WI.cooldown > 0) return;
+  if (st.kind === 'build') {
+    if (label === st.word[st.next]) {
+      sfx.ding(); wiBurst(b.position.x, 2.4, b.position.z, 6);
+      b.visible = false; st.next++; wiBanner(st);
+      const shown = st.word.slice(0, st.next) + ' ' + '_ '.repeat(st.word.length - st.next);
+      for (const fi of [4, 5]) { const m = st.signObj.userData.board.material[fi]; m.map = wiSignTex(st.emoji, shown.trim(), 'Spell it!'); m.needsUpdate = true; }
+      if (st.next >= st.word.length) wiSolve(st);
+      else { WI.prompt = ['p_wi_next', { pause: 120 }, 'snd_' + st.word[st.next]]; say(['snd_' + label, { pause: 300 }, ...WI.prompt]); }
+    } else wiWrong(b, [st.say(label), { pause: 250 }, 'p_retry1', { pause: 150 }, ...WI.prompt]);
+  } else if (label === st.target) wiSolve(st);
+  else wiWrong(b, ['p_wi_thatis', st.say(label), { pause: 250 }, 'p_retry' + (1 + rnd(3)), { pause: 150 }, ...st.prompt]);
+}
+function wiWrong(b, seq) { WI.cooldown = 1.4; b.userData.wob = 1; sfx.boop(); say(seq); wiToast('Try again! 💪'); }
+function wiJump() { if (WI.running && WI.onGround) { WI.vy = 9.2; WI.onGround = false; sfx.tap(); } }
+
+function wiStep() {
+  if (!WI.open) { WI.raf = 0; return; }
+  WI.raf = requestAnimationFrame(wiStep);
+  const dt = Math.min(wiClock.getDelta(), .05), t = wiClock.elapsedTime;
+  if (WI.running && wiAvatar) {
+    let ix = 0, iz = 0;
+    if (wiKeys.KeyW || wiKeys.ArrowUp) iz += 1;
+    if (wiKeys.KeyS || wiKeys.ArrowDown) iz -= 1;
+    if (wiKeys.KeyA || wiKeys.ArrowLeft) ix -= 1;
+    if (wiKeys.KeyD || wiKeys.ArrowRight) ix += 1;
+    ix += wiJoy.x; iz += -wiJoy.y;
+    const mag = Math.min(1, Math.hypot(ix, iz)), run = mag > .82, speed = (run ? 9.5 : 5.4) * mag;
+    if (mag > .05) {
+      const n = Math.hypot(ix, iz) || 1, nx = ix / n, nz = iz / n;
+      WI.px += -nx * speed * dt; WI.pz += nz * speed * dt;
+      WI.heading = Math.atan2(-nx, nz); wiWalk += dt * (run ? 13 : 9);
+      wi$('wiStickHint').hidden = true;
+    } else wiWalk *= .9;
+    WI.px = Math.max(-8.5, Math.min(8.5, WI.px)); WI.pz = Math.max(-8, WI.pz);
+    for (const st of wiStations) if (!st.solved && WI.pz > st.gateZ - 1.1) WI.pz = st.gateZ - 1.1;
+    for (const hu of wiHurdles) {
+      if (Math.abs(WI.pz - hu.userData.z) < .8 && WI.py < .8) {
+        if (hu.children.some(l => Math.abs(WI.px - l.position.x) < 1.9)) WI.pz = hu.userData.z + (WI.pz < hu.userData.z ? -.8 : .8);
+      }
+    }
+    WI.vy -= 24 * dt; WI.py += WI.vy * dt;
+    if (WI.py <= 0) { WI.py = 0; WI.vy = 0; WI.onGround = true; }
+    wiAvatar.position.set(WI.px, WI.py, WI.pz); wiAvatar.rotation.y = WI.heading;
+    const u = wiAvatar.userData, sw = Math.sin(wiWalk) * (mag > .05 ? .7 : 0);
+    u.legL.rotation.x = sw; u.legR.rotation.x = -sw; u.armL.rotation.x = -sw; u.armR.rotation.x = sw;
+    u.shadow.position.y = .02 - WI.py; u.shadow.scale.setScalar(Math.max(.4, 1 - WI.py * .12));
+    wiCam.position.lerp(new T3.Vector3(WI.px * .85, 5.6 + WI.py * .3, WI.pz - 8.2), 1 - Math.pow(.001, dt));
+    wiCam.lookAt(WI.px * .9, 1.6 + WI.py * .5, WI.pz + 4);
+    if (WI.cooldown > 0) WI.cooldown -= dt;
+    for (const st of wiStations) {
+      if (!st.solved && !st.active && WI.pz > st.z - 6 && WI.pz < st.gateZ) wiActivate(st);
+      if (st.active && !st.solved) for (const b of st.blocks) {
+        if (!b.visible) continue;
+        b.position.y = b.userData.baseY + Math.sin(t * 2 + b.position.x) * .12;
+        if (b.userData.wob > 0) { b.userData.wob -= dt * 1.4; b.rotation.z = Math.sin(b.userData.wob * 22) * .18 * b.userData.wob; } else b.rotation.z = 0;
+        const d = Math.hypot(WI.px - b.position.x, WI.pz - b.position.z);
+        if (d > 2.3) b.userData.hot = false;            // a block fires again only after the player steps away
+        if (d < 1.75 && !b.userData.hot && WI.cooldown <= 0) { b.userData.hot = true; wiTouch(b); }
+      }
+      if (st.gate.userData.opening && st.gate.position.y > -3) st.gate.position.y -= dt * 2.4;
+    }
+    for (const sp of wiPickups) {
+      if (!sp.visible) continue;
+      sp.userData.t += dt * 2.2; sp.position.y = 1.4 + Math.sin(sp.userData.t) * .25;
+      if (Math.hypot(WI.px - sp.position.x, WI.pz - sp.position.z) < 1.35 && WI.py < 2.4) {
+        sp.visible = false; wiSetStars(WI.stars + 1); sfx.ding(); wiBurst(sp.position.x, sp.position.y, sp.position.z, 4, '✨');
+      }
+    }
+    if (!WI.finished && WI.pz > wiFinishZ + 3) { wiBurst(0, 3, wiFinishZ + 6, 26); wiBurst(-3, 4, wiFinishZ + 4, 14, '🎈'); wiFinishRun(); }
+  }
+  for (const c of wiClouds) { c.position.x += c.userData.v; if (c.position.x > 34) c.position.x = -34; }
+  for (let i = wiParts.length - 1; i >= 0; i--) {
+    const p = wiParts[i], ud = p.userData; ud.life -= dt;
+    p.position.x += ud.vx * dt; p.position.y += ud.vy * dt; p.position.z += ud.vz * dt; ud.vy -= 12 * dt;
+    p.material.opacity = Math.max(0, ud.life);
+    if (ud.life <= 0) { wiWorld.remove(p); wiParts.splice(i, 1); }
+  }
+  if (WI.finished && Math.random() < .06) wiBurst(Math.random() * 10 - 5, 3 + Math.random() * 3, wiFinishZ + 4 + Math.random() * 4, 6, '🎆');
+  wiR.render(wiScene, wiCam);
+}
+
+/* controls: only while Word Island is open, so the rest of the app keeps normal touch and scrolling */
+function wiPt(e) { return e.changedTouches ? e.changedTouches[0] : e; }
+function wiJoyStart(e) {
+  const t = wiPt(e);
+  Object.assign(wiJoy, { on: true, id: t.identifier !== undefined ? t.identifier : 'm', cx: t.clientX, cy: t.clientY, x: 0, y: 0 });
+  const st = wi$('wiStick'); st.style.display = 'block'; st.style.left = (t.clientX - 60) + 'px'; st.style.top = (t.clientY - 60) + 'px';
+  e.preventDefault && e.preventDefault();
+}
+function wiJoyMove(e) {
+  if (!WI.open || !wiJoy.on) return;
+  for (const t of (e.changedTouches || [e])) {
+    if ((t.identifier !== undefined ? t.identifier : 'm') !== wiJoy.id) continue;
+    let dx = t.clientX - wiJoy.cx, dy = t.clientY - wiJoy.cy;
+    const d = Math.hypot(dx, dy), max = 52;
+    if (d > max) { dx = dx / d * max; dy = dy / d * max; }
+    wiJoy.x = dx / max; wiJoy.y = dy / max;
+    const k = wi$('wiKnob'); k.style.left = (32 + dx) + 'px'; k.style.top = (32 + dy) + 'px';
+  }
+  e.cancelable && e.preventDefault();
+}
+function wiJoyEnd(e) {
+  for (const t of (e.changedTouches || [e])) {
+    if ((t.identifier !== undefined ? t.identifier : 'm') !== wiJoy.id) continue;
+    Object.assign(wiJoy, { on: false, x: 0, y: 0 });
+    wi$('wiStick').style.display = 'none'; wi$('wiKnob').style.left = '32px'; wi$('wiKnob').style.top = '32px';
+  }
+}
+const wiZone = wi$('wiStickZone'), wiEl = wi$('wi');
+wiZone.addEventListener('touchstart', wiJoyStart, { passive: false });
+wiZone.addEventListener('mousedown', wiJoyStart);
+wiEl.addEventListener('touchmove', wiJoyMove, { passive: false });
+wiEl.addEventListener('touchend', wiJoyEnd); wiEl.addEventListener('touchcancel', wiJoyEnd);
+wiEl.addEventListener('mousemove', wiJoyMove); wiEl.addEventListener('mouseup', wiJoyEnd);
+addEventListener('keydown', e => { if (!WI.open) return; wiKeys[e.code] = true; if (e.code === 'Space') { e.preventDefault(); wiJump(); } });
+addEventListener('keyup', e => { wiKeys[e.code] = false; });
+wi$('wiJump').addEventListener('touchstart', e => { e.preventDefault(); wiJump(); }, { passive: false });
+wi$('wiJump').addEventListener('mousedown', e => { e.preventDefault(); wiJump(); });
+wi$('wiSay').onclick = () => say(WI.prompt);
+wi$('wiBanner').onclick = () => say(WI.prompt);
+wi$('wiMenu').onclick = () => { sfx.tap(); wiMenu(); };
+wi$('wiExit').onclick = () => { sfx.tap(); closeWordIsland(); };
+wi$('wiAgain').onclick = () => wiStart(WI.mode);
+wi$('wiChoose').onclick = () => wiMenu();
+document.querySelectorAll('#wiStart .wi-mode[data-mode]').forEach(b => b.onclick = () => { unlock(); sfx.whoosh(); wiStart(b.dataset.mode); });
+
 /* ---------- celebration graphics ---------- */
 function sparkle(el) {
   const r = el.getBoundingClientRect(), cx = r.left + r.width / 2, cy = r.top + r.height / 2;
@@ -1944,7 +2444,7 @@ $('#grownClose').onclick = () => { $('#grownBox').hidden = true; };
 $('#unlockAll').onclick = () => { prog.unlocked = N; prog.pairs = PL.length - 1; save(); renderMap(); $('#unlockAll').textContent = 'Unlocked'; };
 $('#resetBtn').onclick = e => {
   const b = e.currentTarget;
-  if (b.dataset.armed) { prog = { unlocked: 1, stars: [], pairs: 0, talk: {}, phon: [], asr: prog.asr, vol: prog.vol, voice: prog.voice }; save(); delete b.dataset.armed; $('#grownBox').hidden = true; goMap(); return; }
+  if (b.dataset.armed) { prog = { unlocked: 1, stars: [], pairs: 0, talk: {}, phon: [], wi: {}, asr: prog.asr, vol: prog.vol, voice: prog.voice }; save(); delete b.dataset.armed; $('#grownBox').hidden = true; goMap(); return; }
   b.dataset.armed = '1'; b.textContent = 'Tap again to wipe';
   setTimeout(() => { delete b.dataset.armed; b.textContent = 'Start over'; }, 4000);
 };

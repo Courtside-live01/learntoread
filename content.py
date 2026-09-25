@@ -246,3 +246,16 @@ PHRASES.update({
   "ph_soundout": "Let's sound it out.",
   "ph_done": "Great work! You are reading with sounds!",
 })
+
+# ---------- Word Island 3D ----------
+PHRASES.update({
+  "wi_pick": "Welcome to Word Island! Walk, jump and read. Pick your adventure!",
+  "wi_intro_easy": "Welcome to Letter Land! Push the stick to walk. Walk to the first sign, and jump over the logs!",
+  "wi_intro_med": "Welcome to Word Builder! Walk into the letters to spell each word.",
+  "wi_intro_hard": "Welcome to Sentence Trail! Walk into the word that finishes the sentence.",
+  "wi_spell": "Let's spell",
+  "wi_next": "Walk into the letter that says",
+  "wi_missing": "Which word is missing? Walk into it!",
+  "wi_thatis": "That is",
+  "wi_done": "Hooray! You reached the trophy! You are a reading hero!",
+})
